@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>nnUnet</title>
+      <link href="/2023/09/08/nnUnet/"/>
+      <url>/2023/09/08/nnUnet/</url>
+      
+        <content type="html"><![CDATA[<h2 id="nnUnet"><a href="#nnUnet" class="headerlink" title="nnUnet"></a>nnUnet</h2><h3 id="1-预处理"><a href="#1-预处理" class="headerlink" title="1.预处理"></a>1.预处理</h3><h4 id="1-1-Crop"><a href="#1-1-Crop" class="headerlink" title="1.1 Crop"></a>1.1 Crop</h4><p><strong>Crop:</strong>裁剪去除图片的0区域，使用非0区域作为训练数据，对MRI数据能够显著降低其大小。</p><p><img src="/2023/09/08/nnUnet/1.png" alt="1"></p><h4 id="1-2-Resample"><a href="#1-2-Resample" class="headerlink" title="1.2 Resample"></a>1.2 Resample</h4><p><strong>Resample:</strong>CNN无法理解体素间距的概念，重采样使得数据集体素间距一致（使像素间所对应的真实的物理距离一致）。</p><p><em>注：在医学图像中要关注图像的物理距离，这关系到器官的大小。</em></p><p><img src="/2023/09/08/nnUnet/2.png" alt="2"></p><h3 id="2-训练"><a href="#2-训练" class="headerlink" title="2.训练"></a>2.训练</h3><h4 id="2-1-Patch-Sampling"><a href="#2-1-Patch-Sampling" class="headerlink" title="2.1 Patch-Sampling:"></a>2.1 Patch-Sampling:</h4><p><strong>Patch-Training:</strong>对不同的图像裁剪固定的大小，组成一个batch进行训练（用于解决在统一体素间距后，出现的数据分辨率不一致的问题）。</p><p><strong>Sampling：</strong>为了防止Patch中的数据全部是背景，保证batch中的数据有1/3包含前景。</p><h4 id="2-2-Cross-Validation"><a href="#2-2-Cross-Validation" class="headerlink" title="2.2 Cross-Validation"></a>2.2 Cross-Validation</h4><p><strong>nnUnet</strong>在训练集上使用<strong>五折交叉验证</strong>进行评估</p><p><img src="/2023/09/08/nnUnet/3.png" alt="3"></p><h3 id="3-网络设计"><a href="#3-网络设计" class="headerlink" title="3.网络设计"></a>3.网络设计</h3><p>nnUnet与Unet的结构类似，但<strong>nnUnet</strong>会根据数据集<strong>自适应调整网络结构</strong>。</p><h4 id="3-1-Cascade-Unet"><a href="#3-1-Cascade-Unet" class="headerlink" title="3.1 Cascade-Unet"></a>3.1 Cascade-Unet</h4><p><strong>Cascade-Unet:</strong>使用patch-training，不完整的图片导致感受野受限，为了解决该问题，设计出Cascade-Unet。</p><p><strong>Cascade-Unet的两个阶段：</strong></p><p><strong>1.对输入图片下采样，使用下采样的图片得到粗糙的分割结果</strong></p><p><strong>2.将第一阶段的分割结果上采样，然后与原图concat，使用patch训练</strong></p><p><img src="/2023/09/08/nnUnet/4.png" alt="4"></p><h4 id="3-2-网络自适应调整"><a href="#3-2-网络自适应调整" class="headerlink" title="3.2 网络自适应调整"></a>3.2 网络自适应调整</h4><p><strong>nnUnet：</strong>先统一体素间距，然后根据数据集计算网络的输入分辨率并确定网络的结构及参数。</p><p><img src="/2023/09/08/nnUnet/5.png" alt="5"></p><h3 id="4-后处理"><a href="#4-后处理" class="headerlink" title="4.后处理"></a>4.后处理</h3><p><strong>保留最大连通区域</strong></p><p><img src="/2023/09/08/nnUnet/6.png" alt="6"></p><p>上图：<strong>蓝色（前景）、黄色（预测的结果）</strong></p><p><strong>出现的问题：</strong>第一次处理使的模型的性能下降，第二次处理使得模型的性能提高。</p><p><strong>解决方法：</strong>在训练过程中，分别对使用后处理和不使用后处理得到两个精度，然后通过对比结果，决定是否使用后处理。</p><p><img src="/2023/09/08/nnUnet/7.png" alt="7"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机视觉 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机视觉 </tag>
+            
+            <tag> 图像分割 </tag>
+            
+            <tag> nnUnet </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C++基础（2）</title>
       <link href="/2023/09/08/c++%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89/"/>
       <url>/2023/09/08/c++%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89/</url>
