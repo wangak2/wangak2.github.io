@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Swin—Unet</title>
+      <link href="/2023/09/16/Swin%E2%80%94Unet/"/>
+      <url>/2023/09/16/Swin%E2%80%94Unet/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Swin-Unet"><a href="#Swin-Unet" class="headerlink" title="Swin-Unet"></a>Swin-Unet</h2><h3 id="1-摘要"><a href="#1-摘要" class="headerlink" title="1.摘要"></a>1.摘要</h3><p>卷积运算：不能很好地学习全局的、长距离的语义信息。</p><p>使用带移位窗口的分层Swin Transformer作为编码器来提取上下文特征。</p><p>使用对称的基于Swin Transformer的解码器来执行上采样。</p><p><strong>基于纯Transformer的u型编码器-解码器网络优于全卷积或Transformer与卷积结合的方法</strong></p><p>key：分层Swin Transformer、Swin Transformer的解码器</p><h3 id="2-介绍"><a href="#2-介绍" class="headerlink" title="2.介绍"></a>2.介绍</h3><p>在编码器中实现了从局部到全局的自注意力</p><p>设计了<strong>patch扩展层</strong>来实现上采样</p><p>key：<strong>Swin Transformer</strong>的<strong>移位窗口机制</strong></p><h3 id="3-方法"><a href="#3-方法" class="headerlink" title="3.方法"></a>3.方法</h3><h4 id="3-1-网络结构"><a href="#3-1-网络结构" class="headerlink" title="3.1 网络结构"></a>3.1 网络结构</h4><p>输入大小分割成patch大小为4x4的小块，将输入转换为<strong>序列嵌入</strong>，每个patch的特征维数为4x4x3 = 48</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>RNN</title>
       <link href="/2023/09/16/RNN/"/>
       <url>/2023/09/16/RNN/</url>
