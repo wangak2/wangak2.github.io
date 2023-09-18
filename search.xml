@@ -4,13 +4,54 @@
   
     
     <entry>
+      <title>Swin-Transformer</title>
+      <link href="/2023/09/17/Swin-Transformer/"/>
+      <url>/2023/09/17/Swin-Transformer/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Swin-Transformer"><a href="#Swin-Transformer" class="headerlink" title="Swin-Transformer"></a>Swin-Transformer</h2><h3 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1.网络结构"></a>1.网络结构</h3><p><img src="/2023/09/17/Swin-Transformer/1.png" alt="1"></p><h3 id="2-W-MSA"><a href="#2-W-MSA" class="headerlink" title="2.W-MSA"></a>2.W-MSA</h3><p>使用窗口多头自注意力，将输入的图片划分成不重叠的窗口，在这样的局部的窗口中计算自注意力，减少计算量，其对于图像的大小具有<strong>线性的复杂度</strong></p><p>$Ω(MSA) = 4hwC^2 + 2(hw)^2C; (1)$<br>$Ω(W-MSA) = 4hwC^2 + 2M^2hwC; (2)$</p><p><strong>注：</strong></p><p>h,w:输入图像的高,宽</p><p>M:一个窗口中含有MxM个patch</p><p>C：超参数（linear embedding将patch的特征维度变成C)</p><p><img src="/2023/09/17/Swin-Transformer/6.png" alt="6"></p><h3 id="3-SW-MSA"><a href="#3-SW-MSA" class="headerlink" title="3.SW-MSA"></a>3.SW-MSA</h3><p>虽然基于窗口计算自注意力能够很好的解决计算量大的问题，但是现在<strong>窗口与窗口之间没有联系</strong>，就达不到全局建模的能力，所以作者就提出了<strong>移动窗口</strong>的方式去解决</p><p><img src="/2023/09/17/Swin-Transformer/4.png" alt="4"></p><p><img src="/2023/09/17/Swin-Transformer/7.png" alt="7"></p><p><strong>从Layer1移动到Layer1+1后存在的问题：</strong>每个窗口中的patch数量不同，窗口数增大了，会影响计算效率</p><p><strong>解决方法：cyclic shift+MSA-masked</strong></p><p><img src="/2023/09/17/Swin-Transformer/5.png" alt="5"></p><p><strong>循环移位：</strong>将A、C先向下拼接，再将B、A向右拼接。通过循环移位将窗口的数目再一次地拼成4个，控制了计算复杂度，但产生了新的问题：同一个窗口中的patch来自于不同的区域，而来自于不同区域的patch之间不应该计算自注意力。</p><p><strong>MSA-masked：</strong>对于一个patch，得到这个patch的attention（Q、K、V），将这个patch的Q与其他patch的K点乘，如果这两个patch来自于不同的区域，那么将点乘的结果减100，那么结果将是一个负数，再经过softmax处理后映射得到的权值接近于0</p><h3 id="4-patch-merging"><a href="#4-patch-merging" class="headerlink" title="4.patch merging"></a>4.patch merging</h3><p><img src="/2023/09/17/Swin-Transformer/8.png" alt="8"></p><p><strong>patch merging:</strong>进行下采样，用于缩小分辨率，调整通道数进而形成层次化的设计</p><h3 id="5-Relative-position-bias（相对位置偏置）"><a href="#5-Relative-position-bias（相对位置偏置）" class="headerlink" title="5.Relative position bias（相对位置偏置）"></a>5.Relative position bias（相对位置偏置）</h3><p><strong>偏置B:</strong>让attention map进一步有所偏重，在进行Attention计算时考虑到像素间的位置关系。</p><p>偏置B是由将像素与像素间的相对位置进行编码然后通过查找偏置表得到的。</p><p><img src="/2023/09/17/Swin-Transformer/9.png" alt="9"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机视觉 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机视觉 </tag>
+            
+            <tag> 图像分割 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Swin—Unet</title>
       <link href="/2023/09/16/Swin%E2%80%94Unet/"/>
       <url>/2023/09/16/Swin%E2%80%94Unet/</url>
       
-        <content type="html"><![CDATA[<h2 id="Swin-Unet"><a href="#Swin-Unet" class="headerlink" title="Swin-Unet"></a>Swin-Unet</h2><h3 id="1-摘要"><a href="#1-摘要" class="headerlink" title="1.摘要"></a>1.摘要</h3><p>卷积运算：不能很好地学习全局的、长距离的语义信息。</p><p>使用带移位窗口的分层Swin Transformer作为编码器来提取上下文特征。</p><p>使用对称的基于Swin Transformer的解码器来执行上采样。</p><p><strong>基于纯Transformer的u型编码器-解码器网络优于全卷积或Transformer与卷积结合的方法</strong></p><p>key：分层Swin Transformer、Swin Transformer的解码器</p><h3 id="2-介绍"><a href="#2-介绍" class="headerlink" title="2.介绍"></a>2.介绍</h3><p>在编码器中实现了从局部到全局的自注意力</p><p>设计了<strong>patch扩展层</strong>来实现上采样</p><p>key：<strong>Swin Transformer</strong>的<strong>移位窗口机制</strong></p><h3 id="3-方法"><a href="#3-方法" class="headerlink" title="3.方法"></a>3.方法</h3><h4 id="3-1-网络结构"><a href="#3-1-网络结构" class="headerlink" title="3.1 网络结构"></a>3.1 网络结构</h4><p>输入大小分割成patch大小为4x4的小块，将输入转换为<strong>序列嵌入</strong>，每个patch的特征维数为4x4x3 = 48</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="Swin-Unet"><a href="#Swin-Unet" class="headerlink" title="Swin-Unet"></a>Swin-Unet</h2><h3 id="1-摘要"><a href="#1-摘要" class="headerlink" title="1.摘要"></a>1.摘要</h3><p>卷积运算：不能很好地学习全局的、长距离的语义信息。</p><p>使用带移位窗口的分层Swin Transformer作为编码器来提取上下文特征。</p><p>使用对称的基于Swin Transformer的解码器来执行上采样。</p><p><strong>基于纯Transformer的u型编码器-解码器网络优于全卷积或Transformer与卷积结合的方法</strong></p><p>key：分层Swin Transformer、Swin Transformer的解码器</p><h3 id="2-介绍"><a href="#2-介绍" class="headerlink" title="2.介绍"></a>2.介绍</h3><p>在编码器中实现了从局部到全局的自注意力</p><p>设计了<strong>patch扩展层</strong>来实现上采样</p><p>key：<strong>Swin Transformer</strong>的<strong>移位窗口机制</strong></p><h3 id="3-方法"><a href="#3-方法" class="headerlink" title="3.方法"></a>3.方法</h3><h4 id="3-1-网络结构"><a href="#3-1-网络结构" class="headerlink" title="3.1 网络结构"></a>3.1 网络结构</h4><p>输入大小分割成patch大小为4x4的小块，将输入转换为<strong>序列嵌入</strong>，每个patch的特征维数为4x4x3 = 48</p><p>利用<strong>线性嵌入层</strong>将特征维度投影到任意维度C</p>]]></content>
       
       
+      <categories>
+          
+          <category> 计算机视觉 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机视觉 </tag>
+            
+            <tag> 图像分割 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -374,9 +415,9 @@
             
             <tag> python </tag>
             
-            <tag> 感知机 </tag>
-            
             <tag> 机器学习 </tag>
+            
+            <tag> 感知机 </tag>
             
         </tags>
       
