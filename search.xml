@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Java基础语法</title>
+      <link href="/2023/09/27/java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"/>
+      <url>/2023/09/27/java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Java基础语法"><a href="#Java基础语法" class="headerlink" title="Java基础语法"></a>Java基础语法</h2><h3 id="1-浮点型拓展"><a href="#1-浮点型拓展" class="headerlink" title="1.浮点型拓展"></a>1.浮点型拓展</h3><h4 id="1-1浮点类型的舍入误差"><a href="#1-1浮点类型的舍入误差" class="headerlink" title="1.1浮点类型的舍入误差"></a>1.1浮点类型的舍入误差</h4><p>浮点类型<strong>float, double</strong>的数据不适合在<strong>不容许舍入误差</strong>的领域</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        // 定义一个float类型变量f并赋值为0.1</span><br><span class="line">        float f = 0.1f;</span><br><span class="line"></span><br><span class="line">        // 定义一个double类型变量d并赋值为1.0除以10，即0.1</span><br><span class="line">        double d = 1.0 / 10;</span><br><span class="line">        System.out.println(f == d); // 输出：false，由于精度差异，比较结果为false</span><br><span class="line">        float d1 = 2131231231f;</span><br><span class="line"></span><br><span class="line">        // 定义一个float类型变量d2，将d1加1后的结果赋值给d2</span><br><span class="line">        float d2 = d1 + 1;</span><br><span class="line">        System.out.println(&quot;d1=&quot;+d1);</span><br><span class="line">        System.out.println(&quot;d2=&quot;+d2);</span><br><span class="line">        // 检查d1是否等于d2</span><br><span class="line">        if (d1 == d2) &#123;</span><br><span class="line">            // 如果d1等于d2，输出&quot;d1==d2&quot;</span><br><span class="line">            System.out.println(&quot;d1==d2&quot;);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            // 如果d1不等于d2，输出&quot;d1!=d2&quot;</span><br><span class="line">            System.out.println(&quot;d1!=d2&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">out:</span><br><span class="line">false</span><br><span class="line">d1=2.13123123E9</span><br><span class="line">d2=2.13123123E9</span><br><span class="line">d1==d2</span><br></pre></td></tr></table></figure><p><strong>注：</strong></p><p><em>1.浮点数一般都存在舍入误差，很多数字无法精确表示，其结果只能是接近，但不等于。</em></p><p><strong><em>2.避免比较中使用浮点数</em></strong></p><p><em>3.需要进行不产生舍入误差的精确数字计算，需要使用<strong>BigDecimal</strong>类</em></p><h4 id="1-2-BigDecimal类"><a href="#1-2-BigDecimal类" class="headerlink" title="1.2 BigDecimal类"></a><strong>1.2 BigDecimal类</strong></h4><p><strong>BigDecimal类：</strong>用于高精度数值运算的类，它允许你精确地表示和执行各种数学运算，包括加法、减法、乘法、除法等，而不会丢失精度。</p><p><strong>常用方法：</strong></p><p>1.BigDecimal(String val)：构造方法，将String类型转换成BigDecimal类型数据。</p><p>2.BigDecimal(double val)：构造方法，将double类型转换成BigDecimal类型数据。</p><p>3.BigDecimal(int val)：构造方法，将int类型转换成BigDecimal类型数据。</p><p>4.BigDecimal add(BigDecimal value)：加法，求两个BigDecimal类型数据的和。</p><p>5.BigDecimal subtract(BigDecimal value)：减法，求两个BigDecimal类型数据的差。</p><p>6.BigDecimal multiply(BigDecimal  value)：乘法，求两个BigDecimal类型数据的积。</p><p>7.BigDecimal divide(BigDecimal divisor)：除法，求两个BigDecimal类型数据的商。</p><p>8.BigDecimal remainder(BigDecimal divisor)：求余数，求BigDecimal类型数据除以divisor的余数。</p><p>9.BigDecimal max(BigDecimal value)：最大数，求两个BigDecimal类型数据的最大值。</p><p>10.BigDecimal min(BigDecimal value)：最小数，求两个BigDecimal类型数据的最小值。</p><p>11.BigDecimal abs()：绝对值，求BigDecimal类型数据的绝对值。</p><p>12.BigDecimal negate()：相反数，求BigDecimal类型数据的相反数。</p><p>13.BigDecimal compareTo()：比较两个BigDecimal 对象的大小</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import java.math.BigDecimal;</span><br><span class="line">public class Main&#123;</span><br><span class="line">    public static void main(String[] args)</span><br><span class="line">    &#123;</span><br><span class="line">        BigDecimal num1 = new BigDecimal(&quot;0.1&quot;);//字符串带双引号被解释为确切的数值,若不加会存在一个微小的舍入误差</span><br><span class="line">        BigDecimal num2 = new BigDecimal(&quot;0.2&quot;);</span><br><span class="line">        BigDecimal num3=num1.multiply(new BigDecimal(&quot;2&quot;));</span><br><span class="line">        BigDecimal sum = num1.add(num2);</span><br><span class="line">        System.out.println(num3.compareTo(num2));</span><br><span class="line">        System.out.println(&quot;sum=&quot;+sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">out:</span><br><span class="line">0</span><br><span class="line">sum=0.3</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>UNeXt</title>
       <link href="/2023/09/24/UNeXt/"/>
       <url>/2023/09/24/UNeXt/</url>
@@ -475,9 +500,9 @@
             
             <tag> python </tag>
             
-            <tag> 机器学习 </tag>
-            
             <tag> 感知机 </tag>
+            
+            <tag> 机器学习 </tag>
             
         </tags>
       
