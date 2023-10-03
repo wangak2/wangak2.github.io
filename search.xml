@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Java集合框架</title>
+      <link href="/2023/10/03/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/"/>
+      <url>/2023/10/03/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</url>
+      
+        <content type="html"><![CDATA[<h2 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h2><p><strong>集合和数组的区别：</strong></p><p>(1).数组长度固定，集合长度不固定</p><p>(2).数组可以存储基本类型和引用类型，集合只能存储引用类型。</p><h3 id="1-Collection体系集合"><a href="#1-Collection体系集合" class="headerlink" title="1.Collection体系集合"></a>1.Collection体系集合</h3><p><img src="/2023/10/03/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/1.png" alt="1"></p><ul><li><p><strong>Collection</strong> <strong>接口存储一组不唯一，无序的对象</strong></p></li><li><p><strong>List</strong> <strong>接口存储一组不唯一，有序的对象。</strong></p></li><li><p><strong>Set</strong> <strong>接口存储一组唯一，无序的对象</strong></p></li><li><p><strong>Map</strong> <strong>接口存储一组键值对象，提供key到value的映射</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import java.util.*;</span><br><span class="line">public class Example &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Collection collection = new ArrayList();</span><br><span class="line">       //1.添加元素</span><br><span class="line">        collection.add(&quot;a&quot;);</span><br><span class="line">        collection.add(&quot;b&quot;);</span><br><span class="line">        collection.add(&quot;c&quot;);</span><br><span class="line">        System.out.println(collection);</span><br><span class="line">        //*2.删除元素</span><br><span class="line">//        collection.remove(&quot;a&quot;);</span><br><span class="line">//        System.out.println(collection);</span><br><span class="line">        //*3.1使用增强for遍历</span><br><span class="line">//        for (Object object:collection) &#123;</span><br><span class="line">//            System.out.println(object);</span><br><span class="line">//        &#125;</span><br><span class="line">        //*3.2使用迭代器进行遍历</span><br><span class="line">        //hasNext();判断有没有下一个元素</span><br><span class="line">        //next();获取下一个元素</span><br><span class="line">        //remove();删除当前元素</span><br><span class="line">        Iterator it= collection.iterator();</span><br><span class="line">        while(it.hasNext())</span><br><span class="line">        &#123;</span><br><span class="line">            String s=(String)it.next();</span><br><span class="line">            System.out.println(s);</span><br><span class="line">//            it.remove();//删除当前元素</span><br><span class="line">        &#125;//使用迭代器遍历时禁止使用Collection的其他的一些方法如remove()来改变集合的元素，可以使用迭代器的方法(it.remove())</span><br><span class="line">//        System.out.println(collection);</span><br><span class="line">        //*4.判断元素是否存在</span><br><span class="line">        System.out.println(collection.contains(&quot;a&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><h4 id="1-1-ArrayList"><a href="#1-1-ArrayList" class="headerlink" title="1.1 ArrayList"></a>1.1 ArrayList</h4><p>ArrayList实现了长度可变的数组，在内存中分配连续的空间，遍历元素和随机访问元素的效率比较高 。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SegFormer</title>
       <link href="/2023/10/02/SegFormer/"/>
       <url>/2023/10/02/SegFormer/</url>
@@ -180,9 +193,9 @@
             
             <tag> 图像分割 </tag>
             
-            <tag> Unet系列 </tag>
-            
             <tag> Transformer </tag>
+            
+            <tag> Unet系列 </tag>
             
         </tags>
       
