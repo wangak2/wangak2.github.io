@@ -8,9 +8,25 @@
       <link href="/2023/10/13/%E5%8D%B7%E7%A7%AF%E7%BC%96%E7%A0%81%E4%BD%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/"/>
       <url>/2023/10/13/%E5%8D%B7%E7%A7%AF%E7%BC%96%E7%A0%81%E4%BD%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p><strong>论文：《HOW MUCH POSITION INFORMATION DO CONVOLUTIONAL NEURAL NETWORKS ENCODE?》（ICLR2020）</strong></p><h3 id="论文内容："><a href="#论文内容：" class="headerlink" title="论文内容："></a>论文内容：</h3><h4 id="初步实验："><a href="#初步实验：" class="headerlink" title="初步实验："></a>初步实验：</h4><p><img src="/2023/10/13/%E5%8D%B7%E7%A7%AF%E7%BC%96%E7%A0%81%E4%BD%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/1.png" alt="1"></p><p>对原始图像和裁剪过的图像进行显著性检测。</p><p>显著的区域分析，对于相同的物体，在不同的边缘下，显著性区域始终靠近图像中心。</p><p>推测：<strong>位置信息在 CNN 网络提取的特征图中被隐式编码</strong></p><h4 id="Position-Encoding-Network："><a href="#Position-Encoding-Network：" class="headerlink" title="Position Encoding Network："></a>Position Encoding Network：</h4><p><img src="/2023/10/13/%E5%8D%B7%E7%A7%AF%E7%BC%96%E7%A0%81%E4%BD%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/2.png" alt="2"></p><p><strong>a feed forward convolutional encoder network $f_{enc} $:</strong>使用预训练的VGG或者 ResNet，仅作为前馈网络，其参数不参与训练。为前馈网络的在五个卷积层产生的特征图，使用双线性插值缩放到统一尺寸进行拼接，之后输入到 Position Encoding Module 中。</p><p><strong>position encoding module：</strong>一般卷积网络，其卷积核未使用Padding。</p><p>作者使用该网络判断卷积层产生的特征图中是否包含位置信息。</p><p><img src="/2023/10/13/%E5%8D%B7%E7%A7%AF%E7%BC%96%E7%A0%81%E4%BD%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/卷积编码位置信息\3.png" alt="3" style="zoom: 80%;"></p><p>垂直（H)和水平(V)方向的梯度掩码、应用高斯滤波器来设计另一种类型的真值图，高斯分布(G)、水平和垂直条纹（HS、VS)，使用这五种图像表示位置信息，作为Ground Truth，每次训练选择其中一种，<strong>所有样本的标签都是一样的</strong></p><p><img src="/2023/10/13/%E5%8D%B7%E7%A7%AF%E7%BC%96%E7%A0%81%E4%BD%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/4.png" alt="4" style="zoom:80%;"></p><p>除了使用数据集中的原始图像，作者还分别将<strong>纯黑、纯白、高斯噪声图像作为输入</strong>，这是为了验证在没有语义信息的情况下，特征中是否包含绝对位置信息。</p><p><strong>评价指标：</strong> Spearmen Correlation (<strong>SPC</strong>) and Mean Absoute Error (<strong>MAE</strong>)，前者越高说明输出与目标图像的相关性越高，后者则相反。</p><p><strong>实验结果:</strong></p><p><img src="/2023/10/13/%E5%8D%B7%E7%A7%AF%E7%BC%96%E7%A0%81%E4%BD%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/5.png" alt="5"></p><p>单独使用PosENet得到的分数要低很多，这一结果表明，仅从输入图像中提取位置信息是非常困难的，<strong>PosENet要与编码器网络相结合才能更好地提取出位置信息</strong></p><p>发现基于ResNet的模型比基于VGG16的模型实现了更高的性能。</p><h4 id="探究卷积的参数对提取位置信息的影响"><a href="#探究卷积的参数对提取位置信息的影响" class="headerlink" title="探究卷积的参数对提取位置信息的影响"></a>探究卷积的参数对提取位置信息的影响</h4><p><strong>length of convolutional layers：</strong></p><p><img src="/2023/10/13/%E5%8D%B7%E7%A7%AF%E7%BC%96%E7%A0%81%E4%BD%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/6.png" alt="6" style="zoom: 67%;"></p><p><strong>kernel size:</strong></p><p><img src="/2023/10/13/%E5%8D%B7%E7%A7%AF%E7%BC%96%E7%A0%81%E4%BD%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/7.png" alt="7" style="zoom: 80%;"></p><p>​                                                                <strong>更大的感受野可以更好地解析位置信息</strong></p><p><strong>zero-padding：</strong>作者认为卷积中zero-padding 是 CNN 中位置信息的来源</p><p><img src="/2023/10/13/%E5%8D%B7%E7%A7%AF%E7%BC%96%E7%A0%81%E4%BD%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/8.png" alt="8" style="zoom:80%;"></p><p>从结果中可以看出，未添加 zero-padding 的 VGG16 的性能比默认设置（padding =  1）低得多。PosENet（padding = 1）实现了比原始（padding = 0）更高的性能，而当 padding 设置为 2  时，位置信息的作用更加明显。</p>]]></content>
       
       
+      <categories>
+          
+          <category> 计算机视觉 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机视觉 </tag>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> CNN </tag>
+            
+        </tags>
       
     </entry>
     
@@ -628,9 +644,9 @@
             
             <tag> python </tag>
             
-            <tag> 机器学习 </tag>
-            
             <tag> 感知机 </tag>
+            
+            <tag> 机器学习 </tag>
             
         </tags>
       
