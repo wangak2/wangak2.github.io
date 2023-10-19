@@ -286,9 +286,9 @@
             
             <tag> 图像分割 </tag>
             
-            <tag> Transformer </tag>
-            
             <tag> Unet系列 </tag>
+            
+            <tag> Transformer </tag>
             
         </tags>
       
@@ -670,9 +670,9 @@
             
             <tag> python </tag>
             
-            <tag> 机器学习 </tag>
-            
             <tag> 感知机 </tag>
+            
+            <tag> 机器学习 </tag>
             
         </tags>
       
