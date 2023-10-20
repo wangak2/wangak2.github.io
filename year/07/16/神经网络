@@ -1,0 +1,362 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>神经网络(1) | 丹青两幻</title><meta name="author" content="丹青两幻"><meta name="copyright" content="丹青两幻"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="神经网络1. 激活函数激活函数：作用在于决定如何来激活输入信号的总和。 如，感知机的数学形式： 其亦可表达为：   h(x)函数会将输入信号的总和转换为输出信号，即为激活函数。 1.1 阶跃函数激活函数：以阈值为界，一旦输入超过阈值，就切换输出。 12345#当输入超过0时，输出1，否则输出0的阶跃函数def step_function(x):  y &#x3D; x &gt; 0  return y.as">
+<meta property="og:type" content="article">
+<meta property="og:title" content="神经网络(1)">
+<meta property="og:url" content="https://wangak.cc/year/07/16/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">
+<meta property="og:site_name" content="丹青两幻">
+<meta property="og:description" content="神经网络1. 激活函数激活函数：作用在于决定如何来激活输入信号的总和。 如，感知机的数学形式： 其亦可表达为：   h(x)函数会将输入信号的总和转换为输出信号，即为激活函数。 1.1 阶跃函数激活函数：以阈值为界，一旦输入超过阈值，就切换输出。 12345#当输入超过0时，输出1，否则输出0的阶跃函数def step_function(x):  y &#x3D; x &gt; 0  return y.as">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wangak.cc/img/%E9%BB%98%E8%AE%A4.jpg">
+<meta property="article:published_time" content="2023-07-16T07:54:44.000Z">
+<meta property="article:modified_time" content="2023-07-23T16:00:00.000Z">
+<meta property="article:author" content="丹青两幻">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="神经网络">
+<meta property="article:tag" content="激活函数">
+<meta property="article:tag" content="交叉熵">
+<meta property="article:tag" content="参数优化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wangak.cc/img/%E9%BB%98%E8%AE%A4.jpg"><link rel="shortcut icon" href="/img/logo.jpg"><link rel="canonical" href="https://wangak.cc/year/07/16/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '神经网络(1)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-07-24 00:00:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/readPercent.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/%E5%A4%B4%E5%83%8F.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">31</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">31</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope-open"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/%E9%BB%98%E8%AE%A4.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="丹青两幻"><span class="site-name">丹青两幻</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope-open"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">神经网络(1)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-16T07:54:44.000Z" title="发表于 2023-07-16 15:54:44">2023-07-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-07-23T16:00:00.000Z" title="更新于 2023-07-24 00:00:00">2023-07-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="神经网络(1)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><h3 id="1-激活函数"><a href="#1-激活函数" class="headerlink" title="1. 激活函数"></a>1. 激活函数</h3><p>激活函数：作用在于决定如何来激活输入信号的总和。</p>
+<p>如，感知机的数学形式：<img src="https://typoraimg.wangak.cc/2023/img/202310201413373.png" alt="img2"></p>
+<p>其亦可表达为：</p>
+<p><img src="https://typoraimg.wangak.cc/2023/img/202310201413123.png" alt="img3"></p>
+<p><img src="https://typoraimg.wangak.cc/2023/img/202310201413687.png" alt="img4"></p>
+<p>h(x)函数会将输入信号的总和转换为输出信号，即为激活函数。</p>
+<h4 id="1-1-阶跃函数"><a href="#1-1-阶跃函数" class="headerlink" title="1.1 阶跃函数"></a>1.1 阶跃函数</h4><p><strong>激活函数：</strong>以阈值为界，一旦输入超过阈值，就切换输出。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#当输入超过0时，输出1，否则输出0的阶跃函数</span><br><span class="line">def step_function(x):</span><br><span class="line">  y = x &gt; 0</span><br><span class="line">  return y.astype(np.int)</span><br><span class="line">  #用astype()方法转换NumPy数组的类型</span><br></pre></td></tr></table></figure>
+<p><strong>阶跃函数的图形</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pylab as plt</span><br><span class="line">def step_function(x):</span><br><span class="line"> return np.array(x &gt; 0, dtype=np.int)</span><br><span class="line">x = np.arange(-5.0, 5.0, 0.1)</span><br><span class="line">y = step_function(x)</span><br><span class="line">plt.plot(x, y)</span><br><span class="line">plt.ylim(-0.1, 1.1) # 指定y轴的范围</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://typoraimg.wangak.cc/2023/img/202310201413101.png" alt="img5" style="zoom:50%;"></p>
+<h4 id="1-2-sigmoid函数"><a href="#1-2-sigmoid函数" class="headerlink" title="1.2 sigmoid函数"></a>1.2 sigmoid函数</h4><p><strong>sigmoid函数:</strong> $h(x)={1 \over 1+e^{-x} }$</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def sigmoid(x):</span><br><span class="line"> return 1 / (1 + np.exp(-x))</span><br></pre></td></tr></table></figure>
+<p><strong>sigmoid函数的图形</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = np.arange(-5.0, 5.0, 0.1)</span><br><span class="line">y = sigmoid(x)</span><br><span class="line">plt.plot(x, y)</span><br><span class="line">plt.ylim(-0.1, 1.1) # 指定y轴的范围</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>​                                                                <img src="https://typoraimg.wangak.cc/2023/img/202310201413595.png" alt="img6" style="zoom: 50%;"></p>
+<p><em>注：神经网络的激活函数必须使用非线性函数。使用线性函数时，加深神经网络的层数就没有意义了，因为不管如何加深层数，总是存在与之等效的“无隐藏层的神经网络”。</em></p>
+<h4 id="1-3-tanh函数"><a href="#1-3-tanh函数" class="headerlink" title="1.3 tanh函数"></a>1.3 tanh函数</h4><p><strong>tanh函数：</strong>$\LARGE {e^{x}-e^{-x}\over e^{x}+e^{-x} }$</p>
+<p><img src="https://typoraimg.wangak.cc/2023/img/202310201413700.png" alt="img11" style="zoom: 50%;"></p>
+<h4 id="1-4-ReLU函数"><a href="#1-4-ReLU函数" class="headerlink" title="1.4 ReLU函数"></a>1.4 ReLU函数</h4><p><strong>ReLU函数</strong>：<img src="https://typoraimg.wangak.cc/2023/img/202310201413423.png" alt="img7"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def relu(x):</span><br><span class="line"> return np.maximum(0, x)</span><br></pre></td></tr></table></figure>
+<p><strong>ReLU函数的图形</strong></p>
+<p><img src="https://typoraimg.wangak.cc/2023/img/202310201413022.png" alt="img8" style="zoom: 67%;"></p>
+<p><strong>Leaky ReLU函数:</strong>max(0.1x,x)</p>
+<h3 id="2-恒等函数和-softmax函数"><a href="#2-恒等函数和-softmax函数" class="headerlink" title="2 恒等函数和 softmax函数"></a>2 恒等函数和 softmax函数</h3><p><strong>恒等函数：</strong>将输入按原样输出，对于输入的信息，不加以任何改动地直接输出。</p>
+<p><strong>softmax函数：</strong><script type="math/tex">\large y_k={e^{a_k} \over \sum\limits_{i=1}^ne^{a_i}}</script></p>
+<p>为了防止溢出，可对softmax函数进行如下改进：</p>
+<p><img src="https://typoraimg.wangak.cc/2023/img/202310201413575.png" alt="img10"></p>
+<p><em>注：其中，$C^{，}$通常使用输入信号中的最大值，来防止溢出。</em></p>
+<p><img src="https://typoraimg.wangak.cc/2023/img/202310201413580.png" alt="img9"></p>
+<p><strong><em>注：</em></strong></p>
+<p><em>1.softmax函数的输出通过箭头与所有的输入信号相连，输出层的各个神经元都受到所有输入信号的影响。</em></p>
+<p><em>2.softmax函数将输出的给类别的得分转换成了概率</em></p>
+<h3 id="3-交叉熵损失"><a href="#3-交叉熵损失" class="headerlink" title="3. 交叉熵损失"></a>3. 交叉熵损失</h3><p><strong>交叉熵损失：</strong>用于比较分类器预测分布与真实分布的距离。</p>
+<p><strong>熵：</strong>H(p)=$-\sum p(x)log(p(x))$</p>
+<p><strong>交叉熵：</strong>H(p,q)=$-\sum p(x)log(q(x))$</p>
+<p><strong>相对熵(KL散度)：</strong>KL(p||q)=$-\sum p(x)log({q(x)\over p(x)})$</p>
+<p><strong>三者之间的关系：</strong>H(p,q)=KL(p||q)+H(p)</p>
+<p>p(x):真实分布概率        q(x):分类器预测分布概率</p>
+<p><strong>注：</strong></p>
+<p><strong>1.相对熵(KL散度)用于度量两个分布间的不相似性。</strong></p>
+<p><strong>2.真实分布为one-hot形式时，H(p)=0,用H(p,q)代替KL(p||q),且交叉熵损失可化简为L=$-log(q_j)$,其中j为真实的类别。</strong></p>
+<h3 id="3-参数优化"><a href="#3-参数优化" class="headerlink" title="3. 参数优化"></a>3. 参数优化</h3><p>参数优化：利用损失函数的输出值作为反馈信号来调整分类器的参数。</p>
+<h4 id="3-1-梯度下降算法"><a href="#3-1-梯度下降算法" class="headerlink" title="3.1 梯度下降算法"></a>3.1 梯度下降算法</h4><p>原理：对于最小化优化问题，只需要将参数沿着梯度相反的方向前进一个步长，就可以实现目标函数的下降。</p>
+<p>方向：负梯度方向</p>
+<p>移动：步长(学习率)</p>
+<p><strong>随机梯度下降算法：</strong>每次随机选择一个样本，计算损失并更新梯度。</p>
+<p>缺点：单个样本的训练易受噪声的影响，不是每次迭代都向着整体最优化的方向。</p>
+<p><strong>小批量随机梯度下降：</strong>每次选择m个样本，计算损失并更新梯度。</p>
+<h4 id="3-2-梯度消失与梯度爆炸"><a href="#3-2-梯度消失与梯度爆炸" class="headerlink" title="3.2 梯度消失与梯度爆炸"></a>3.2 梯度消失与梯度爆炸</h4><p><strong>梯度消失：</strong>由于链式法则的乘法性质导致梯度趋向于0。</p>
+<p>注：tanh,sigmoid局部梯度特性不利于网络梯度流的反向传播，尽量选择RelU或Leaky RelU。</p>
+<p><strong>梯度爆炸：</strong>断崖处梯度乘以学习率后是一个非常大得值，从而“飞”出了合理区域，最终导致算法不收敛;</p>
+<p>注：通过限制步长的大小(梯度裁剪)可以避免梯度爆炸。</p>
+<h4 id="3-3-梯度下降算法的问题及改进"><a href="#3-3-梯度下降算法的问题及改进" class="headerlink" title="3.3 梯度下降算法的问题及改进"></a>3.3 梯度下降算法的问题及改进</h4><p><strong>梯度下降算法的问题：</strong>在一个方向上变化迅速而在另一个方向上的变化缓慢，并且通过增大步长不能提高算法的收敛速度。</p>
+<p><strong>动量法：</strong>利用累加历史梯度信息更新梯度。</p>
+<p>步骤：</p>
+<p>1.采样</p>
+<p>2.计算梯度：g</p>
+<p>3.速度更新：v=uv+g(u:动量系数，u=0时为梯度下降算法)</p>
+<p>4.更新权值：w=w-$\varepsilon$v($\varepsilon$:学习率）</p>
+<p><em>注：梯度下降算法在局部最小点与鞍点处的梯度为0，无法通过，而动量法由于动量的存在可以通过，可以找到更优的解）</em></p>
+<p><strong>自适应梯度算法(AdaGrad)：</strong>减小震荡方向的步长，增大平坦方向的步长。</p>
+<p>步骤：</p>
+<p>1.采样</p>
+<p>2.计算梯度：g</p>
+<p>3.累计平方梯度：r=r+g*g (r : 累计变量)</p>
+<p>4.更新权值：w=w-${\large \varepsilon \over \sqrt{r}+\delta}*g$($\delta$:小常数，通常取$10^{-5}$,用于防止除0出错）</p>
+<p><em>注：AdaGrad的一个限制是，随着累计变量的不断增大，导致每个参数的步长(学习率)非常小，这可能会大大减慢搜索进度，并且可能意味着无法找到最优值。</em></p>
+<p><strong>RMSProp：</strong>累计平方梯度：r=$\rho$r+(1-$\rho$)g*g ($\rho$:衰减系数，通常取0.999)</p>
+<p><strong>ADAM:</strong>同时使用动量与自适应梯度的思想</p>
+<p>步骤：</p>
+<p>1.采样</p>
+<p>2.计算梯度：g</p>
+<p>3.累计梯度：v=uv+(1-u)*g(u:动量系数,通常取0.9)</p>
+<p>4.累计平方梯度：r=$\rho$r+(1-$\rho$)g*g </p>
+<p>5.修正偏差：$\large \tilde{v}={v\over 1-u^t}$  ,$\large \tilde{r}={r\over 1-\rho^t}$ (t:迭代系数，该步骤极大缓解了算法初期的冷启动的问题)</p>
+<p>6.更新权值：w=w-${\large \varepsilon \over \sqrt{\tilde{r}}+\delta}*\tilde{v}$</p>
+<p><em>注：动量法等同于修改学习的“方向”，自适应梯度等同于修改“步长”，ADAM等同于修改“步长”和“方向”。</em></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://wangak.cc">丹青两幻</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://wangak2.github.io/2023/07/16/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">https://wangak2.github.io/2023/07/16/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://wangak.cc" target="_blank">丹青两幻</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a><a class="post-meta__tags" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><a class="post-meta__tags" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a><a class="post-meta__tags" href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/">激活函数</a><a class="post-meta__tags" href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/">交叉熵</a><a class="post-meta__tags" href="/tags/%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96/">参数优化</a></div><div class="post_share"><div class="social-share" data-image="/img/%E9%BB%98%E8%AE%A4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/year/07/28/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86" title="数据预处理"><img class="cover" src="/img/%E9%BB%98%E8%AE%A44.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">数据预处理</div></div></a></div><div class="next-post pull-right"><a href="/year/07/15/matplotlib" title="matplotlib"><img class="cover" src="/img/%E9%BB%98%E8%AE%A42.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">matplotlib</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/year/07/29/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92" title="线性回归"><img class="cover" src="/img/%E5%BD%92%E6%A1%A3%E9%A1%B5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-29</div><div class="title">线性回归</div></div></a></div><div><a href="/year/07/15/matplotlib" title="matplotlib"><img class="cover" src="/img/%E9%BB%98%E8%AE%A42.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-15</div><div class="title">matplotlib</div></div></a></div><div><a href="/year/07/02/numpy%E5%9F%BA%E7%A1%80" title="numpy基础"><img class="cover" src="/img/%E9%BB%98%E8%AE%A44.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-02</div><div class="title">numpy基础</div></div></a></div><div><a href="/year/06/26/python%E5%9F%BA%E7%A1%80%EF%BC%881%EF%BC%89" title="python基础（1）"><img class="cover" src="/img/%E9%BB%98%E8%AE%A44.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-26</div><div class="title">python基础（1）</div></div></a></div><div><a href="/year/07/01/python%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89" title="python基础（2）"><img class="cover" src="/img/%E9%BB%98%E8%AE%A45.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-01</div><div class="title">python基础（2）</div></div></a></div><div><a href="/year/07/12/%E6%84%9F%E7%9F%A5%E6%9C%BA" title="感知机"><img class="cover" src="/img/%E9%BB%98%E8%AE%A4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-12</div><div class="title">感知机</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/%E5%A4%B4%E5%83%8F.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">丹青两幻</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">31</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">31</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">所谓生活，有所为，有所爱，有所期待</div><div id="welcome-info"></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-text">神经网络</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="toc-text">1. 激活函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E9%98%B6%E8%B7%83%E5%87%BD%E6%95%B0"><span class="toc-text">1.1 阶跃函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-sigmoid%E5%87%BD%E6%95%B0"><span class="toc-text">1.2 sigmoid函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-tanh%E5%87%BD%E6%95%B0"><span class="toc-text">1.3 tanh函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-ReLU%E5%87%BD%E6%95%B0"><span class="toc-text">1.4 ReLU函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%81%92%E7%AD%89%E5%87%BD%E6%95%B0%E5%92%8C-softmax%E5%87%BD%E6%95%B0"><span class="toc-text">2 恒等函数和 softmax函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BA%A4%E5%8F%89%E7%86%B5%E6%8D%9F%E5%A4%B1"><span class="toc-text">3. 交叉熵损失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96"><span class="toc-text">3. 参数优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95"><span class="toc-text">3.1 梯度下降算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E4%B8%8E%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8"><span class="toc-text">3.2 梯度消失与梯度爆炸</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E6%94%B9%E8%BF%9B"><span class="toc-text">3.3 梯度下降算法的问题及改进</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/year/10/18/File%E7%B1%BB" title="File类"><img src="/img/%E9%BB%98%E8%AE%A45.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="File类"/></a><div class="content"><a class="title" href="/year/10/18/File%E7%B1%BB" title="File类">File类</a><time datetime="2023-10-18T12:44:09.000Z" title="发表于 2023-10-18 20:44:09">2023-10-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/year/10/18/io%E6%B5%81" title="io流"><img src="/img/%E9%BB%98%E8%AE%A4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="io流"/></a><div class="content"><a class="title" href="/year/10/18/io%E6%B5%81" title="io流">io流</a><time datetime="2023-10-18T12:35:42.000Z" title="发表于 2023-10-18 20:35:42">2023-10-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/year/10/13/%E5%8D%B7%E7%A7%AF%E7%BC%96%E7%A0%81%E4%BD%8D%E7%BD%AE%E4%BF%A1%E6%81%AF" title="卷积编码位置信息"><img src="/img/%E9%BB%98%E8%AE%A43.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="卷积编码位置信息"/></a><div class="content"><a class="title" href="/year/10/13/%E5%8D%B7%E7%A7%AF%E7%BC%96%E7%A0%81%E4%BD%8D%E7%BD%AE%E4%BF%A1%E6%81%AF" title="卷积编码位置信息">卷积编码位置信息</a><time datetime="2023-10-13T06:56:14.000Z" title="发表于 2023-10-13 14:56:14">2023-10-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/year/10/03/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6" title="Java集合框架"><img src="/img/%E5%BD%92%E6%A1%A3%E9%A1%B5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java集合框架"/></a><div class="content"><a class="title" href="/year/10/03/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6" title="Java集合框架">Java集合框架</a><time datetime="2023-10-03T08:31:34.000Z" title="发表于 2023-10-03 16:31:34">2023-10-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/year/10/02/SegFormer" title="SegFormer"><img src="/img/%E9%BB%98%E8%AE%A44.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SegFormer"/></a><div class="content"><a class="title" href="/year/10/02/SegFormer" title="SegFormer">SegFormer</a><time datetime="2023-10-02T07:28:00.000Z" title="发表于 2023-10-02 15:28:00">2023-10-02</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/%E9%BB%98%E8%AE%A4.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 丹青两幻</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.wangak.cc/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.wangak.cc/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div><canvas id="snow" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;pointer-events:none"></canvas></div><script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script><script async type="text/javascript" src="https://cdn.jsdelivr.net/gh/Candinya/Kratos-Rebirth@latest/source/js/snow.min.js"></script><script defer src="/js/cursor.js"></script><script defer data-pjax src="/js/readPercent.js"></script><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async data-pjax src="/js/txmap.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = '6479a545ef6a437bbec669f0c23e9f64';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '123.4242336452,41.6531173701';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
