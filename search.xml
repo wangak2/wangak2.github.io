@@ -286,9 +286,9 @@
             
             <tag> 图像分割 </tag>
             
-            <tag> Unet系列 </tag>
-            
             <tag> Transformer </tag>
+            
+            <tag> Unet系列 </tag>
             
         </tags>
       
@@ -641,9 +641,9 @@
             
             <tag> python </tag>
             
-            <tag> matplotlib </tag>
-            
             <tag> 数据分析 </tag>
+            
+            <tag> matplotlib </tag>
             
         </tags>
       
@@ -726,9 +726,9 @@
             
             <tag> python </tag>
             
-            <tag> 数据分析 </tag>
-            
             <tag> numpy </tag>
+            
+            <tag> 数据分析 </tag>
             
         </tags>
       
