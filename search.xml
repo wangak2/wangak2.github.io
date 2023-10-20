@@ -641,9 +641,9 @@
             
             <tag> python </tag>
             
-            <tag> matplotlib </tag>
-            
             <tag> 数据分析 </tag>
+            
+            <tag> matplotlib </tag>
             
         </tags>
       
@@ -670,9 +670,9 @@
             
             <tag> python </tag>
             
-            <tag> 感知机 </tag>
-            
             <tag> 机器学习 </tag>
+            
+            <tag> 感知机 </tag>
             
         </tags>
       
@@ -726,9 +726,9 @@
             
             <tag> python </tag>
             
-            <tag> 数据分析 </tag>
-            
             <tag> numpy </tag>
+            
+            <tag> 数据分析 </tag>
             
         </tags>
       
@@ -794,6 +794,17 @@
     
     
     <entry>
+      <title>categories</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>comments</title>
       <link href="/comments/index.html"/>
       <url>/comments/index.html</url>
@@ -808,17 +819,6 @@
       <title>tags</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>categories</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
