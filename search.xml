@@ -273,9 +273,9 @@
             
             <tag> 图像分割 </tag>
             
-            <tag> Transformer </tag>
-            
             <tag> Unet系列 </tag>
+            
+            <tag> Transformer </tag>
             
         </tags>
       
@@ -437,11 +437,11 @@
       
         <tags>
             
-            <tag> FCN </tag>
-            
             <tag> 计算机视觉 </tag>
             
             <tag> 图像分割 </tag>
+            
+            <tag> FCN </tag>
             
         </tags>
       
@@ -628,9 +628,9 @@
             
             <tag> python </tag>
             
-            <tag> 数据分析 </tag>
-            
             <tag> matplotlib </tag>
+            
+            <tag> 数据分析 </tag>
             
         </tags>
       
@@ -713,9 +713,9 @@
             
             <tag> python </tag>
             
-            <tag> numpy </tag>
-            
             <tag> 数据分析 </tag>
+            
+            <tag> numpy </tag>
             
         </tags>
       
@@ -792,9 +792,9 @@
     
     
     <entry>
-      <title>comments</title>
-      <link href="/comments/index.html"/>
-      <url>/comments/index.html</url>
+      <title>categories</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -803,9 +803,9 @@
     
     
     <entry>
-      <title>categories</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>comments</title>
+      <link href="/comments/index.html"/>
+      <url>/comments/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
