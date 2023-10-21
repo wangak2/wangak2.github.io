@@ -437,11 +437,11 @@
       
         <tags>
             
+            <tag> FCN </tag>
+            
             <tag> 计算机视觉 </tag>
             
             <tag> 图像分割 </tag>
-            
-            <tag> FCN </tag>
             
         </tags>
       
@@ -619,7 +619,7 @@
       
       <categories>
           
-          <category> 数据分析 </category>
+          <category> python </category>
           
       </categories>
       
@@ -648,7 +648,7 @@
       
       <categories>
           
-          <category> 机器学习 </category>
+          <category> 深度学习 </category>
           
       </categories>
       
@@ -657,9 +657,9 @@
             
             <tag> python </tag>
             
-            <tag> 感知机 </tag>
+            <tag> 深度学习 </tag>
             
-            <tag> 机器学习 </tag>
+            <tag> 感知机 </tag>
             
         </tags>
       
@@ -677,14 +677,14 @@
       
       <categories>
           
-          <category> 机器学习 </category>
+          <category> 深度学习 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 机器学习 </tag>
+            <tag> 深度学习 </tag>
             
             <tag> 正则化 </tag>
             
@@ -704,7 +704,7 @@
       
       <categories>
           
-          <category> 数据分析 </category>
+          <category> python </category>
           
       </categories>
       
