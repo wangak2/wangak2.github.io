@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>nnFormer</title>
+      <link href="/posts/9e11ec23.html"/>
+      <url>/posts/9e11ec23.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="nnFormer"><a href="#nnFormer" class="headerlink" title="nnFormer"></a>nnFormer</h2><p><strong>论文：《nnFormer: Volumetric Medical Image Segmentation via a 3D Transformer》（TMI2022）</strong></p><h3 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1.网络结构"></a>1.网络结构</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202310252011844.png" alt="image-20231025201100423" style="zoom: 80%;"></p><h4 id="编码器"><a href="#编码器" class="headerlink" title="编码器"></a>编码器</h4><p><strong>nnFormer的输入：</strong>对原始图像中随机裁剪（HxWxD)，数据增强技术，有助于模型更好地学习不同部分的特征。</p><p><strong>The embedding layer:</strong>（将输入数据转换成高维张量）</p><ul><li><p><strong>使用卷积的好处：</strong>对比transformer使用线性层对patch的向量进行映射，卷积层能够更细致地捕获图像中的像素级信息（减少了训练的参数数量，卷积核在处理特定区域时更加专注）</p></li><li><p><strong>在初始阶段使用小卷积核的连续卷积层，相对于大卷积核的好处：</strong>降低计算复杂度,同时保持相同大小的感受野(非线性激活函数多了，语义表达能力增强了)</p><pre><code>                                 ![image-20231025210627610](https://typoraimg.wangak.cc/2023/img/202310252109346.png)</code></pre></li></ul><p><em>注：根据输入的patch大小卷积步长也会有相应的变化</em></p><p><strong>Local Volume-based Multi-head Self-attention (LV-MSA)：</strong>将不同尺度的信息和高分辨率的空间信息相互关联</p><p>不同尺度的特征由下采样层生成，高分辨率的空间信息则由嵌入层编码</p><p>使用的是一种基于局部三维图像块的self-attention计算方式（跟Swin-UNet类似)</p><p><img src="https://typoraimg.wangak.cc/2023/img/202310252129451.png" alt="image-20231025212855680" style="zoom: 80%;"></p><p><strong>SLV-MSA:</strong>是LV-MSA的shifted版本（类似于Swin-UNet，目的是使局部的三维图像块之间产生联系）</p><p><img src="https://typoraimg.wangak.cc/2023/img/202310252130572.png" alt="image-20231025213050517" style="zoom: 67%;"></p><p><em>注：$S_H、S_W、S_D$代表每个图像块中的patch的数量</em></p><p>使用LV-MSA减少了计算的复杂度，计算复杂度和图像之间是线性的关系</p><p><img src="https://typoraimg.wangak.cc/2023/img/202310252139215.png" alt="image-20231025213709821" style="zoom: 80%;"></p><p>使用相对位置偏置B来引入位置信息</p><p><strong>The down-sampling layer：</strong></p><p>与Swin-UNet使用patch merging不同，作者选择了使用简单的卷积来实现下采样，卷积下采样可以在不同空间维度上应用不同的步长，以根据问题的要求调整下采样率。（可以根据数据的特点来灵活设置，避免过度下采样，对于三维的图像在某些维度上数据切片数量有限，这时可以将该维度的步长设置为1）</p><h4 id="Bottleneck"><a href="#Bottleneck" class="headerlink" title="Bottleneck"></a>Bottleneck</h4><p>不同于编码器使用局部自注意力机制，Bottleneck中使用全局自注意力。</p><p>计算复杂度：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202310271637998.png" alt="image-20231027153408838" style="zoom: 80%;"></p><p>编码器部分减小了h、w、d，这为GV-MSA的应用创造了条件，与LV-MSA相比，GV-MSA能够提供更大的感受野</p><h4 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h4><p><strong>上采样操作</strong>：使用转置卷积</p><p><strong>Skip Attention：</strong>（使不同层之间的信息交流变得更加灵活）</p><p><img src="https://typoraimg.wangak.cc/2023/img/202310271636161.png" alt="image-20231027155805206" style="zoom: 67%;"></p><h3 id="2-实验部分"><a href="#2-实验部分" class="headerlink" title="2.实验部分"></a>2.实验部分</h3><h4 id="与基于Transformer的方法学的比较"><a href="#与基于Transformer的方法学的比较" class="headerlink" title="与基于Transformer的方法学的比较"></a>与基于Transformer的方法学的比较</h4><p><strong>脑肿瘤分割</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202310271636932.png" alt="image-20231027162254249" style="zoom: 67%;"></p><p>列出了所有模型在脑瘤分割任务上的实验结果,nnFormer在所有类别中取得了最低的HD95和最高的DSC分数。</p><p><strong>多器官分割（Synapse）</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202310302100261.png" alt="image-20231029163515666"></p><p>与以前基于Transformer的方法相比，nnFormer在分割胰腺(Pancreas)和胃(Stomach)方面更有优势</p><p><strong>与nnUNet的比较</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202310302100944.png" alt="image-20231030203836841"></p><p>nnFormer的HD95似乎更有优势，其可以更好地划分对象边界。</p><p>nnAvg：对nnFormer和nnUNet的预测结果进行平均化，发现整体的性能得到了提高，表明nnFormer和nnUNet是可以互补的。</p><h4 id="消融实验"><a href="#消融实验" class="headerlink" title="消融实验"></a>消融实验</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202310302100685.png" alt="image-20231030205355146"></p><ul><li><p>嵌入层使用小卷积核大小的连续卷积层</p></li><li><p>卷积下采样层替换掉了patch Merging层</p></li><li><p>GV-MSA替换了Bottleneck的LV-MSA</p></li><li><p>Skip Attention代替跳跃连接</p></li><li>SLV-MSA层与LV-MSA层级联，全局自注意力层的数量增加一倍</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机视觉 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机视觉 </tag>
+            
+            <tag> 图像分割 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>File类</title>
       <link href="/posts/c8b66f0a.html"/>
       <url>/posts/c8b66f0a.html</url>
@@ -781,17 +808,6 @@
     
     
     <entry>
-      <title>comments</title>
-      <link href="/comments/index.html"/>
-      <url>/comments/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>categories</title>
       <link href="/categories/index.html"/>
       <url>/categories/index.html</url>
@@ -806,6 +822,17 @@
       <title>tags</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>comments</title>
+      <link href="/comments/index.html"/>
+      <url>/comments/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
