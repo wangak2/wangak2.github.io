@@ -6,7 +6,7 @@
   <link href="https://wangak.cc/atom.xml" rel="self"/>
   
   <link href="https://wangak.cc/"/>
-  <updated>2023-09-26T00:00:00.000Z</updated>
+  <updated>2023-11-26T00:00:00.000Z</updated>
   <id>https://wangak.cc/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GAMES101笔记</title>
+    <link href="https://wangak.cc/posts/ac17f787.html"/>
+    <id>https://wangak.cc/posts/ac17f787.html</id>
+    <published>2023-11-25T16:00:00.000Z</published>
+    <updated>2023-11-26T00:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Transformation"><a href="#Transformation" class="headerlink" title="Transformation"></a>Transformation</h2><h3 id="1-2D变换"><a href="#1-2D变换" class="headerlink" title="1. 2D变换"></a>1. 2D变换</h3><p><img src="/posts/ac17f787.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231126190707151.png" alt="image-20231126190707151"></p><h4 id="1-1-缩放-scaling"><a href="#1-1-缩放-scaling" class="headerlink" title="1.1 缩放(scaling)"></a>1.1 缩放(scaling)</h4><p><img src="/posts/ac17f787.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231126190747793.png" alt="image-20231126190747793" style="zoom:50%;"></p><p><img src="/posts/ac17f787.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231126190853847.png" alt="image-20231126190853847" style="zoom: 50%;"></p><h4 id="1-2-镜像变换"><a href="#1-2-镜像变换" class="headerlink" title="1.2 镜像变换"></a>1.2 镜像变换</h4><p><img src="/posts/ac17f787.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231126191121990.png" alt="image-20231126191121990" style="zoom:50%;"></p><h4 id="1-3-切变（Shear-Matrix）"><a href="#1-3-切变（Shear-Matrix）" class="headerlink" title="1.3 切变（Shear Matrix）"></a>1.3 切变（Shear Matrix）</h4><p>如下图，变换过程中y坐标始终不变</p><p><img src="/posts/ac17f787.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231126192230389.png" alt="image-20231126192230389" style="zoom:50%;"></p><h4 id="1-4-旋转-Rotate"><a href="#1-4-旋转-Rotate" class="headerlink" title="1.4 旋转(Rotate)"></a>1.4 旋转(Rotate)</h4><p><img src="/posts/ac17f787.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231126192327264.png" alt="image-20231126192327264" style="zoom:50%;"></p><h4 id="1-5-齐次坐标"><a href="#1-5-齐次坐标" class="headerlink" title="1.5 齐次坐标"></a>1.5 齐次坐标</h4><p><strong>平移：</strong><br><img src="/posts/ac17f787.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231126193641073.png" alt="image-20231126193641073" style="zoom:50%;"></p><p><strong>为了表示平移操作引入了第三维坐标：</strong></p><p><img src="/posts/ac17f787.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231126193653818.png" alt="image-20231126193653818" style="zoom:50%;"></p><p><img src="/posts/ac17f787.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231126193714639.png" alt="image-20231126193714639" style="zoom:50%;"></p><p><img src="/posts/ac17f787.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231126193731535.png" alt="image-20231126193731535" style="zoom:50%;"></p><p><em>注：<strong>point+point</strong>的结果为两个点的中点</em></p><p><strong>仿射变换的两种形式：</strong><br><img src="/posts/ac17f787.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231126194003729.png" alt="image-20231126194003729" style="zoom:50%;"></p><p><em>注：齐次坐标变换矩阵中的a,b,c,d与线性变换中的变换矩阵是对应的</em></p><h4 id="1-6-逆变换"><a href="#1-6-逆变换" class="headerlink" title="1.6 逆变换"></a>1.6 逆变换</h4><p><strong>逆变换：</strong>变换矩阵为原变换的逆矩阵</p><p><img src="/posts/ac17f787.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231126194715152.png" alt="image-20231126194715152" style="zoom:50%;"></p><h3 id="2-3D变换"><a href="#2-3D变换" class="headerlink" title="2. 3D变换"></a>2. 3D变换</h3><p><img src="/posts/ac17f787.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231126195736702.png" alt="image-20231126195736702" style="zoom:50%;"></p><p><strong>仿射变换：</strong></p><p><img src="/posts/ac17f787.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231126195828157.png" alt="image-20231126195828157" style="zoom:50%;"></p><p><em>注：该表示方法是先做线性变换，然后再平移</em></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Transformation&quot;&gt;&lt;a href=&quot;#Transformation&quot; class=&quot;headerlink&quot; title=&quot;Transformation&quot;&gt;&lt;/a&gt;Transformation&lt;/h2&gt;&lt;h3 id=&quot;1-2D变换&quot;&gt;&lt;a href=&quot;</summary>
+      
+    
+    
+    
+    <category term="图像学" scheme="https://wangak.cc/categories/%E5%9B%BE%E5%83%8F%E5%AD%A6/"/>
+    
+    
+    <category term="图像学" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%AD%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>智能指针</title>
@@ -64,11 +88,11 @@
   </entry>
   
   <entry>
-    <title></title>
-    <link href="https://wangak.cc/posts/0.html"/>
-    <id>https://wangak.cc/posts/0.html</id>
+    <title>C++编程出现的错误及解决</title>
+    <link href="https://wangak.cc/posts/f3261b08.html"/>
+    <id>https://wangak.cc/posts/f3261b08.html</id>
     <published>2023-11-11T07:07:32.208Z</published>
-    <updated>2023-11-13T13:13:08.442Z</updated>
+    <updated>2023-11-11T00:00:00.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="C-编程出现的错误及解决"><a href="#C-编程出现的错误及解决" class="headerlink" title="C++编程出现的错误及解决"></a>C++编程出现的错误及解决</h2><h3 id="1-Undefined-reference"><a href="#1-Undefined-reference" class="headerlink" title="1.Undefined reference"></a>1.Undefined reference</h3><p><strong>1.1目标文件未正确链接:</strong></p><p><strong>原因：</strong>有多个源文件，会独立编译它们,会导致对象没有正确链</p><p><strong>解决方法：同时编译这两个文件</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g++ cat.cpp test.cpp -o test//同时编译cat.cpp和test.cpp，并生成可执行文件test</span><br><span class="line">./test  //运行test.exe</span><br></pre></td></tr></table></figure><p>注：有多个源文件时使用如下指令进行编译</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g++ *.cpp -o main</span><br><span class="line">./main</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -80,29 +104,10 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>3D UX-NET</title>
-    <link href="https://wangak.cc/posts/eabf9f8.html"/>
-    <id>https://wangak.cc/posts/eabf9f8.html</id>
-    <published>2023-11-06T16:00:00.000Z</published>
-    <updated>2023-11-06T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="3D-UX-NET"><a href="#3D-UX-NET" class="headerlink" title="3D UX-NET"></a>3D UX-NET</h2><p><strong>论文：《3D UX-NET: A LARGE KERNEL VOLUMETRIC CONVNET MODERNIZING HIERARCHICAL TRANSFORMER</strong><br><strong>FOR MEDICAL IMAGE SEGMENTATION》（ICLR 2023）</strong></p><h3 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1.网络结构"></a>1.网络结构</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115336.png" alt="image-20231106201433865"></p><p>采用具备大卷积核的投影层来提取 patch-wise 特征作为编码器的输入</p><p><strong>对Swin transformer的transformer block做了替换：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115856.png" alt="image-20231106202256333" style="zoom:67%;"></p><p>使用大卷积核(7 × 7 × 7)的深度卷积来模仿Swin Transformer的局部自注意力和窗口移动。</p><p>使用2 × 2 × 2、步幅为2的标准卷积块来实现下采样</p><p>在Swin Transformer中MLP隐藏层维度比输入维度宽四倍，引入了具有 1 × 1 × 1 卷积核大小的深度卷积缩放(DCS)，以独立地线性缩放每个通道特征，减少跨通道上下文产生的冗余信息</p><p>DCS：1x1x1的深度卷积+1x1x1的分组卷积</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115037.png" alt="image-20231106205655475" style="zoom:67%;"></p><p>从实验中发现：使用深度卷积缩放(DCS)参数量得到了减小，效果并没有下降</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115199.png" alt="image-20231106204002121"></p><p>编码器的输出特征由残差块作进一步的处理，以稳定提取的特征。（残差块由两个经过实例归一化的后归一化3 × 3 × 3卷积层组成）</p><p>转置卷积层实现上采样，其输出的特征与编码器的输出进行连接后，再次输入到残差块中。</p><h3 id="2-实验结果"><a href="#2-实验结果" class="headerlink" title="2.实验结果"></a>2.实验结果</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115341.png" alt="image-20231106210428239"></p><p>3D UX-Net 在这几个分割任务中均展示出最佳性能，并且 Dice 分数有了一定的提高</p>]]></content>
+    <category term="C++" scheme="https://wangak.cc/categories/C/"/>
     
     
-    <summary type="html">记录了3D UX-NET的网络结构及实验结果</summary>
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    <category term="C++" scheme="https://wangak.cc/tags/C/"/>
     
   </entry>
   
@@ -127,6 +132,29 @@
     
     
     <category term="模型训练" scheme="https://wangak.cc/tags/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>3D UX-NET</title>
+    <link href="https://wangak.cc/posts/eabf9f8.html"/>
+    <id>https://wangak.cc/posts/eabf9f8.html</id>
+    <published>2023-11-06T16:00:00.000Z</published>
+    <updated>2023-11-06T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="3D-UX-NET"><a href="#3D-UX-NET" class="headerlink" title="3D UX-NET"></a>3D UX-NET</h2><p><strong>论文：《3D UX-NET: A LARGE KERNEL VOLUMETRIC CONVNET MODERNIZING HIERARCHICAL TRANSFORMER</strong><br><strong>FOR MEDICAL IMAGE SEGMENTATION》（ICLR 2023）</strong></p><h3 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1.网络结构"></a>1.网络结构</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115336.png" alt="image-20231106201433865"></p><p>采用具备大卷积核的投影层来提取 patch-wise 特征作为编码器的输入</p><p><strong>对Swin transformer的transformer block做了替换：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115856.png" alt="image-20231106202256333" style="zoom:67%;"></p><p>使用大卷积核(7 × 7 × 7)的深度卷积来模仿Swin Transformer的局部自注意力和窗口移动。</p><p>使用2 × 2 × 2、步幅为2的标准卷积块来实现下采样</p><p>在Swin Transformer中MLP隐藏层维度比输入维度宽四倍，引入了具有 1 × 1 × 1 卷积核大小的深度卷积缩放(DCS)，以独立地线性缩放每个通道特征，减少跨通道上下文产生的冗余信息</p><p>DCS：1x1x1的深度卷积+1x1x1的分组卷积</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115037.png" alt="image-20231106205655475" style="zoom:67%;"></p><p>从实验中发现：使用深度卷积缩放(DCS)参数量得到了减小，效果并没有下降</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115199.png" alt="image-20231106204002121"></p><p>编码器的输出特征由残差块作进一步的处理，以稳定提取的特征。（残差块由两个经过实例归一化的后归一化3 × 3 × 3卷积层组成）</p><p>转置卷积层实现上采样，其输出的特征与编码器的输出进行连接后，再次输入到残差块中。</p><h3 id="2-实验结果"><a href="#2-实验结果" class="headerlink" title="2.实验结果"></a>2.实验结果</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115341.png" alt="image-20231106210428239"></p><p>3D UX-Net 在这几个分割任务中均展示出最佳性能，并且 Dice 分数有了一定的提高</p>]]></content>
+    
+    
+    <summary type="html">记录了3D UX-NET的网络结构及实验结果</summary>
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
     
   </entry>
   
@@ -467,32 +495,6 @@
     <category term="RNN" scheme="https://wangak.cc/tags/RNN/"/>
     
     <category term="LSTM" scheme="https://wangak.cc/tags/LSTM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>常用损失函数</title>
-    <link href="https://wangak.cc/posts/60adb68d.html"/>
-    <id>https://wangak.cc/posts/60adb68d.html</id>
-    <published>2023-09-09T05:07:22.000Z</published>
-    <updated>2023-09-08T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><h3 id="1-损失函数的概念及使用场景"><a href="#1-损失函数的概念及使用场景" class="headerlink" title="1.损失函数的概念及使用场景"></a>1.损失函数的概念及使用场景</h3><p><strong>损失函数：</strong>用于衡量模型预测结果与真实结果之间的差异或误差。</p><p><strong>损失函数的使用场景：</strong></p><ul><li><p><strong>模型训练：</strong>通过最小化损失函数，可以调整模型的参数，使其能够更好地拟合训练数据，提高模型的性能。</p></li><li><p><strong>模型评估：</strong>通过计算模型在验证集或测试集上的损失值，可以判断模型的泛化能力和预测准确度，较小的损失值通常表示模型更好地适应了新数据。</p></li><li><p><strong>优化算法：</strong>通过计算损失函数对模型参数的梯度，可以确定参数的更新方向和步长，以便优化模型。</p></li><li><p><strong>模型选择和比较：</strong>选择合适的损失函数可以帮助优化模型性能，并对不同模型进行比较和选择。</p></li></ul><h3 id="2-分类任务"><a href="#2-分类任务" class="headerlink" title="2.分类任务"></a>2.分类任务</h3><h4 id="2-1-交叉熵损失函数（Cross-Entropy-Loss）"><a href="#2-1-交叉熵损失函数（Cross-Entropy-Loss）" class="headerlink" title="2.1 交叉熵损失函数（Cross-Entropy Loss）"></a>2.1 交叉熵损失函数（Cross-Entropy Loss）</h4><p><strong>二分类问题：</strong>二元交叉熵损失函数（Binary Cross-Entropy Loss）</p><ul><li><p>计算公式：<script type="math/tex">\large L(y, p) = -[y * log(p) + (1 - y) * log(1 - p)]</script></p><p> <em>注：真实标签为 y（可以是0或1），模型的预测概率为 p（0 ≤ p ≤ 1）</em></p></li></ul><p><strong>多分类问题：</strong>多元交叉熵损失函数（Multiclass Cross-Entropy Loss）</p><p>​        在多元交叉熵损失函数中，假设有 C 个可能的类别，每个类别都有一个与之相关的标签（通常使用 one-hot 编码）。对于每个样本，模型会输出一个长度为 C 的概率分布向量，表示样本属于每个类别的概率。</p><ul><li>计算公式：$\large L(y, p) = -Σ(y_i * log(p_i))$</li></ul><p><em>注：其中，i 表示类别的索引，$y_i$ 表示真实标签的第 i 个元素，$p_i$ 表示模型的输出概率分布的第 i 个元素。</em></p><h4 id="2-2-Focal-Loss（聚焦损失）"><a href="#2-2-Focal-Loss（聚焦损失）" class="headerlink" title="2.2 Focal Loss（聚焦损失）"></a>2.2 Focal Loss（聚焦损失）</h4><p><strong>Focal Loss:</strong>用于处理类别不平衡问题的损失函数,旨在解决当某些类别的样本数量远远多于其他类别时，传统的交叉熵损失函数会受到类别不平衡的影响，导致模型难以有效地学习少数类别。</p><p><strong>focal loss的具体形式：</strong><script type="math/tex">\large-\alpha(1-y_{pred})^{\gamma}y_{true}log(y_{pred})-(1-\alpha)y_{pred}^{\gamma}(1-y_{true})log(1-y_{pred})</script></p><p><strong>注：</strong></p><p><em>1.$\large\gamma$通常设置为2，$\large(1-y_{pred})^{\gamma}$相当于样本的难易度权值,$\large\alpha$为正负样本的比例</em></p><p><em>2.为了防止难易样本的频繁变化，应当选取小的学习率。防止学习率过大，造成w变化较大从而引起 $\large y_{pred}$的巨大变化，造成难易样本的改变。</em></p><h3 id="3-回归任务"><a href="#3-回归任务" class="headerlink" title="3.回归任务"></a>3.回归任务</h3><h4 id="3-1-均方误差损失函数（Mean-Squared-Error-MSE）"><a href="#3-1-均方误差损失函数（Mean-Squared-Error-MSE）" class="headerlink" title="3.1 均方误差损失函数（Mean Squared Error, MSE）"></a>3.1 均方误差损失函数（Mean Squared Error, MSE）</h4><p><strong>计算公式：</strong>$\large MSE = (1/N) * Σ(y_i - ŷ_i)^2$</p><p>注：N 表示样本数量，$y_i$ 表示真实标签，$ŷ_i$ 表示模型的预测值。</p><h4 id="3-2-平均绝对误差损失函数（Mean-Absolute-Error-MAE"><a href="#3-2-平均绝对误差损失函数（Mean-Absolute-Error-MAE" class="headerlink" title="3.2 平均绝对误差损失函数（Mean Absolute Error, MAE)"></a>3.2 平均绝对误差损失函数（Mean Absolute Error, MAE)</h4><p><strong>计算公式：</strong>$\large MAE = (1/N) * Σ|y_i - ŷ_i|$</p><p>注：N 表示样本数量，$y_i$ 表示真实标签，$ŷ_i$ 表示模型的预测值。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;损失函数&quot;&gt;&lt;a href=&quot;#损失函数&quot; class=&quot;headerlink&quot; title=&quot;损失函数&quot;&gt;&lt;/a&gt;损失函数&lt;/h2&gt;&lt;h3 id=&quot;1-损失函数的概念及使用场景&quot;&gt;&lt;a href=&quot;#1-损失函数的概念及使用场景&quot; class=&quot;headerli</summary>
-      
-    
-    
-    
-    <category term="深度学习" scheme="https://wangak.cc/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="深度学习" scheme="https://wangak.cc/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="损失函数" scheme="https://wangak.cc/tags/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/"/>
     
   </entry>
   
