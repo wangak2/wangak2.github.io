@@ -6,7 +6,7 @@
   <link href="https://wangak.cc/atom.xml" rel="self"/>
   
   <link href="https://wangak.cc/"/>
-  <updated>2023-11-26T00:00:00.000Z</updated>
+  <updated>2023-11-28T00:00:00.000Z</updated>
   <id>https://wangak.cc/</id>
   
   <author>
@@ -17,26 +17,19 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>GAMES101笔记</title>
-    <link href="https://wangak.cc/posts/ac17f787.html"/>
-    <id>https://wangak.cc/posts/ac17f787.html</id>
-    <published>2023-11-25T16:00:00.000Z</published>
-    <updated>2023-11-26T00:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Transformation"><a href="#Transformation" class="headerlink" title="Transformation"></a>Transformation</h2><h3 id="1-2D变换"><a href="#1-2D变换" class="headerlink" title="1. 2D变换"></a>1. 2D变换</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207409.png" alt="image-20231126190707151" style="zoom:50%;"></p><h4 id="1-1-缩放-scaling"><a href="#1-1-缩放-scaling" class="headerlink" title="1.1 缩放(scaling)"></a>1.1 缩放(scaling)</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207653.png" alt="image-20231126190747793" style="zoom:50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207767.png" alt="image-20231126190853847" style="zoom: 50%;"></p><h4 id="1-2-镜像变换"><a href="#1-2-镜像变换" class="headerlink" title="1.2 镜像变换"></a>1.2 镜像变换</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207557.png" alt="image-20231126191121990" style="zoom:50%;"></p><h4 id="1-3-切变（Shear-Matrix）"><a href="#1-3-切变（Shear-Matrix）" class="headerlink" title="1.3 切变（Shear Matrix）"></a>1.3 切变（Shear Matrix）</h4><p>如下图，变换过程中y坐标始终不变</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207966.png" alt="image-20231126192230389" style="zoom:50%;"></p><h4 id="1-4-旋转-Rotate"><a href="#1-4-旋转-Rotate" class="headerlink" title="1.4 旋转(Rotate)"></a>1.4 旋转(Rotate)</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208542.png" alt="image-20231126192327264" style="zoom:50%;"></p><h4 id="1-5-齐次坐标"><a href="#1-5-齐次坐标" class="headerlink" title="1.5 齐次坐标"></a>1.5 齐次坐标</h4><p><strong>平移：</strong><br><img src="https://typoraimg.wangak.cc/2023/img/202311271208287.png" alt="image-20231126193641073" style="zoom:50%;"></p><p><strong>为了表示平移操作引入了第三维坐标：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208639.png" alt="image-20231126193653818" style="zoom:50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208486.png" alt="image-20231126193714639" style="zoom:50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208369.png" alt="image-20231126193731535" style="zoom:50%;"></p><p><em>注：<strong>point+point</strong>的结果为两个点的中点</em></p><p><strong>仿射变换的两种形式：</strong><br><img src="https://typoraimg.wangak.cc/2023/img/202311271208436.png" alt="image-20231126194003729" style="zoom:50%;"></p><p><em>注：齐次坐标变换矩阵中的a,b,c,d与线性变换中的变换矩阵是对应的</em></p><h4 id="1-6-逆变换"><a href="#1-6-逆变换" class="headerlink" title="1.6 逆变换"></a>1.6 逆变换</h4><p><strong>逆变换：</strong>变换矩阵为原变换的逆矩阵</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208337.png" alt="image-20231126194715152" style="zoom:50%;"></p><h3 id="2-3D变换"><a href="#2-3D变换" class="headerlink" title="2. 3D变换"></a>2. 3D变换</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208498.png" alt="image-20231126195736702" style="zoom:50%;"></p><p><strong>仿射变换：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208171.png" alt="image-20231126195828157" style="zoom:50%;"></p><p><em>注：该表示方法是先做线性变换，然后再平移</em></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;Transformation&quot;&gt;&lt;a href=&quot;#Transformation&quot; class=&quot;headerlink&quot; title=&quot;Transformation&quot;&gt;&lt;/a&gt;Transformation&lt;/h2&gt;&lt;h3 id=&quot;1-2D变换&quot;&gt;&lt;a href=&quot;</summary>
-      
+    <title>games作业1</title>
+    <link href="https://wangak.cc/posts/ab1a849b.html"/>
+    <id>https://wangak.cc/posts/ab1a849b.html</id>
+    <published>2023-11-27T16:00:00.000Z</published>
+    <updated>2023-11-28T00:00:00.000Z</updated>
     
     
     
-    <category term="图像学" scheme="https://wangak.cc/categories/%E5%9B%BE%E5%83%8F%E5%AD%A6/"/>
+    
+    <category term="图形学" scheme="https://wangak.cc/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
     
     
-    <category term="图像学" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%AD%A6/"/>
+    <category term="图形学" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
     
   </entry>
   
@@ -61,6 +54,56 @@
     
     
     <category term="C++" scheme="https://wangak.cc/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GAMES101笔记</title>
+    <link href="https://wangak.cc/posts/ac17f787.html"/>
+    <id>https://wangak.cc/posts/ac17f787.html</id>
+    <published>2023-11-25T16:00:00.000Z</published>
+    <updated>2023-11-26T00:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一-Transformation"><a href="#一-Transformation" class="headerlink" title="一.Transformation"></a>一.Transformation</h2><h3 id="1-2D变换"><a href="#1-2D变换" class="headerlink" title="1. 2D变换"></a>1. 2D变换</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207409.png" alt="image-20231126190707151" style="zoom:50%;"></p><h4 id="1-1-缩放-scaling"><a href="#1-1-缩放-scaling" class="headerlink" title="1.1 缩放(scaling)"></a>1.1 缩放(scaling)</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207653.png" alt="image-20231126190747793" style="zoom:50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207767.png" alt="image-20231126190853847" style="zoom: 50%;"></p><h4 id="1-2-镜像变换"><a href="#1-2-镜像变换" class="headerlink" title="1.2 镜像变换"></a>1.2 镜像变换</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207557.png" alt="image-20231126191121990" style="zoom:50%;"></p><h4 id="1-3-切变（Shear-Matrix）"><a href="#1-3-切变（Shear-Matrix）" class="headerlink" title="1.3 切变（Shear Matrix）"></a>1.3 切变（Shear Matrix）</h4><p>如下图，变换过程中y坐标始终不变</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207966.png" alt="image-20231126192230389" style="zoom:50%;"></p><h4 id="1-4-旋转-Rotate"><a href="#1-4-旋转-Rotate" class="headerlink" title="1.4 旋转(Rotate)"></a>1.4 旋转(Rotate)</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208542.png" alt="image-20231126192327264" style="zoom:50%;"></p><h4 id="1-5-齐次坐标"><a href="#1-5-齐次坐标" class="headerlink" title="1.5 齐次坐标"></a>1.5 齐次坐标</h4><p><strong>平移：</strong><br><img src="https://typoraimg.wangak.cc/2023/img/202311271208287.png" alt="image-20231126193641073" style="zoom:50%;"></p><p><strong>为了表示平移操作引入了第三维坐标：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208639.png" alt="image-20231126193653818" style="zoom:50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208486.png" alt="image-20231126193714639" style="zoom:50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208369.png" alt="image-20231126193731535" style="zoom:50%;"></p><p><em>注：<strong>point+point</strong>的结果为两个点的中点</em></p><p><strong>仿射变换的两种形式：</strong><br><img src="https://typoraimg.wangak.cc/2023/img/202311271208436.png" alt="image-20231126194003729" style="zoom:50%;"></p><p><em>注：齐次坐标变换矩阵中的a,b,c,d与线性变换中的变换矩阵是对应的</em></p><h4 id="1-6-逆变换"><a href="#1-6-逆变换" class="headerlink" title="1.6 逆变换"></a>1.6 逆变换</h4><p><strong>逆变换：</strong>变换矩阵为原变换的逆矩阵</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208337.png" alt="image-20231126194715152" style="zoom:50%;"></p><h3 id="2-3D变换"><a href="#2-3D变换" class="headerlink" title="2. 3D变换"></a>2. 3D变换</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208498.png" alt="image-20231126195736702" style="zoom:50%;"></p><h4 id="2-1-仿射变换"><a href="#2-1-仿射变换" class="headerlink" title="2.1 仿射变换"></a>2.1 仿射变换</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208171.png" alt="image-20231126195828157" style="zoom:50%;"></p><p><em>注：该表示方法是先做线性变换，然后再平移</em></p><h4 id="2-2-旋转"><a href="#2-2-旋转" class="headerlink" title="2.2 旋转"></a>2.2 旋转</h4><ul><li><strong>在轴上</strong></li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033304.png" alt="image-20231127122527405" style="zoom:50%;"></p><ul><li><p><strong>一般的旋转</strong>：可以将任意的旋转分为在三个轴上的旋转，其中在三个轴上的旋转角度称为欧拉角</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033703.png" alt="image-20231127122758750" style="zoom:50%;"></p></li></ul><p>​    <strong>罗德里格斯公式(Rodrigues’ Rotation Formula):</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033828.png" alt="image-20231127123545604"></p><p>注：四元数的应用</p><h3 id="2-3-视图-相机变换（View-Camera-Transformation）"><a href="#2-3-视图-相机变换（View-Camera-Transformation）" class="headerlink" title="2.3 视图/相机变换（View / Camera Transformation）"></a>2.3 视图/相机变换（View / Camera Transformation）</h3><p><strong>相机的参数：</strong>初始位置、观看角度（向量）、竖直角度（向量）</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033677.png" alt="image-20231127125538822"></p><p><strong>标准化：</strong>观看位置为原点、观看角度为-Z、向上方向为Y</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033142.png" alt="image-20231127125835234" style="zoom:50%;"></p><p>变换的方法：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033832.png" alt="image-20231127125907343" style="zoom:50%;"></p><p>由于正向变换比较复杂，考虑<strong>通过其逆矩阵来实现</strong>：R为旋转变换矩阵、T为平移变换矩阵、M为整个过程的变换矩阵</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033482.png" alt="image-20231127130030303" style="zoom:50%;"></p><p><em>注：旋转矩阵为正交矩阵，逆矩阵即是其转置</em></p><p><em>注：视图变换变换的是相机，其他的物体随着相机一起变换</em></p><h3 id="3-投影变换"><a href="#3-投影变换" class="headerlink" title="3 投影变换"></a>3 投影变换</h3><h4 id="3-1-正交投影变换"><a href="#3-1-正交投影变换" class="headerlink" title="3.1 正交投影变换"></a>3.1 正交投影变换</h4><p><strong>正交投影变换：</strong>平移+压缩</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033623.png" alt="image-20231127131958838" style="zoom:50%;"></p><h4 id="3-2-透视投影变换"><a href="#3-2-透视投影变换" class="headerlink" title="3.2 透视投影变换"></a>3.2 透视投影变换</h4><p>透视投影类似人眼所看东西的方式，遵循近大远小,平行线也会变得不平行</p><p><strong>用正交变换表示透视投影变换：</strong><script type="math/tex">M_{ortho}M_{persp->ortho}</script></p><p>将透视变换压成投影<script type="math/tex">M_{persp->ortho}</script></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033023.png" alt="image-20231127212210693" style="zoom:50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033371.png" alt="image-20231127212333846" style="zoom:50%;"></p><p><em>注：其中n是近平面，f是远平面，在公式推导的过程中是<strong>默认n、f</strong>均为负数</em></p><h3 id="4-视口变换"><a href="#4-视口变换" class="headerlink" title="4.视口变换"></a>4.视口变换</h3><p><strong>视口变换</strong>用于将标准平面映射到屏幕的分辨率范围之内（缩放+平移），变换矩阵如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033944.png" alt="image-20231128150643474" style="zoom:50%;"></p><h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h3><p>将虚拟世界中以(x,y,z)为坐标的物体变换到以一个个像素位置(x,y) 来表示的屏幕坐标系之中(2维)的步骤：</p><ul><li><strong>模型变换(modeling tranformation)：</strong>这一步的目的是将虚拟世界中或者更具体点，游戏场景中的物体调整至他们应该在的位置</li><li><strong>摄像机变换(camera tranformation)：</strong>在游戏中我们真正在乎的是摄像机(或者说眼睛)所看到的东西，也就是需要得到物体与摄像机的相对位置</li><li><strong>投影变换(projection tranformation)：</strong>根据摄像机变换得到了所有可视范围内的物体对于摄像机的相对位置坐标(x,y,z)之后，便是根据是平行投影还是透视投影，将三维空间投影至标准二维平面([-1,1]^2)之上 （tips：这里的z并没有丢掉，为了之后的遮挡关系检测）</li><li><strong>视口变换(viewport transformation)：</strong>将处于标准平面映射到屏幕分辨率范围之内，即[-1,1]^2→[0,width]*[0,height], 其中width和height指屏幕分辨率大小</li></ul><h2 id="二-光栅化"><a href="#二-光栅化" class="headerlink" title="二.光栅化"></a>二.光栅化</h2><p><strong>光栅化（Rasterization）</strong>是图形学中一种常用的渲染技术，用于将三维场景中的图形对象转换为二维像素表示，以便在计算机屏幕上显示，即将图形对象（通常是三角形）映射到屏幕上的像素格子，并确定每个像素的颜色值。</p><p><strong>选择三角形作为渲染的基本图元的原因：</strong></p><ul><li>因为三角形是最简单的几何形状之一，任意三个点可以确定一个平面上的三角形</li><li><p>任意多边形都可以被分解为若干个三角形，这种分解使得处理复杂的多边形图形变得更加容易。</p></li><li><p>三角形在仿射变换下保持平面性，对三角形的变换相对简单，而不会引入复杂的扭曲。</p></li></ul><h3 id="1-直线光栅化算法"><a href="#1-直线光栅化算法" class="headerlink" title="1.直线光栅化算法"></a>1.直线光栅化算法</h3><h4 id="1-1-DDA数值微分算法"><a href="#1-1-DDA数值微分算法" class="headerlink" title="1.1 DDA数值微分算法"></a>1.1 DDA数值微分算法</h4><p>通过两点确定一条直线的斜率（k)，若|k|&lt;=1,选择x方向作为步长（选择变换快的方向），若|k|&gt;1,选择y方向作为步长。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033642.png" alt="image-20231128195221236" style="zoom:50%;"></p><p>注：在所选的步长方向上，从起始点 <code>(x0, y0)</code> 开始，计算每个下一个点的坐标 <code>(xi, yi)</code>。对于x方向的步长，使用 <code>xi+1 = xi + 1</code>；对于 y 方向的步长，使用 <code>yi+1 = yi + m</code>。(y的结果要四舍五入)</p><h4 id="1-2-Bresenham直线绘制算法"><a href="#1-2-Bresenham直线绘制算法" class="headerlink" title="1.2 Bresenham直线绘制算法"></a>1.2 Bresenham直线绘制算法</h4><p>Bresenham直线绘制算法通过在每个步骤中选择最接近理想路径上的点来逐步绘制线段，从而避免了使用浮点数运算，提高了计算效率。</p><p><strong>pass</strong></p><h3 id="2-三角形光栅化算法"><a href="#2-三角形光栅化算法" class="headerlink" title="2.三角形光栅化算法"></a>2.三角形光栅化算法</h3><p><strong>每一个像素进行采样:</strong>判断像素中心是否在三角形内部</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034020.png" alt="image-20231128200407428" style="zoom: 50%;"></p><p><strong>判断一个点在三角形内部的方法：</strong>利用叉乘的性质</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034363.png" alt="image-20231128200536862" style="zoom:50%;"></p><p>​        分别计算 $P_0P_1×P_0Q、 P_1P_2×P_1Q、P_2P_0×P_2Q$，如果三者同号则代表点P在三条线段的同一边，那么必然处于三角形内部，如果不同号则代表该点一定在三角形外部<br><strong>利用bouding box减少点的计算：</strong>三角形通常只占屏幕很小的一部分，只对该bounding box内的点进行采样测试</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034364.png" alt="image-20231128201223186" style="zoom:50%;"></p><p><strong>锯齿现象：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034128.png" alt="image-20231128201443202" style="zoom:50%;"></p><p>产生的原因：只用了有限的采样点去逼近连续的三角形</p><h3 id="3-解决走样的方法"><a href="#3-解决走样的方法" class="headerlink" title="3.解决走样的方法"></a>3.解决走样的方法</h3><h4 id="3-1超采样反走样-Super-Sampling-AA"><a href="#3-1超采样反走样-Super-Sampling-AA" class="headerlink" title="3.1超采样反走样(Super Sampling AA)"></a>3.1超采样反走样(Super Sampling AA)</h4><p>用更多的采样点去逼近连续的三角形</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034872.png" alt="image-20231128201847832" style="zoom:50%;"></p><p>对着四个采样点分别计算颜色值，将这四个点的采样点的颜色值取均值，如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034448.png" alt="image-20231128202001340" style="zoom:50%;"></p><p><em>注：超采样的缺点是对计算资源的更高要求</em></p><h4 id="3-2多采样反走样-Multi-Sampling-AA"><a href="#3-2多采样反走样-Multi-Sampling-AA" class="headerlink" title="3.2多采样反走样(Multi-Sampling AA)"></a>3.2多采样反走样(Multi-Sampling AA)</h4><p>MSAA是对SSAA的改进，不再为每个采样点都计算颜色值，而只计算像素中采样点被覆盖的比例，而后在中心点处计算颜色值。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034470.png" alt="image-20231128202605057" style="zoom:50%;"></p><h4 id="3-3-先模糊（滤波），再采样"><a href="#3-3-先模糊（滤波），再采样" class="headerlink" title="3.3 先模糊（滤波），再采样"></a>3.3 先模糊（滤波），再采样</h4><p>通过在采样前进行滤波，可以去除信号中的高频分量，从而在采样时避免混叠效应，减少走样。</p><p>在频域中限制高频成分的影响，有助于避免走样问题</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034171.png" alt="image-20231128203246227" style="zoom:50%;"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;一-Transformation&quot;&gt;&lt;a href=&quot;#一-Transformation&quot; class=&quot;headerlink&quot; title=&quot;一.Transformation&quot;&gt;&lt;/a&gt;一.Transformation&lt;/h2&gt;&lt;h3 id=&quot;1-2D变换&quot;&gt;&lt;</summary>
+      
+    
+    
+    
+    <category term="图形学" scheme="https://wangak.cc/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
+    
+    
+    <category term="图形学" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SPM</title>
+    <link href="https://wangak.cc/posts/236d2982.html"/>
+    <id>https://wangak.cc/posts/236d2982.html</id>
+    <published>2023-11-18T06:23:40.209Z</published>
+    <updated>2023-11-27T06:37:00.217Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="SPM"><a href="#SPM" class="headerlink" title="SPM"></a>SPM</h2><p><strong>论文：《Learning with Explicit Shape Priors for Medical Image Segmentation》（TMI 2023)</strong></p><p><strong>探索形状先验(shape priors)对分割性能的影响</strong></p><p>基于unet的医学图像分割模型的局限性:cnn的感受野有限，无法利用器官或组织之间的远距离和全局空间关系，无法实现精细的形状表示。（注意力模块扩大模型的感受野，隐式地捕获形状信息）</p><p><em>注：通过设计特定的损失函数，而不是Dice损失或交叉熵损失，将明确的形状先验集成到分割框架中。但这些损失函数是特定于任务的，不能很容易地扩展到不同的数据集</em></p><p>提出了显式形状模型（SPM），以形状先验作为额外的输入来增强模型的形状表示能力。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271436431.png" alt="image-20231120152537182" style="zoom:67%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271436712.png" alt="image-20231120163304452" style="zoom:67%;"></p><p>其中F代表模型的前向传播，S代表构造图像I和标签L之间映射的形状先验。</p><p><strong>注意力图：</strong>生成的形状先验在推断阶段充当了注意力图，用于定位感兴趣的区域，并抑制背景区域</p><p><strong>SPM模块：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271436670.png" alt="image-20231120153357914" style="zoom:67%;"></p><p>SPM模块由the self-update block (SUB)、cross-update block (CUB)</p><p><strong>the self-update block (SUB)：</strong>以形状先验作为输入，用于生成全局形状先验</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271436041.png" alt="image-20231120154358605" style="zoom:50%;"></p><p>SUB的结构缺乏对局部视觉结构的建模，全局形状先验不具有精确的形状和轮廓信息。</p><p><strong>cross-update block (CUB)：</strong>建模局部形状先验</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271436616.png" alt="image-20231120160130787" style="zoom: 50%;"></p><p><script type="math/tex">C_{map}</script>:一个C × N矩阵,用于评估C通道特征映射Fo和N通道形状先验之间的关系。</p><p>下采样<script type="math/tex">F_e</script>生成局部形状先验<script type="math/tex">S_L</script>:</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271436429.png" alt="image-20231120160808202" style="zoom:50%;"></p><p>增强的形状先验融合了SUB生成全局形状先验及CUB生成的局部形状先验</p><h3 id="实验部分："><a href="#实验部分：" class="headerlink" title="实验部分："></a>实验部分：</h3><p><strong>与其他方法的对比：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271436022.png" alt="image-20231120202559717" style="zoom: 67%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271436614.png" alt="image-20231120202723390" style="zoom: 67%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271436085.png" alt="image-20231120202732327" style="zoom: 67%;"></p><p><strong>消融实验：</strong>在BRATS 2020（脑肿瘤）、<strong>VerSe2019</strong>(脊柱)、ACDC（心脏）</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271436828.png" alt="image-20231120201045294" style="zoom: 80%;"></p><p>表明SPM有增强模型对相对规则的形状区域的表示能力</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;SPM&quot;&gt;&lt;a href=&quot;#SPM&quot; class=&quot;headerlink&quot; title=&quot;SPM&quot;&gt;&lt;/a&gt;SPM&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;论文：《Learning with Explicit Shape Priors for Medical Image </summary>
+      
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
     
   </entry>
   
@@ -112,6 +155,29 @@
   </entry>
   
   <entry>
+    <title>3D UX-NET</title>
+    <link href="https://wangak.cc/posts/eabf9f8.html"/>
+    <id>https://wangak.cc/posts/eabf9f8.html</id>
+    <published>2023-11-06T16:00:00.000Z</published>
+    <updated>2023-11-06T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="3D-UX-NET"><a href="#3D-UX-NET" class="headerlink" title="3D UX-NET"></a>3D UX-NET</h2><p><strong>论文：《3D UX-NET: A LARGE KERNEL VOLUMETRIC CONVNET MODERNIZING HIERARCHICAL TRANSFORMER</strong><br><strong>FOR MEDICAL IMAGE SEGMENTATION》（ICLR 2023）</strong></p><h3 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1.网络结构"></a>1.网络结构</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115336.png" alt="image-20231106201433865"></p><p>采用具备大卷积核的投影层来提取 patch-wise 特征作为编码器的输入</p><p><strong>对Swin transformer的transformer block做了替换：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115856.png" alt="image-20231106202256333" style="zoom:67%;"></p><p>使用大卷积核(7 × 7 × 7)的深度卷积来模仿Swin Transformer的局部自注意力和窗口移动。</p><p>使用2 × 2 × 2、步幅为2的标准卷积块来实现下采样</p><p>在Swin Transformer中MLP隐藏层维度比输入维度宽四倍，引入了具有 1 × 1 × 1 卷积核大小的深度卷积缩放(DCS)，以独立地线性缩放每个通道特征，减少跨通道上下文产生的冗余信息</p><p>DCS：1x1x1的深度卷积+1x1x1的分组卷积</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115037.png" alt="image-20231106205655475" style="zoom:67%;"></p><p>从实验中发现：使用深度卷积缩放(DCS)参数量得到了减小，效果并没有下降</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115199.png" alt="image-20231106204002121"></p><p>编码器的输出特征由残差块作进一步的处理，以稳定提取的特征。（残差块由两个经过实例归一化的后归一化3 × 3 × 3卷积层组成）</p><p>转置卷积层实现上采样，其输出的特征与编码器的输出进行连接后，再次输入到残差块中。</p><h3 id="2-实验结果"><a href="#2-实验结果" class="headerlink" title="2.实验结果"></a>2.实验结果</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115341.png" alt="image-20231106210428239"></p><p>3D UX-Net 在这几个分割任务中均展示出最佳性能，并且 Dice 分数有了一定的提高</p>]]></content>
+    
+    
+    <summary type="html">记录了3D UX-NET的网络结构及实验结果</summary>
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    
+  </entry>
+  
+  <entry>
     <title>nnUNet v2模型训练</title>
     <link href="https://wangak.cc/posts/4a35a285.html"/>
     <id>https://wangak.cc/posts/4a35a285.html</id>
@@ -132,29 +198,6 @@
     
     
     <category term="模型训练" scheme="https://wangak.cc/tags/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>3D UX-NET</title>
-    <link href="https://wangak.cc/posts/eabf9f8.html"/>
-    <id>https://wangak.cc/posts/eabf9f8.html</id>
-    <published>2023-11-06T16:00:00.000Z</published>
-    <updated>2023-11-06T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="3D-UX-NET"><a href="#3D-UX-NET" class="headerlink" title="3D UX-NET"></a>3D UX-NET</h2><p><strong>论文：《3D UX-NET: A LARGE KERNEL VOLUMETRIC CONVNET MODERNIZING HIERARCHICAL TRANSFORMER</strong><br><strong>FOR MEDICAL IMAGE SEGMENTATION》（ICLR 2023）</strong></p><h3 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1.网络结构"></a>1.网络结构</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115336.png" alt="image-20231106201433865"></p><p>采用具备大卷积核的投影层来提取 patch-wise 特征作为编码器的输入</p><p><strong>对Swin transformer的transformer block做了替换：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115856.png" alt="image-20231106202256333" style="zoom:67%;"></p><p>使用大卷积核(7 × 7 × 7)的深度卷积来模仿Swin Transformer的局部自注意力和窗口移动。</p><p>使用2 × 2 × 2、步幅为2的标准卷积块来实现下采样</p><p>在Swin Transformer中MLP隐藏层维度比输入维度宽四倍，引入了具有 1 × 1 × 1 卷积核大小的深度卷积缩放(DCS)，以独立地线性缩放每个通道特征，减少跨通道上下文产生的冗余信息</p><p>DCS：1x1x1的深度卷积+1x1x1的分组卷积</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115037.png" alt="image-20231106205655475" style="zoom:67%;"></p><p>从实验中发现：使用深度卷积缩放(DCS)参数量得到了减小，效果并没有下降</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115199.png" alt="image-20231106204002121"></p><p>编码器的输出特征由残差块作进一步的处理，以稳定提取的特征。（残差块由两个经过实例归一化的后归一化3 × 3 × 3卷积层组成）</p><p>转置卷积层实现上采样，其输出的特征与编码器的输出进行连接后，再次输入到残差块中。</p><h3 id="2-实验结果"><a href="#2-实验结果" class="headerlink" title="2.实验结果"></a>2.实验结果</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115341.png" alt="image-20231106210428239"></p><p>3D UX-Net 在这几个分割任务中均展示出最佳性能，并且 Dice 分数有了一定的提高</p>]]></content>
-    
-    
-    <summary type="html">记录了3D UX-NET的网络结构及实验结果</summary>
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
     
   </entry>
   
@@ -446,55 +489,6 @@
     
     
     <category term="C++" scheme="https://wangak.cc/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Swin-Transformer</title>
-    <link href="https://wangak.cc/posts/4b223b72.html"/>
-    <id>https://wangak.cc/posts/4b223b72.html</id>
-    <published>2023-09-17T05:05:40.000Z</published>
-    <updated>2023-09-16T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Swin-Transformer"><a href="#Swin-Transformer" class="headerlink" title="Swin-Transformer"></a>Swin-Transformer</h2><h3 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1.网络结构"></a>1.网络结构</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202310201409143.png" alt="1"></p><p><em>注：使用Transformer取代卷积操作是因为卷积操作在每个位置只关注输入图像的局部感受野，即一个固定大小的区域，而难以有效地捕捉全局信息，Transformer架构引入了自注意力机制，允许模型在一定范围内建立像素之间的关联，可以更好地处理全局信息</em>。</p><h3 id="2-W-MSA"><a href="#2-W-MSA" class="headerlink" title="2.W-MSA"></a>2.W-MSA</h3><p>使用窗口多头自注意力，将输入的图片划分成不重叠的窗口，在这样的局部的窗口中计算自注意力，减少计算量，其对于图像的大小具有<strong>线性的复杂度</strong></p><p>$Ω(MSA) = 4hwC^2 + 2(hw)^2C; (1)$<br>$Ω(W-MSA) = 4hwC^2 + 2M^2hwC; (2)$</p><p><strong>注：</strong></p><p>h,w:输入图像的高,宽</p><p>M:一个窗口中含有MxM个patch</p><p>C：超参数（linear embedding将patch的特征维度变成C)</p><p><img src="https://typoraimg.wangak.cc/2023/img/202310201409740.png" alt="6"></p><h3 id="3-SW-MSA"><a href="#3-SW-MSA" class="headerlink" title="3.SW-MSA"></a>3.SW-MSA</h3><p>虽然基于窗口计算自注意力能够很好的解决计算量大的问题，但是现在<strong>窗口与窗口之间没有联系</strong>，就达不到全局建模的能力，所以作者就提出了<strong>移动窗口</strong>的方式去解决</p><p><img src="https://typoraimg.wangak.cc/2023/img/202310201409940.png" alt="4" style="zoom: 80%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202310201409148.png" alt="7" style="zoom: 80%;"></p><p><strong>从Layer1移动到Layer1+1后存在的问题：</strong>每个窗口中的patch数量不同，窗口数增大了，会影响计算效率</p><p><strong>解决方法：cyclic shift+MSA-masked</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202310201410145.png" alt="5" style="zoom: 50%;"></p><p><strong>循环移位：</strong>将A、C先向下拼接，再将B、A向右拼接。通过循环移位将窗口的数目再一次地拼成4个，控制了计算复杂度，但产生了新的问题：同一个窗口中的patch来自于不同的区域，而来自于不同区域的patch之间不应该计算自注意力。</p><p><strong>MSA-masked：</strong>对于一个patch，得到这个patch的attention（Q、K、V），将这个patch的Q与其他patch的K点乘，如果这两个patch来自于不同的区域，那么将点乘的结果减100，那么结果将是一个负数，再经过softmax处理后映射得到的权值接近于0</p><h3 id="4-patch-merging"><a href="#4-patch-merging" class="headerlink" title="4.patch merging"></a>4.patch merging</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202310201410582.png" alt="8" style="zoom: 67%;"></p><p><strong>patch merging:</strong>进行下采样，用于缩小分辨率，调整通道数进而形成层次化的设计</p><h3 id="5-Relative-position-bias（相对位置偏置）"><a href="#5-Relative-position-bias（相对位置偏置）" class="headerlink" title="5.Relative position bias（相对位置偏置）"></a>5.Relative position bias（相对位置偏置）</h3><p><strong>偏置B:</strong>让attention map进一步有所偏重，在进行Attention计算时考虑到像素间的位置关系。</p><p>偏置B是由将像素与像素间的相对位置进行编码然后通过查找偏置表得到的。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202310212045328.png" alt="9" style="zoom: 80%;"></p><h2 id="Swin-Unet"><a href="#Swin-Unet" class="headerlink" title="Swin-Unet"></a>Swin-Unet</h2><p><img src="https://typoraimg.wangak.cc/2023/img/202310201410888.png" alt="11"></p><p><strong>编码器:</strong>工作原理和 Swin-Transformer完全一样的。其中，Patch Merging模块的作用是在每个Swin-Transformer模块开头来降低图片分辨率。</p><p><strong>解码器：</strong>Patch Expanding将相邻维度的特征图重塑为更高分辨率的特征图(2×上采样)，并相应地将特征维数减半。</p><p><strong>Patch Expanding:</strong></p><p>​       在上采样之前，在输入特征上加一个线性层,将特征维数增加到原始维数的2倍,利用重排操作将输入特征的分辨率扩展为输入分辨率的2倍，将特征维数降低为输入维数的1/4。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class PatchExpand(nn.Module): </span><br><span class="line">    def __init__(self, input_resolution, dim, dim_scale=2, norm_layer=nn.LayerNorm):</span><br><span class="line">        super().__init__()</span><br><span class="line">        self.input_resolution = input_resolution</span><br><span class="line">        self.dim = dim</span><br><span class="line">        self.expand = nn.Linear(dim, 2*dim, bias=False) if dim_scale==2 else nn.Identity()#如果dim_scale是2则执行nn.Linear()，不是则执行直接映射</span><br><span class="line">        self.norm = norm_layer(dim // dim_scale)</span><br><span class="line"></span><br><span class="line">    def forward(self, x):</span><br><span class="line"></span><br><span class="line">        H, W = self.input_resolution</span><br><span class="line">        x = self.expand(x)</span><br><span class="line">        B, L, C = x.shape</span><br><span class="line">        assert L == H * W, &quot;input feature has wrong size&quot;</span><br><span class="line"></span><br><span class="line">        x = x.view(B, H, W, C)</span><br><span class="line">        x = rearrange(x, &#x27;b h w (p1 p2 c)-&gt; b (h p1) (w p2) c&#x27;, p1=2, p2=2, c=C//4)</span><br><span class="line">        x = x.view(B,-1,C//4)</span><br><span class="line">        x= self.norm(x.clone())</span><br><span class="line"></span><br><span class="line">        return x</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">记录了Swin-Transformer的网络结构及实验结果</summary>
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RNN</title>
-    <link href="https://wangak.cc/posts/6fe72dd0.html"/>
-    <id>https://wangak.cc/posts/6fe72dd0.html</id>
-    <published>2023-09-16T04:12:20.000Z</published>
-    <updated>2023-09-16T00:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1-RNN-递归神经网络"><a href="#1-RNN-递归神经网络" class="headerlink" title="1.RNN(递归神经网络)"></a>1.RNN(递归神经网络)</h3><p><strong>RNN:</strong>用于处理<strong>序列</strong>数据和<strong>时间</strong>序列数据。RNN具有循环连接，允许信息在网络内部传递。</p><h4 id="1-1-RNN的结构："><a href="#1-1-RNN的结构：" class="headerlink" title="1.1 RNN的结构："></a>1.1 RNN的结构：</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202310201406368.png" alt="1"></p><p>注：<strong>权重矩阵</strong> W就是<strong>隐藏层</strong>上一次的值作为这一次的输入的权重</p><h4 id="1-2-RNN的优劣"><a href="#1-2-RNN的优劣" class="headerlink" title="1.2  RNN的优劣"></a>1.2  RNN的优劣</h4><p><strong>RNN的主要优点包括：</strong></p><p><strong>1.处理序列数据：</strong>RNN能够有效地处理变长序列数据，因为它的隐藏状态可以捕获先前时间步的信息。</p><p><strong>2.上下文理解：</strong>RNN能够理解上下文信息。</p><p><strong>RNN的缺点：</strong></p><p><strong>1.长期依赖问题：</strong>由于梯度消失或梯度爆炸的问题，传统的RNN在处理长序列时可能会失去对远距离时间步的依赖性。</p><p><strong>2.计算效率：</strong>RNN的计算效率较低，难以处理大规模数据和长序列。</p><h3 id="2-LSTM-长短期记忆"><a href="#2-LSTM-长短期记忆" class="headerlink" title="2.LSTM(长短期记忆)"></a>2.LSTM(长短期记忆)</h3><p><strong>LSTM:</strong>为了解决RNN在长序列训练过程中的梯度消失和梯度爆炸问题。</p><h4 id="2-1-LSTM的结构原理："><a href="#2-1-LSTM的结构原理：" class="headerlink" title="2.1 LSTM的结构原理："></a>2.1 LSTM的结构原理：</h4><p>输入：Z、输入门$Z_i$、输出门 $Z_o$、遗忘门 $Z_f$</p><p>输出：a</p><p><img src="https://typoraimg.wangak.cc/2023/img/202310201406702.png" alt="2"></p><p>输入门$Z_i$:决定了哪些新信息要被存储到细胞状态中。它也考虑前一个时间步的隐藏状态和当前时间步的输入，以及一个候选值，用于更新细胞状态。</p><p>遗忘门 $Z_f$:决定了哪些信息要被遗忘或丢弃。输出一个介于0和1之间的值，表示要保留多少以前的信息。</p><p>输出门 $Z_o$:决定哪些将会被当成当前状态的输出。</p><p>细胞状态:在LSTM中负责存储和传递信息，以便于捕获长期依赖关系。</p><h4 id="2-2-LSTM的工作流程"><a href="#2-2-LSTM的工作流程" class="headerlink" title="2.2 LSTM的工作流程"></a>2.2 LSTM的工作流程</h4><p><strong>1.遗忘门的输出（$f_t$)</strong>:</p><script type="math/tex; mode=display">f_t=σ(W_{xf}x_t+W_{hf}h_{t−1}+b_f)</script><p><img src="https://typoraimg.wangak.cc/2023/img/202310201406010.png" alt="3"></p><p><strong>2.候选细胞状态（$\tilde{C}$）及输入门（$i_t$）</strong></p><script type="math/tex; mode=display">\tilde{C}=tanh(W_{xc}x_t+W_{hc}h_{t−1}+b_c)</script><script type="math/tex; mode=display">i_t=σ(W_{xi}x_t+W_{hi}h_{t−1}+b_i)</script><p><img src="https://typoraimg.wangak.cc/2023/img/202310201406785.png" alt="4"></p><p><strong>3.更新状态值($C_t$)</strong></p><script type="math/tex; mode=display">C_t=f_t⋅C_{t−1}+i_t⋅\tilde{C}</script><p><img src="https://typoraimg.wangak.cc/2023/img/202310201406751.png" alt="5"></p><p><strong>4.输出</strong></p><script type="math/tex; mode=display">o_t=σ(W_{xo}x_t+W_{ho}h_{t−1}+b_o)</script><script type="math/tex; mode=display">h_t=o_t⋅tanh(C_t)</script><p><img src="https://typoraimg.wangak.cc/2023/img/202310201407980.png" alt="6"></p><p><strong>注：</strong></p><p>​      <strong>*利用tanh来映射细胞状态信息的原因</strong>：tanh函数其输出在-1-1之间，这与大多数场景下特征分布是0中心的吻合。tanh函数在输入为0附近相比 Sigmoid函数有更大的梯度，通常使模型收敛更快。*</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;1-RNN-递归神经网络&quot;&gt;&lt;a href=&quot;#1-RNN-递归神经网络&quot; class=&quot;headerlink&quot; title=&quot;1.RNN(递归神经网络)&quot;&gt;&lt;/a&gt;1.RNN(递归神经网络)&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;RNN:&lt;/strong&gt;用于处理&lt;st</summary>
-      
-    
-    
-    
-    <category term="深度学习" scheme="https://wangak.cc/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="RNN" scheme="https://wangak.cc/tags/RNN/"/>
-    
-    <category term="LSTM" scheme="https://wangak.cc/tags/LSTM/"/>
     
   </entry>
   
