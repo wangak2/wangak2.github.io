@@ -163,6 +163,30 @@
   </entry>
   
   <entry>
+    <title>智能指针</title>
+    <link href="https://wangak.cc/posts/38a918c7.html"/>
+    <id>https://wangak.cc/posts/38a918c7.html</id>
+    <published>2023-11-25T16:00:00.000Z</published>
+    <updated>2023-09-26T00:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h2><h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h3><p>C++中的指针：</p><ul><li>原始指针</li><li>智能指针</li></ul><p>智能指针是原始指针的封装，其优点是会自动分配内存，不用担心潜在的内存泄露</p><p><em>注：智能指针只解决了独占/共享所有权指针的释放、传输，没有从根本上解决C++内存安全问题，不加以注意依然会造成内存安全问题</em></p><h3 id="2-独占指针：unique-ptr"><a href="#2-独占指针：unique-ptr" class="headerlink" title="2.独占指针：unique_ptr"></a>2.独占指针：unique_ptr</h3><p><strong>unique_ptr:</strong>在任何给定的时刻，只能有一个指针管理内存，当指针超出作用域时，内存将自动释放</p><p><em>注:该类型的指针不可Copy,只可以Move</em></p><p><strong>unique_ptr的三种创建方式：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;memory&gt;</span><br><span class="line">#include &quot;cat.h&quot;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[]) &#123;</span><br><span class="line">    // 1.栈</span><br><span class="line">    // 对象是在栈上创建的(而不是使用 new 操作符在堆上分配对象）,那么在对象的作用域结束时，其析构函数会被自动调用。</span><br><span class="line">    Cat c1(&quot;OK&quot;);</span><br><span class="line">    c1.cat_info();</span><br><span class="line">    &#123;</span><br><span class="line">        Cat c2(&quot;OK&quot;);</span><br><span class="line">        c2.cat_info();</span><br><span class="line">    &#125; // 在这个代码块结束时，c2 对象将被销毁，调用析构函数</span><br><span class="line"> </span><br><span class="line">    // 2.堆</span><br><span class="line">    //2.1 原始指针（不安全）</span><br><span class="line">    Cat *c_p1=new Cat(&quot;yy&quot;);</span><br><span class="line">    c_p1-&gt;cat_info();</span><br><span class="line">    &#123;</span><br><span class="line">        Cat *c_p1=new Cat(&quot;yy&quot;);</span><br><span class="line">        c_p1-&gt;cat_info();</span><br><span class="line">        delete c_p1;//原始指针不会自动调用析构函数，要使用delete方法</span><br><span class="line">    &#125;</span><br><span class="line">    delete c_p1;</span><br><span class="line">    // 2.2 智能指针</span><br><span class="line">    // 2.2.3 unique_pointer的三种创建方式</span><br><span class="line">    // 2.2.3.1 第一种方式</span><br><span class="line">    Cat *c_p2=new Cat(&quot;ok&quot;);</span><br><span class="line">    unique_ptr&lt;Cat&gt; u_c_p2&#123;c_p2&#125;;</span><br><span class="line">    c_p2=nullptr;//原始指针一般需要置空，否则其还能使用</span><br><span class="line">    u_c_p2-&gt;cat_info();</span><br><span class="line">    // 2.2.3.2 第二种方式</span><br><span class="line">    unique_ptr&lt;Cat&gt; u_c_p3&#123;new Cat(&quot;dd&quot;)&#125;;</span><br><span class="line">    u_c_p3-&gt;cat_info();</span><br><span class="line">    // 2.2.3.2 第三种方式（推荐）</span><br><span class="line">    unique_ptr&lt;Cat&gt; u_c_p4=make_unique&lt;Cat&gt;(&quot;ook&quot;);</span><br><span class="line">    u_c_p4-&gt;cat_info();</span><br><span class="line">    std::cout &lt;&lt; &quot;-----yz ------&quot; &lt;&lt; std::endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;智能指针&quot;&gt;&lt;a href=&quot;#智能指针&quot; class=&quot;headerlink&quot; title=&quot;智能指针&quot;&gt;&lt;/a&gt;智能指针&lt;/h2&gt;&lt;h3 id=&quot;1-概述&quot;&gt;&lt;a href=&quot;#1-概述&quot; class=&quot;headerlink&quot; title=&quot;1.概述&quot;&gt;&lt;/a</summary>
+      
+    
+    
+    
+    <category term="C++" scheme="https://wangak.cc/categories/C/"/>
+    
+    
+    <category term="C++" scheme="https://wangak.cc/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Transformation</title>
     <link href="https://wangak.cc/posts/ac17f787.html"/>
     <id>https://wangak.cc/posts/ac17f787.html</id>
@@ -207,30 +231,6 @@
     
     
     <category term="图形学" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>智能指针</title>
-    <link href="https://wangak.cc/posts/38a918c7.html"/>
-    <id>https://wangak.cc/posts/38a918c7.html</id>
-    <published>2023-11-25T16:00:00.000Z</published>
-    <updated>2023-09-26T00:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h2><h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h3><p>C++中的指针：</p><ul><li>原始指针</li><li>智能指针</li></ul><p>智能指针是原始指针的封装，其优点是会自动分配内存，不用担心潜在的内存泄露</p><p><em>注：智能指针只解决了独占/共享所有权指针的释放、传输，没有从根本上解决C++内存安全问题，不加以注意依然会造成内存安全问题</em></p><h3 id="2-独占指针：unique-ptr"><a href="#2-独占指针：unique-ptr" class="headerlink" title="2.独占指针：unique_ptr"></a>2.独占指针：unique_ptr</h3><p><strong>unique_ptr:</strong>在任何给定的时刻，只能有一个指针管理内存，当指针超出作用域时，内存将自动释放</p><p><em>注:该类型的指针不可Copy,只可以Move</em></p><p><strong>unique_ptr的三种创建方式：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;memory&gt;</span><br><span class="line">#include &quot;cat.h&quot;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[]) &#123;</span><br><span class="line">    // 1.栈</span><br><span class="line">    // 对象是在栈上创建的(而不是使用 new 操作符在堆上分配对象）,那么在对象的作用域结束时，其析构函数会被自动调用。</span><br><span class="line">    Cat c1(&quot;OK&quot;);</span><br><span class="line">    c1.cat_info();</span><br><span class="line">    &#123;</span><br><span class="line">        Cat c2(&quot;OK&quot;);</span><br><span class="line">        c2.cat_info();</span><br><span class="line">    &#125; // 在这个代码块结束时，c2 对象将被销毁，调用析构函数</span><br><span class="line"> </span><br><span class="line">    // 2.堆</span><br><span class="line">    //2.1 原始指针（不安全）</span><br><span class="line">    Cat *c_p1=new Cat(&quot;yy&quot;);</span><br><span class="line">    c_p1-&gt;cat_info();</span><br><span class="line">    &#123;</span><br><span class="line">        Cat *c_p1=new Cat(&quot;yy&quot;);</span><br><span class="line">        c_p1-&gt;cat_info();</span><br><span class="line">        delete c_p1;//原始指针不会自动调用析构函数，要使用delete方法</span><br><span class="line">    &#125;</span><br><span class="line">    delete c_p1;</span><br><span class="line">    // 2.2 智能指针</span><br><span class="line">    // 2.2.3 unique_pointer的三种创建方式</span><br><span class="line">    // 2.2.3.1 第一种方式</span><br><span class="line">    Cat *c_p2=new Cat(&quot;ok&quot;);</span><br><span class="line">    unique_ptr&lt;Cat&gt; u_c_p2&#123;c_p2&#125;;</span><br><span class="line">    c_p2=nullptr;//原始指针一般需要置空，否则其还能使用</span><br><span class="line">    u_c_p2-&gt;cat_info();</span><br><span class="line">    // 2.2.3.2 第二种方式</span><br><span class="line">    unique_ptr&lt;Cat&gt; u_c_p3&#123;new Cat(&quot;dd&quot;)&#125;;</span><br><span class="line">    u_c_p3-&gt;cat_info();</span><br><span class="line">    // 2.2.3.2 第三种方式（推荐）</span><br><span class="line">    unique_ptr&lt;Cat&gt; u_c_p4=make_unique&lt;Cat&gt;(&quot;ook&quot;);</span><br><span class="line">    u_c_p4-&gt;cat_info();</span><br><span class="line">    std::cout &lt;&lt; &quot;-----yz ------&quot; &lt;&lt; std::endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;智能指针&quot;&gt;&lt;a href=&quot;#智能指针&quot; class=&quot;headerlink&quot; title=&quot;智能指针&quot;&gt;&lt;/a&gt;智能指针&lt;/h2&gt;&lt;h3 id=&quot;1-概述&quot;&gt;&lt;a href=&quot;#1-概述&quot; class=&quot;headerlink&quot; title=&quot;1.概述&quot;&gt;&lt;/a</summary>
-      
-    
-    
-    
-    <category term="C++" scheme="https://wangak.cc/categories/C/"/>
-    
-    
-    <category term="C++" scheme="https://wangak.cc/tags/C/"/>
     
   </entry>
   
