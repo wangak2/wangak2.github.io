@@ -6,7 +6,7 @@
   <link href="https://wangak.cc/atom.xml" rel="self"/>
   
   <link href="https://wangak.cc/"/>
-  <updated>2023-12-14T16:00:00.000Z</updated>
+  <updated>2023-12-15T00:00:00.000Z</updated>
   <id>https://wangak.cc/</id>
   
   <author>
@@ -15,32 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>D-LKA Attention</title>
-    <link href="https://wangak.cc/posts/bf4c3cab.html"/>
-    <id>https://wangak.cc/posts/bf4c3cab.html</id>
-    <published>2023-12-14T16:00:00.000Z</published>
-    <updated>2023-12-14T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="D-LKA-Attention"><a href="#D-LKA-Attention" class="headerlink" title="D-LKA Attention"></a>D-LKA Attention</h1><p><strong>论文：《Beyond Self-Attention: Deformable Large Kernel Attention for Medical Image Segmentation》（WACV 2024)</strong></p><h3 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1.网络结构"></a>1.网络结构</h3><p><strong>网络结构：</strong><br>                                            <img src="https://typoraimg.wangak.cc/2023/img/202312252047820.png" alt="image-20231218151015722" style="zoom:67%;"></p><p><strong>LKA：</strong>将卷积分解为三个部分：深度卷积、深度空洞卷积和逐点卷积</p><p>LKA吸收了卷积和self-attention的优点，包括局部结构信息、长依赖性和适应性。</p><p><strong>DW-Conv:</strong>可以利用图像的局部上下文信息</p><p><strong>DW-D-Conv：</strong>捕获LKA中的长程依赖性方面起到了作用</p><p><strong>1×1 Conv：</strong>通道维度中的关系</p><p><strong>2d-LKA的参数量：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252047832.png" alt="image-20231218150016851" style="zoom: 67%;"></p><p><em>注：普通卷积kernel大小为K，DW-Conv的kernel为K/d，DW-D-Conv的kernel为(2d-1)</em></p><p><strong>3d-LKA的参数量：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252047618.png" alt="image-20231218150455218" style="zoom:67%;"></p><p>d（扩张率）是通过对参数量求导确定的，找使参数量导数为0，即参数量最小的扩张率</p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252047839.png" alt="image-20231218150728812" style="zoom:67%;"></p><p><strong>D-LKA：</strong>在LKA的基础上，使用可变形深度卷积代替深度卷积，用可变形深度空洞卷积代替空洞卷积</p><p><em>注：可变形卷积提高了捕获不规则形状和大小的物体的能力</em></p><p><strong>D-LKA模块结构：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252047842.png" alt="image-20231218152019184" style="zoom: 50%;"></p><h3 id="2-实验"><a href="#2-实验" class="headerlink" title="2.实验"></a>2.实验</h3><p><strong>2d的D-LKA在多器官数据集上的表现：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252047330.png" alt="image-20231218154533519" style="zoom:67%;"></p><p><strong>3d的D-LKA在多器官数据集上的表现：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252047355.png" alt="image-20231218154633563"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;D-LKA-Attention&quot;&gt;&lt;a href=&quot;#D-LKA-Attention&quot; class=&quot;headerlink&quot; title=&quot;D-LKA Attention&quot;&gt;&lt;/a&gt;D-LKA Attention&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;论文：《Beyond</summary>
-      
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
-    
-  </entry>
   
   <entry>
     <title>shader</title>
@@ -92,6 +66,32 @@
     <category term="图形学" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
     
     <category term="opengl" scheme="https://wangak.cc/tags/opengl/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>D-LKA Attention</title>
+    <link href="https://wangak.cc/posts/bf4c3cab.html"/>
+    <id>https://wangak.cc/posts/bf4c3cab.html</id>
+    <published>2023-12-14T16:00:00.000Z</published>
+    <updated>2023-12-14T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="D-LKA-Attention"><a href="#D-LKA-Attention" class="headerlink" title="D-LKA Attention"></a>D-LKA Attention</h1><p><strong>论文：《Beyond Self-Attention: Deformable Large Kernel Attention for Medical Image Segmentation》（WACV 2024)</strong></p><h3 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1.网络结构"></a>1.网络结构</h3><p><strong>网络结构：</strong><br>                                            <img src="https://typoraimg.wangak.cc/2023/img/202312252047820.png" alt="image-20231218151015722" style="zoom:67%;"></p><p><strong>LKA：</strong>将卷积分解为三个部分：深度卷积、深度空洞卷积和逐点卷积</p><p>LKA吸收了卷积和self-attention的优点，包括局部结构信息、长依赖性和适应性。</p><p><strong>DW-Conv:</strong>可以利用图像的局部上下文信息</p><p><strong>DW-D-Conv：</strong>捕获LKA中的长程依赖性方面起到了作用</p><p><strong>1×1 Conv：</strong>通道维度中的关系</p><p><strong>2d-LKA的参数量：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252047832.png" alt="image-20231218150016851" style="zoom: 67%;"></p><p><em>注：普通卷积kernel大小为K，DW-Conv的kernel为K/d，DW-D-Conv的kernel为(2d-1)</em></p><p><strong>3d-LKA的参数量：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252047618.png" alt="image-20231218150455218" style="zoom:67%;"></p><p>d（扩张率）是通过对参数量求导确定的，找使参数量导数为0，即参数量最小的扩张率</p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252047839.png" alt="image-20231218150728812" style="zoom:67%;"></p><p><strong>D-LKA：</strong>在LKA的基础上，使用可变形深度卷积代替深度卷积，用可变形深度空洞卷积代替空洞卷积</p><p><em>注：可变形卷积提高了捕获不规则形状和大小的物体的能力</em></p><p><strong>D-LKA模块结构：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252047842.png" alt="image-20231218152019184" style="zoom: 50%;"></p><h3 id="2-实验"><a href="#2-实验" class="headerlink" title="2.实验"></a>2.实验</h3><p><strong>2d的D-LKA在多器官数据集上的表现：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252047330.png" alt="image-20231218154533519" style="zoom:67%;"></p><p><strong>3d的D-LKA在多器官数据集上的表现：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252047355.png" alt="image-20231218154633563"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;D-LKA-Attention&quot;&gt;&lt;a href=&quot;#D-LKA-Attention&quot; class=&quot;headerlink&quot; title=&quot;D-LKA Attention&quot;&gt;&lt;/a&gt;D-LKA Attention&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;论文：《Beyond</summary>
+      
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
     
   </entry>
   
@@ -339,30 +339,6 @@
   </entry>
   
   <entry>
-    <title>智能指针</title>
-    <link href="https://wangak.cc/posts/38a918c7.html"/>
-    <id>https://wangak.cc/posts/38a918c7.html</id>
-    <published>2023-11-25T16:00:00.000Z</published>
-    <updated>2023-09-26T00:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h2><h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h3><p>C++中的指针：</p><ul><li>原始指针</li><li>智能指针</li></ul><p>智能指针是原始指针的封装，其优点是会自动分配内存，不用担心潜在的内存泄露</p><p><em>注：智能指针只解决了独占/共享所有权指针的释放、传输，没有从根本上解决C++内存安全问题，不加以注意依然会造成内存安全问题</em></p><h3 id="2-独占指针：unique-ptr"><a href="#2-独占指针：unique-ptr" class="headerlink" title="2.独占指针：unique_ptr"></a>2.独占指针：unique_ptr</h3><p><strong>unique_ptr:</strong>在任何给定的时刻，只能有一个指针管理内存，当指针超出作用域时，内存将自动释放</p><p><em>注:该类型的指针不可Copy,只可以Move</em></p><p><strong>unique_ptr的三种创建方式：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;memory&gt;</span><br><span class="line">#include &quot;cat.h&quot;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[]) &#123;</span><br><span class="line">    // 1.栈</span><br><span class="line">    // 对象是在栈上创建的(而不是使用 new 操作符在堆上分配对象）,那么在对象的作用域结束时，其析构函数会被自动调用。</span><br><span class="line">    Cat c1(&quot;OK&quot;);</span><br><span class="line">    c1.cat_info();</span><br><span class="line">    &#123;</span><br><span class="line">        Cat c2(&quot;OK&quot;);</span><br><span class="line">        c2.cat_info();</span><br><span class="line">    &#125; // 在这个代码块结束时，c2 对象将被销毁，调用析构函数</span><br><span class="line"> </span><br><span class="line">    // 2.堆</span><br><span class="line">    //2.1 原始指针（不安全）</span><br><span class="line">    Cat *c_p1=new Cat(&quot;yy&quot;);</span><br><span class="line">    c_p1-&gt;cat_info();</span><br><span class="line">    &#123;</span><br><span class="line">        Cat *c_p1=new Cat(&quot;yy&quot;);</span><br><span class="line">        c_p1-&gt;cat_info();</span><br><span class="line">        delete c_p1;//原始指针不会自动调用析构函数，要使用delete方法</span><br><span class="line">    &#125;</span><br><span class="line">    delete c_p1;</span><br><span class="line">    // 2.2 智能指针</span><br><span class="line">    // 2.2.3 unique_pointer的三种创建方式</span><br><span class="line">    // 2.2.3.1 第一种方式</span><br><span class="line">    Cat *c_p2=new Cat(&quot;ok&quot;);</span><br><span class="line">    unique_ptr&lt;Cat&gt; u_c_p2&#123;c_p2&#125;;</span><br><span class="line">    c_p2=nullptr;//原始指针一般需要置空，否则其还能使用</span><br><span class="line">    u_c_p2-&gt;cat_info();</span><br><span class="line">    // 2.2.3.2 第二种方式</span><br><span class="line">    unique_ptr&lt;Cat&gt; u_c_p3&#123;new Cat(&quot;dd&quot;)&#125;;</span><br><span class="line">    u_c_p3-&gt;cat_info();</span><br><span class="line">    // 2.2.3.2 第三种方式（推荐）</span><br><span class="line">    unique_ptr&lt;Cat&gt; u_c_p4=make_unique&lt;Cat&gt;(&quot;ook&quot;);</span><br><span class="line">    u_c_p4-&gt;cat_info();</span><br><span class="line">    std::cout &lt;&lt; &quot;-----yz ------&quot; &lt;&lt; std::endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;智能指针&quot;&gt;&lt;a href=&quot;#智能指针&quot; class=&quot;headerlink&quot; title=&quot;智能指针&quot;&gt;&lt;/a&gt;智能指针&lt;/h2&gt;&lt;h3 id=&quot;1-概述&quot;&gt;&lt;a href=&quot;#1-概述&quot; class=&quot;headerlink&quot; title=&quot;1.概述&quot;&gt;&lt;/a</summary>
-      
-    
-    
-    
-    <category term="C++" scheme="https://wangak.cc/categories/C/"/>
-    
-    
-    <category term="C++" scheme="https://wangak.cc/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Transformation</title>
     <link href="https://wangak.cc/posts/ac17f787.html"/>
     <id>https://wangak.cc/posts/ac17f787.html</id>
@@ -460,26 +436,26 @@
   </entry>
   
   <entry>
-    <title>C++编程出现的错误及解决</title>
-    <link href="https://wangak.cc/posts/f3261b08.html"/>
-    <id>https://wangak.cc/posts/f3261b08.html</id>
-    <published>2023-11-11T07:07:32.208Z</published>
-    <updated>2023-11-11T00:00:00.000Z</updated>
+    <title>nnUNet v2模型训练</title>
+    <link href="https://wangak.cc/posts/4a35a285.html"/>
+    <id>https://wangak.cc/posts/4a35a285.html</id>
+    <published>2023-11-06T16:00:00.000Z</published>
+    <updated>2023-11-06T16:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="C-编程出现的错误及解决"><a href="#C-编程出现的错误及解决" class="headerlink" title="C++编程出现的错误及解决"></a>C++编程出现的错误及解决</h2><h3 id="1-Undefined-reference"><a href="#1-Undefined-reference" class="headerlink" title="1.Undefined reference"></a>1.Undefined reference</h3><p><strong>1.1目标文件未正确链接:</strong></p><p><strong>原因：</strong>有多个源文件，会独立编译它们,会导致对象没有正确链</p><p><strong>解决方法：同时编译这两个文件</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g++ cat.cpp test.cpp -o test//同时编译cat.cpp和test.cpp，并生成可执行文件test</span><br><span class="line">./test  //运行test.exe</span><br></pre></td></tr></table></figure><p>注：有多个源文件时使用如下指令进行编译</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g++ *.cpp -o main</span><br><span class="line">./main</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h2 id="nnUNet-v2模型训练"><a href="#nnUNet-v2模型训练" class="headerlink" title="nnUNet v2模型训练"></a>nnUNet v2模型训练</h2><h3 id="1-数据集处理"><a href="#1-数据集处理" class="headerlink" title="1.数据集处理"></a>1.数据集处理</h3><p><strong>nnUnet要求rgb-png格式的数据</strong>，故将原数据集由单通道堆叠成三通道的RGB图像</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">import os</span><br><span class="line">def gray_to_rgb(image_gray):</span><br><span class="line">    # 创建一个全零的三通道图像</span><br><span class="line">    height, width = image_gray.shape</span><br><span class="line">    image_rgb = np.zeros((height, width, 3), dtype=np.uint8)</span><br><span class="line">    # 将灰度图像的值复制到红通道</span><br><span class="line">    image_rgb[:, :, 2] = image_gray</span><br><span class="line">    image_rgb[:, :, 1] = image_gray</span><br><span class="line">    image_rgb[:, :, 0] = image_gray</span><br><span class="line">    return image_rgb</span><br><span class="line"># 设置目标文件夹路径</span><br><span class="line"> # 包含灰度PNG图像的文件夹路径</span><br><span class="line">output_folder = # 用于保存RGB图像的文件夹路径</span><br><span class="line">root_folder=</span><br><span class="line"># 创建输出文件夹（如果不存在）</span><br><span class="line">if not os.path.exists(output_folder):</span><br><span class="line">    os.makedirs(output_folder)</span><br><span class="line">for root, dirs, files in os.walk(root_folder):</span><br><span class="line">    # 遍历目标文件夹中的所有图像文件</span><br><span class="line">    if root == root_folder:</span><br><span class="line">        for dir_name in dirs:</span><br><span class="line">            input_folder = os.path.join(root, dir_name, dir_name + &quot;_label&quot;)</span><br><span class="line">            print(input_folder)</span><br><span class="line">            for filename in os.listdir(input_folder):</span><br><span class="line">                if filename.endswith(&#x27;.png&#x27;):</span><br><span class="line">                    # 构造图像文件的完整输入路径</span><br><span class="line">                    input_image_path = os.path.join(input_folder, filename)</span><br><span class="line">                    # 读取灰度图像</span><br><span class="line">                    image_gray = cv2.imread(input_image_path, cv2.IMREAD_GRAYSCALE)</span><br><span class="line">                    if image_gray is not None:</span><br><span class="line">                        # 转换为RGB图像</span><br><span class="line">                        image_rgb = gray_to_rgb(image_gray)</span><br><span class="line">                        # 构造保存的RGB图像文件名（输出路径）</span><br><span class="line">                        output_image_path = os.path.join(output_folder, filename.replace(&#x27;.png&#x27;, &#x27;_rgb.png&#x27;))</span><br><span class="line">                        # 保存RGB图像到指定输出路径</span><br><span class="line">                        cv2.imwrite(output_image_path, image_rgb)</span><br><span class="line">            print(&quot;Conversion completed.&quot;)</span><br></pre></td></tr></table></figure><p><strong>原先数据集的格式要求：</strong></p><ul><li><strong>train</strong><ul><li><strong>images</strong></li><li><strong>labels</strong></li></ul></li><li><strong>test</strong><ul><li><strong>images</strong></li><li><strong>labels</strong></li></ul></li></ul><p><strong>将数据集转化为nnUnet标准格式，改写nnUNet/nnunetv2/dataset_conversion/Dataset120_RoadSegmentation.py</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    # extracted archive from https://www.kaggle.com/datasets/insaff/massachusetts-roads-dataset?resource=download</span><br><span class="line">    source = &#x27;/root/autodl-tmp/nnUNet/Coronary&#x27;</span><br><span class="line">    print(source)</span><br><span class="line">    dataset_name = &#x27;Dataset150_Segmentation&#x27;</span><br><span class="line">    nnUNet_raw = &#x27;/root/autodl-tmp/nnUNet/dataset/nnUNet_raw&#x27;</span><br><span class="line">    imagestr = join(nnUNet_raw, dataset_name, &#x27;imagesTr&#x27;)</span><br><span class="line">    imagests = join(nnUNet_raw, dataset_name, &#x27;imagesTs&#x27;)</span><br><span class="line">    labelstr = join(nnUNet_raw, dataset_name, &#x27;labelsTr&#x27;)</span><br><span class="line">    labelsts = join(nnUNet_raw, dataset_name, &#x27;labelsTs&#x27;)</span><br><span class="line">   </span><br><span class="line">    maybe_mkdir_p(imagestr)</span><br><span class="line">    maybe_mkdir_p(imagests)</span><br><span class="line">    maybe_mkdir_p(labelstr)</span><br><span class="line">    maybe_mkdir_p(labelsts)</span><br><span class="line"></span><br><span class="line">    train_source = join(source, &#x27;train&#x27;)</span><br><span class="line">    test_source = join(source, &#x27;test&#x27;)</span><br><span class="line"></span><br><span class="line">    with multiprocessing.get_context(&quot;spawn&quot;).Pool(8) as p:</span><br><span class="line"></span><br><span class="line">        # not all training images have a segmentation</span><br><span class="line">        valid_ids = subfiles(join(train_source, &#x27;labels&#x27;), join=False, suffix=&#x27;png&#x27;)</span><br><span class="line">        num_train = len(valid_ids)</span><br><span class="line">        r = []</span><br><span class="line">        for v in valid_ids:</span><br><span class="line">            r.append(</span><br><span class="line">                p.starmap_async(</span><br><span class="line">                    load_and_covnert_case,</span><br><span class="line">                    ((</span><br><span class="line">                         join(train_source, &#x27;images&#x27;, v),</span><br><span class="line">                         join(train_source, &#x27;labels&#x27;, v),</span><br><span class="line">                         join(imagestr, v[:-4] + &#x27;_0000.png&#x27;),</span><br><span class="line">                         join(labelstr, v),</span><br><span class="line">                         50</span><br><span class="line">                     ),)</span><br><span class="line">                )</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">        # test set</span><br><span class="line">        valid_ids = subfiles(join(test_source, &#x27;labels&#x27;), join=False, suffix=&#x27;png&#x27;)</span><br><span class="line">        for v in valid_ids:</span><br><span class="line">            r.append(</span><br><span class="line">                p.starmap_async(</span><br><span class="line">                    load_and_covnert_case,</span><br><span class="line">                    ((</span><br><span class="line">                         join(test_source, &#x27;images&#x27;, v),</span><br><span class="line">                         join(test_source, &#x27;labels&#x27;, v),</span><br><span class="line">                         join(imagests, v[:-4] + &#x27;_0000.png&#x27;),</span><br><span class="line">                         join(labelsts, v),</span><br><span class="line">                         50</span><br><span class="line">                     ),)</span><br><span class="line">                )</span><br><span class="line">            )</span><br><span class="line">        _ = [i.get() for i in r]</span><br><span class="line"></span><br><span class="line">    generate_dataset_json(join(nnUNet_raw, dataset_name), &#123;0: &#x27;R&#x27;, 1: &#x27;G&#x27;, 2: &#x27;B&#x27;&#125;, &#123;&#x27;background&#x27;: 0, &#x27;coronary&#x27;: 1&#125;,</span><br><span class="line">                          num_train, &#x27;.png&#x27;, dataset_name=dataset_name)</span><br></pre></td></tr></table></figure><p><strong>生成的数据集：</strong></p><ul><li>数据集名称<ul><li>imagesTr</li><li>imagesTs</li><li>labelsTr</li><li>labelsTs</li><li>dataset.json</li></ul></li></ul><p><strong>添加环境变量：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export nnUNet_raw=&quot;/root/autodl-tmp/nnUNet/dataset/nnUNet_raw&quot;</span><br><span class="line">export nnUNet_preprocessed=&quot;/root/autodl-tmp/nnUNet/dataset/nnUNet_preprocessed&quot;</span><br><span class="line">export nnUNet_results=&quot;/root/autodl-tmp/nnUNet/dataset/nnUnet_results&quot;</span><br></pre></td></tr></table></figure><p><strong>预处理数据集：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nnUNetv2_plan_and_preprocess -d 150 --verify_dataset_integrity #150为任务id</span><br></pre></td></tr></table></figure><h3 id="2-模型训练"><a href="#2-模型训练" class="headerlink" title="2.模型训练"></a>2.模型训练</h3><p><strong>开始训练：</strong></p><p><code>nnUNetv2_train CONFIGURATION TRAINER_CLASS_NAME TASK_NAME_OR_ID FOLD (additional options)</code></p><ul><li><code>CONFIGURATION：</code> 模型架构，三种Unet: 2D U-Net, 3D U-Net and a U-Net Cascade(U-Net级联)。</li><li><code>TASK_NAME_OR_ID：</code> 任务全名TaskXXX_MYTASK或者是ID号</li><li><code>FOLD：</code> 第几折交叉验证，可选 [0, 1, 2, 3, 4]，一共五折。</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nnUNetv2_train 666 2d 4</span><br></pre></td></tr></table></figure><p><strong>loss曲线：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115385.png" alt="image-20231106164804089" style="zoom: 67%;"></p><h3 id="3-模型测试"><a href="#3-模型测试" class="headerlink" title="3.模型测试"></a>3.模型测试</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nnUNetv2_predict -i “测试集路径” -o “输出路径” -chk checkpoint_best.pth -c 2d -f 4 -d 150 --save_probabilities</span><br></pre></td></tr></table></figure><p>将二值掩码转换为0或255</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">from PIL import Image</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">def process_images_in_folder(input_folder, output_folder):</span><br><span class="line">    for root, dirs, files in os.walk(input_folder):</span><br><span class="line">        for file in files:</span><br><span class="line">            if file.endswith(&quot;.png&quot;):</span><br><span class="line">                input_image_path = os.path.join(root, file)</span><br><span class="line">                output_image_path = os.path.join(output_folder, file)</span><br><span class="line"></span><br><span class="line">                # 打开输入图像</span><br><span class="line">                image = Image.open(input_image_path)</span><br><span class="line"></span><br><span class="line">                # 将像素值为1的通道变为255</span><br><span class="line">                image = image.convert(&quot;RGB&quot;)</span><br><span class="line">                data = image.getdata()</span><br><span class="line">                new_data = [(r, g, b) if r != 1 and g != 1 and b != 1 else (255, 255, 255) for (r, g, b) in data]</span><br><span class="line">                image.putdata(new_data)</span><br><span class="line"></span><br><span class="line">                # 保存修改后的图像</span><br><span class="line">                image.save(output_image_path)</span><br><span class="line"></span><br><span class="line"># 指定输入文件夹和输出文件夹的路径</span><br><span class="line">input_folder_path = &quot;&quot;</span><br><span class="line">output_folder_path = &quot;&quot;</span><br><span class="line"></span><br><span class="line">if not os.path.exists(output_folder_path):</span><br><span class="line">    os.makedirs(output_folder_path)</span><br><span class="line"></span><br><span class="line">process_images_in_folder(input_folder_path, output_folder_path)</span><br></pre></td></tr></table></figure><p><img src="https://typoraimg.wangak.cc/2023/img/202311062116900.png" alt="image-20231106200912078"></p><p><strong>评价指标：</strong></p><p><strong>HD95: 5.20</strong></p><p><strong>Average Dice: 0.8144</strong></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;h2 id=&quot;C-编程出现的错误及解决&quot;&gt;&lt;a href=&quot;#C-编程出现的错误及解决&quot; class=&quot;headerlink&quot; title=&quot;C++编程出现的错误及解决&quot;&gt;&lt;/a&gt;C++编程出现的错误及解决&lt;/h2&gt;&lt;h3 id=&quot;1-Undefined-reference&quot;&gt;</summary>
+    <summary type="html">&lt;h2 id=&quot;nnUNet-v2模型训练&quot;&gt;&lt;a href=&quot;#nnUNet-v2模型训练&quot; class=&quot;headerlink&quot; title=&quot;nnUNet v2模型训练&quot;&gt;&lt;/a&gt;nnUNet v2模型训练&lt;/h2&gt;&lt;h3 id=&quot;1-数据集处理&quot;&gt;&lt;a href=&quot;#1-</summary>
       
     
     
     
-    <category term="C++" scheme="https://wangak.cc/categories/C/"/>
+    <category term="模型训练" scheme="https://wangak.cc/categories/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/"/>
     
     
-    <category term="C++" scheme="https://wangak.cc/tags/C/"/>
+    <category term="模型训练" scheme="https://wangak.cc/tags/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/"/>
     
   </entry>
   
@@ -494,6 +470,32 @@
     
     
     <summary type="html">记录了3D UX-NET的网络结构及实验结果</summary>
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>图像分割常用指标</title>
+    <link href="https://wangak.cc/posts/70fa35a7.html"/>
+    <id>https://wangak.cc/posts/70fa35a7.html</id>
+    <published>2023-11-01T16:00:00.000Z</published>
+    <updated>2023-11-01T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="图像分割常用指标"><a href="#图像分割常用指标" class="headerlink" title="图像分割常用指标"></a>图像分割常用指标</h3><h4 id="1-DSC（Dice相似系数）"><a href="#1-DSC（Dice相似系数）" class="headerlink" title="1.DSC（Dice相似系数）"></a>1.DSC（Dice相似系数）</h4><p><strong>DSC：用于衡量区域的重合程度</strong></p><p><strong>计算公式：</strong></p><script type="math/tex; mode=display">DSC = (2 * |A ∩ B|) / (|A| + |B|)</script><p>其中，A为算法生成的分割结果的像素集合，B为参考分割结果的像素集合</p><ul><li><p>DSC值范围在0到1之间，其中0表示完全不相似，1表示完全相似。</p></li><li><p>DSC值越接近1，表示算法生成的分割结果与参考分割结果越相似</p></li></ul><p><em>注：Dice相似系数仅考虑了像素的重叠情况，而没有考虑像素之间的空间关系，在存在模糊边界的分割任务中,Dice系数可能无法准确评估模型的性能。</em></p><h4 id="2-HD-豪斯多夫距离"><a href="#2-HD-豪斯多夫距离" class="headerlink" title="2.HD(豪斯多夫距离)"></a>2.HD(豪斯多夫距离)</h4><p><strong>HD:表示预测分割区域边界与真实区域边界之间的最大距离，其值越小代表预测边界分割误差越小、质量越好。</strong></p><p><strong>计算公式：</strong></p><p><img src="/posts/70fa35a7.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231102100120629.png" alt="image-20231102100120629" style="zoom:67%;"></p><p><img src="/posts/70fa35a7.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231102100057838.png" alt="image-20231102100057838" style="zoom:67%;"></p><p><strong>计算步骤：</strong></p><p>​    (1)对点集X中的每一个点x计算其到点集Y中的每一个点y的距离，保留最短距离，然后找出保留的最短距离中的最大距离记为Dxy。</p><p>​    (2)对点集Y中的每一个点y计算其到点集X中的每一个点x的距离，保留最短距离，然后找出保留最短距离中的最大距离记为Dyx。</p><p>​    (3)取Dxy和Dyx最大值作为点集X和Y之间的豪斯多夫距离。</p><p><strong>HD95(95％ 豪斯多夫距离):</strong></p><p>为了排除一些离群点造成的不合理距离，保持整体数值稳定性，一般选择从小到大排名前 95%的距离作为实际豪斯多夫距离，称之为 95% 豪斯多夫距离。</p><p><strong>注：Dice相似系数主要关注分割结果的整体准确性，HD95则更侧重于考虑分割边界的精确性</strong></p><p><strong>注： 豪斯多夫距离目标是捕捉两个集合之间的最大不一致，对于孤立的离群点或噪声非常敏感，不适用于噪声较多的图像。</strong></p><h4 id="3-ASD（平均表面距离）"><a href="#3-ASD（平均表面距离）" class="headerlink" title="3.ASD（平均表面距离）"></a>3.ASD（平均表面距离）</h4><p>平均表面距离：用来测量分割结果中的边界与真实标签中的边界之间的距离。</p><p><strong>计算分割结果中的每个像素与真实标签中的最近像素之间的距离，然后取平均值。</strong></p><p><img src="/posts/70fa35a7.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231102102746435.png" alt="image-20231102102746435" style="zoom: 50%;"></p><p><strong>ASSD(平均对称表面距离):</strong></p><p>​                                                            <script type="math/tex">\large ASSD(X,Y)={ASD(X,Y)+ASD(Y,X)}/2</script></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;图像分割常用指标&quot;&gt;&lt;a href=&quot;#图像分割常用指标&quot; class=&quot;headerlink&quot; title=&quot;图像分割常用指标&quot;&gt;&lt;/a&gt;图像分割常用指标&lt;/h3&gt;&lt;h4 id=&quot;1-DSC（Dice相似系数）&quot;&gt;&lt;a href=&quot;#1-DSC（Dice相似系数</summary>
+      
     
     
     
