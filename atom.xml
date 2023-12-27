@@ -6,7 +6,7 @@
   <link href="https://wangak.cc/atom.xml" rel="self"/>
   
   <link href="https://wangak.cc/"/>
-  <updated>2023-12-15T00:00:00.000Z</updated>
+  <updated>2023-12-27T00:00:00.000Z</updated>
   <id>https://wangak.cc/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++面向对象</title>
+    <link href="https://wangak.cc/posts/8948f962.html"/>
+    <id>https://wangak.cc/posts/8948f962.html</id>
+    <published>2023-12-26T16:00:00.000Z</published>
+    <updated>2023-12-27T00:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-静态绑定与动态绑定"><a href="#1-静态绑定与动态绑定" class="headerlink" title="1.静态绑定与动态绑定"></a>1.静态绑定与动态绑定</h3><p>“绑定”指的是将一个名字（例如变量名或函数名）与一个特定的实体（变量或函数）关联起来的过程。</p><p><strong>静态绑定：</strong>在<strong>编译阶段</strong>确定函数调用关系，编译器根据变量的<strong>声明类型</strong>或函数的定义位置来选择调用哪个函数</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Base &#123;</span><br><span class="line">public:</span><br><span class="line">    void foo() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Derived : public Base &#123;</span><br><span class="line">public:</span><br><span class="line">    void foo() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">//调用的函数由变量的声明类型所决定</span><br><span class="line">int main() &#123;</span><br><span class="line">    Base obj;</span><br><span class="line">    obj.foo();  // 静态绑定，调用Base类的foo()函数</span><br><span class="line"></span><br><span class="line">    Derived obj2;</span><br><span class="line">    obj2.foo(); // 静态绑定，调用Derived类的foo()函数</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>动态绑定：</strong>在<strong>运行时</strong>确定函数的调用关系，根据对象的<strong>实际类型</strong>调用相应的函数。</p><p><em>注：动态绑定适用于虚函数，通过在基类中声明函数为虚函数，可以在派生类中重写该函数，并在运行时根据<strong>对象的实际类型</strong>调用相应的函数。</em></p><p>动态绑定的条件：</p><ul><li>必须通过指针来调用</li><li>该指针是向上转型的</li><li>调用的是虚函数</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Base &#123;</span><br><span class="line">public:</span><br><span class="line">    virtual void foo() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Derived : public Base &#123;</span><br><span class="line">public:</span><br><span class="line">    void foo() override &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    Base* obj = new Derived();</span><br><span class="line">    obj-&gt;foo();  // 动态绑定，调用Derived类的foo()函数</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><em>注：动态绑定与静态绑定相比具有更高的灵活性，但速度也会较慢</em></p><h3 id="2-两种转型"><a href="#2-两种转型" class="headerlink" title="2.两种转型"></a>2.两种转型</h3><h4 id="2-1-向上转型"><a href="#2-1-向上转型" class="headerlink" title="2.1 向上转型"></a>2.1 向上转型</h4><p><strong>向上转型：</strong>派生类向基类转换的过程，是隐式的，不需要显式的类型转换。</p><p><em>注：在向上转型的过程中没有发生对象的拷贝，而是将派生类对象的地址赋给基类指针，基类指针可以访问基类中定义的成员，但不能访问派生类特有的成员。向上转型体现了<strong>指针的多态性</strong>，可以用来实现<strong>动态绑定</strong>。</em></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Base &#123;</span><br><span class="line">public:</span><br><span class="line">    void baseFunction() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Derived : public Base &#123;</span><br><span class="line">public:</span><br><span class="line">    void derivedFunction() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    Derived derivedObj;</span><br><span class="line">    </span><br><span class="line">    // 向上转型，将Derived对象的地址赋给Base指针</span><br><span class="line">    Base* basePtr = &amp;derivedObj;</span><br><span class="line"></span><br><span class="line">    // 可以通过基类指针调用基类的成员函数</span><br><span class="line">    basePtr-&gt;baseFunction();</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>向上转型比较安全，可以由编译器自动完成，不会有数据的丢失，在编译期间转换，如果转换失败会抛出编译错误，所以可以及时地发现错误。</p><p><strong>安全的原因：</strong></p><ul><li>基类指针只能访问基类成员，降低了误用的风险</li><li>向上转型只是将派生类对象的地址赋给基类指针，而不会改变对象本身的内存结构</li><li>在向上转型中，编译器能够静态地检查类型兼容性。如果存在不兼容的类型关系，编译时会发出错误，避免了一些在运行时才能检测到的问题。</li></ul><h4 id="2-2-向下转型"><a href="#2-2-向下转型" class="headerlink" title="2.2 向下转型"></a>2.2 向下转型</h4><p><strong>向下转型：</strong>从基类向派生类转换的过程，是显式的，需要使用类型转换操作符。</p><p><strong>静态转型：</strong><code>static_cast</code></p><p>静态转型是在编译时进行的转型，不提供运行时类型检查。</p><p><em>注：如果静态转型过程中出现错误，可能会导致未定义行为（如数据损坏、程序错误等）</em></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Base &#123;</span><br><span class="line">public:</span><br><span class="line">    virtual void foo() &#123;</span><br><span class="line">        std::cout &lt;&lt; &quot;Base class&quot; &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Derived : public Base &#123;</span><br><span class="line">public:</span><br><span class="line">    void bar() &#123;</span><br><span class="line">        std::cout &lt;&lt; &quot;Derived class&quot; &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    Base* basePtr = new Derived();</span><br><span class="line"></span><br><span class="line">    // 使用 static_cast 进行向下转型</span><br><span class="line">    Derived* derivedPtr = static_cast&lt;Derived*&gt;(basePtr);</span><br><span class="line"></span><br><span class="line">    // 使用派生类指针调用派生类成员函数</span><br><span class="line">    derivedPtr-&gt;bar();</span><br><span class="line"></span><br><span class="line">    delete basePtr;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>动态转型：</strong><code>dynamic_cast</code></p><p>动态转型是在运行时进行的转型，提供了类型安全检查。</p><p><em>注：动态转型只能用于含有虚函数的类层次结构，即只能用于多态类型之间的转换。多态类型是指至少有一个虚函数的类或结构体。</em></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">class Base &#123;</span><br><span class="line">public:</span><br><span class="line">    virtual void foo() &#123;</span><br><span class="line">        std::cout &lt;&lt; &quot;Base class&quot; &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Derived : public Base &#123;</span><br><span class="line">public:</span><br><span class="line">    void bar() &#123;</span><br><span class="line">        std::cout &lt;&lt; &quot;Derived class&quot; &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    Base* basePtr = new Derived();</span><br><span class="line"></span><br><span class="line">    // 使用 dynamic_cast 进行向下转型</span><br><span class="line">    Derived* derivedPtr = dynamic_cast&lt;Derived*&gt;(basePtr);</span><br><span class="line"></span><br><span class="line">    if (derivedPtr) &#123;</span><br><span class="line">        // 转型成功，使用派生类指针调用派生类成员函数</span><br><span class="line">        derivedPtr-&gt;bar();</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        // 转型失败，可能是由于对象不是Derived类型</span><br><span class="line">        std::cout &lt;&lt; &quot;Dynamic casting failed.&quot; &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    delete basePtr;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><em>注：如果转型不安全，<code>dynamic_cast</code> 返回空指针（或引用），而不是导致未定义的行为。</em></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;1-静态绑定与动态绑定&quot;&gt;&lt;a href=&quot;#1-静态绑定与动态绑定&quot; class=&quot;headerlink&quot; title=&quot;1.静态绑定与动态绑定&quot;&gt;&lt;/a&gt;1.静态绑定与动态绑定&lt;/h3&gt;&lt;p&gt;“绑定”指的是将一个名字（例如变量名或函数名）与一个特定的实体（变量</summary>
+      
+    
+    
+    
+    <category term="C++" scheme="https://wangak.cc/categories/C/"/>
+    
+    
+    <category term="C++" scheme="https://wangak.cc/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>shader</title>
@@ -267,29 +291,6 @@
   </entry>
   
   <entry>
-    <title>SG-Former</title>
-    <link href="https://wangak.cc/posts/c53f4cce.html"/>
-    <id>https://wangak.cc/posts/c53f4cce.html</id>
-    <published>2023-11-29T16:00:00.000Z</published>
-    <updated>2023-11-29T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="SG-Former"><a href="#SG-Former" class="headerlink" title="SG-Former"></a>SG-Former</h2><p><strong>论文：《SG-Former: Self-guided Transformer with Evolving Token Reallocation》（ICCV 2023)</strong></p><h4 id="1-探究动机"><a href="#1-探究动机" class="headerlink" title="1.探究动机"></a>1.探究动机</h4><p>ViT使用全局的自注意力机制，但带来了较高的计算成本。</p><p>Swin Transformer设计了窗口注意力，而牺牲了建模全局信息的能力。</p><p><strong>提出SG-Fomer（Self-guided Transformer):</strong>利用<strong>显著性</strong>图，根据每个区域的显著性来分配token，将更多的token分配给显著性区域以获取细粒度的注意力，而将更少的token分配给次要的区域以换取计算效率和全局的感受野。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145871.png" alt="image-20231130202913356"></p><p><em>注：在显著性区域（狗脸）分配更多的token</em></p><h4 id="2-网络设计"><a href="#2-网络设计" class="headerlink" title="2.网络设计"></a>2.网络设计</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145135.png" alt="image-20231130203138889" style="zoom:80%;"></p><p><strong>Hybrid-Scale Transformer blocks:</strong>提取多尺度的信息并为Self-Guided Transformer Block提供显著性图</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145630.png" alt="image-20231129153810548" style="zoom: 67%;"></p><p>把H个注意力头分成h组，在第j组的注意力头有一个尺度因子<script type="math/tex">S_j</script>,即对于K,V的每<script type="math/tex">S_j*S_j</script>个token合并为一个token，把K、V的窗口大小设为M,Q的窗口大小设为<script type="math/tex">S_jM*S_jM</script>(使Q中token与K、V中的token对齐）</p><p><em>注：</em></p><p><em>（1）K,V的窗口大小在所有组中都是固定的，均为M,而Q的窗口大小还和$S_j$有关</em>，每一组的输出均为N*M,N为token序列的长度</p><p><em>（2）token的合并是通过卷积实现的</em></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145504.png" alt="image-20231130205331048" style="zoom: 67%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145396.png" alt="image-20231130205438728" style="zoom: 67%;"></p><p>Token 的重要性被视为所有 Token 和当前 Token 的乘积之和：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145068.png" alt="image-20231129153230302" style="zoom: 67%;"></p><p><em>注：S是对所有的$S_i$求和的结果，即为最终的注意力图，用于混合尺度引导</em></p><p><strong>Self-Guided Transformer Block：</strong></p><p>为了降低计算成本，同时保持计算后特征映射的大小不变，固定Q的大小，使用IAM（importance guided aggregation module)对K和V的token进行聚合</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145350.png" alt="image-20231130211007377" style="zoom: 80%;"></p><p><em>注：S为显著性图，r为合并比率</em></p><p>将S平均分为n个子区域S1，S2,……Sn,每个区域设置不同的合并比率r1,r2,……，rn,子区域越重要，合并比率越小，输入特征X按X1,X2,……,Xn分组，每组有不同的合并比率</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145872.png" alt="image-20231130212526902" style="zoom: 67%;"></p><p><em>注：token的合并通过全连接层实现</em></p><h4 id="3-实验"><a href="#3-实验" class="headerlink" title="3.实验"></a>3.实验</h4><p>与其他结构在语义分割任务中的对比：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202312010859765.png" alt="image-20231130215028355" style="zoom: 50%;"></p>]]></content>
-    
-    
-    <summary type="html">记录了SG-Former的网络结构及实验结果</summary>
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
-    
-  </entry>
-  
-  <entry>
     <title>局部光照模型及着色方法</title>
     <link href="https://wangak.cc/posts/af9d8c8.html"/>
     <id>https://wangak.cc/posts/af9d8c8.html</id>
@@ -312,6 +313,29 @@
     
     
     <category term="图形学" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SG-Former</title>
+    <link href="https://wangak.cc/posts/c53f4cce.html"/>
+    <id>https://wangak.cc/posts/c53f4cce.html</id>
+    <published>2023-11-29T16:00:00.000Z</published>
+    <updated>2023-11-29T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="SG-Former"><a href="#SG-Former" class="headerlink" title="SG-Former"></a>SG-Former</h2><p><strong>论文：《SG-Former: Self-guided Transformer with Evolving Token Reallocation》（ICCV 2023)</strong></p><h4 id="1-探究动机"><a href="#1-探究动机" class="headerlink" title="1.探究动机"></a>1.探究动机</h4><p>ViT使用全局的自注意力机制，但带来了较高的计算成本。</p><p>Swin Transformer设计了窗口注意力，而牺牲了建模全局信息的能力。</p><p><strong>提出SG-Fomer（Self-guided Transformer):</strong>利用<strong>显著性</strong>图，根据每个区域的显著性来分配token，将更多的token分配给显著性区域以获取细粒度的注意力，而将更少的token分配给次要的区域以换取计算效率和全局的感受野。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145871.png" alt="image-20231130202913356"></p><p><em>注：在显著性区域（狗脸）分配更多的token</em></p><h4 id="2-网络设计"><a href="#2-网络设计" class="headerlink" title="2.网络设计"></a>2.网络设计</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145135.png" alt="image-20231130203138889" style="zoom:80%;"></p><p><strong>Hybrid-Scale Transformer blocks:</strong>提取多尺度的信息并为Self-Guided Transformer Block提供显著性图</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145630.png" alt="image-20231129153810548" style="zoom: 67%;"></p><p>把H个注意力头分成h组，在第j组的注意力头有一个尺度因子<script type="math/tex">S_j</script>,即对于K,V的每<script type="math/tex">S_j*S_j</script>个token合并为一个token，把K、V的窗口大小设为M,Q的窗口大小设为<script type="math/tex">S_jM*S_jM</script>(使Q中token与K、V中的token对齐）</p><p><em>注：</em></p><p><em>（1）K,V的窗口大小在所有组中都是固定的，均为M,而Q的窗口大小还和$S_j$有关</em>，每一组的输出均为N*M,N为token序列的长度</p><p><em>（2）token的合并是通过卷积实现的</em></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145504.png" alt="image-20231130205331048" style="zoom: 67%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145396.png" alt="image-20231130205438728" style="zoom: 67%;"></p><p>Token 的重要性被视为所有 Token 和当前 Token 的乘积之和：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145068.png" alt="image-20231129153230302" style="zoom: 67%;"></p><p><em>注：S是对所有的$S_i$求和的结果，即为最终的注意力图，用于混合尺度引导</em></p><p><strong>Self-Guided Transformer Block：</strong></p><p>为了降低计算成本，同时保持计算后特征映射的大小不变，固定Q的大小，使用IAM（importance guided aggregation module)对K和V的token进行聚合</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145350.png" alt="image-20231130211007377" style="zoom: 80%;"></p><p><em>注：S为显著性图，r为合并比率</em></p><p>将S平均分为n个子区域S1，S2,……Sn,每个区域设置不同的合并比率r1,r2,……，rn,子区域越重要，合并比率越小，输入特征X按X1,X2,……,Xn分组，每组有不同的合并比率</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145872.png" alt="image-20231130212526902" style="zoom: 67%;"></p><p><em>注：token的合并通过全连接层实现</em></p><h4 id="3-实验"><a href="#3-实验" class="headerlink" title="3.实验"></a>3.实验</h4><p>与其他结构在语义分割任务中的对比：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202312010859765.png" alt="image-20231130215028355" style="zoom: 50%;"></p>]]></content>
+    
+    
+    <summary type="html">记录了SG-Former的网络结构及实验结果</summary>
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
     
   </entry>
   
@@ -413,29 +437,6 @@
   </entry>
   
   <entry>
-    <title>3D UX-NET</title>
-    <link href="https://wangak.cc/posts/eabf9f8.html"/>
-    <id>https://wangak.cc/posts/eabf9f8.html</id>
-    <published>2023-11-06T16:00:00.000Z</published>
-    <updated>2023-11-06T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="3D-UX-NET"><a href="#3D-UX-NET" class="headerlink" title="3D UX-NET"></a>3D UX-NET</h2><p><strong>论文：《3D UX-NET: A LARGE KERNEL VOLUMETRIC CONVNET MODERNIZING HIERARCHICAL TRANSFORMER</strong><br><strong>FOR MEDICAL IMAGE SEGMENTATION》（ICLR 2023）</strong></p><h3 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1.网络结构"></a>1.网络结构</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115336.png" alt="image-20231106201433865"></p><p>采用具备大卷积核的投影层来提取 patch-wise 特征作为编码器的输入</p><p><strong>对Swin transformer的transformer block做了替换：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115856.png" alt="image-20231106202256333" style="zoom:67%;"></p><p>使用大卷积核(7 × 7 × 7)的深度卷积来模仿Swin Transformer的局部自注意力和窗口移动。</p><p>使用2 × 2 × 2、步幅为2的标准卷积块来实现下采样</p><p>在Swin Transformer中MLP隐藏层维度比输入维度宽四倍，引入了具有 1 × 1 × 1 卷积核大小的深度卷积缩放(DCS)，以独立地线性缩放每个通道特征，减少跨通道上下文产生的冗余信息</p><p>DCS：1x1x1的深度卷积+1x1x1的分组卷积</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115037.png" alt="image-20231106205655475" style="zoom:67%;"></p><p>从实验中发现：使用深度卷积缩放(DCS)参数量得到了减小，效果并没有下降</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115199.png" alt="image-20231106204002121"></p><p>编码器的输出特征由残差块作进一步的处理，以稳定提取的特征。（残差块由两个经过实例归一化的后归一化3 × 3 × 3卷积层组成）</p><p>转置卷积层实现上采样，其输出的特征与编码器的输出进行连接后，再次输入到残差块中。</p><h3 id="2-实验结果"><a href="#2-实验结果" class="headerlink" title="2.实验结果"></a>2.实验结果</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115341.png" alt="image-20231106210428239"></p><p>3D UX-Net 在这几个分割任务中均展示出最佳性能，并且 Dice 分数有了一定的提高</p>]]></content>
-    
-    
-    <summary type="html">记录了3D UX-NET的网络结构及实验结果</summary>
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
-    
-  </entry>
-  
-  <entry>
     <title>nnUNet v2模型训练</title>
     <link href="https://wangak.cc/posts/4a35a285.html"/>
     <id>https://wangak.cc/posts/4a35a285.html</id>
@@ -460,19 +461,16 @@
   </entry>
   
   <entry>
-    <title>图像分割常用指标</title>
-    <link href="https://wangak.cc/posts/70fa35a7.html"/>
-    <id>https://wangak.cc/posts/70fa35a7.html</id>
-    <published>2023-11-01T16:00:00.000Z</published>
-    <updated>2023-11-01T16:00:00.000Z</updated>
+    <title>3D UX-NET</title>
+    <link href="https://wangak.cc/posts/eabf9f8.html"/>
+    <id>https://wangak.cc/posts/eabf9f8.html</id>
+    <published>2023-11-06T16:00:00.000Z</published>
+    <updated>2023-11-06T16:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="图像分割常用指标"><a href="#图像分割常用指标" class="headerlink" title="图像分割常用指标"></a>图像分割常用指标</h3><h4 id="1-DSC（Dice相似系数）"><a href="#1-DSC（Dice相似系数）" class="headerlink" title="1.DSC（Dice相似系数）"></a>1.DSC（Dice相似系数）</h4><p><strong>DSC：用于衡量区域的重合程度</strong></p><p><strong>计算公式：</strong></p><script type="math/tex; mode=display">DSC = (2 * |A ∩ B|) / (|A| + |B|)</script><p>其中，A为算法生成的分割结果的像素集合，B为参考分割结果的像素集合</p><ul><li><p>DSC值范围在0到1之间，其中0表示完全不相似，1表示完全相似。</p></li><li><p>DSC值越接近1，表示算法生成的分割结果与参考分割结果越相似</p></li></ul><p><em>注：Dice相似系数仅考虑了像素的重叠情况，而没有考虑像素之间的空间关系，在存在模糊边界的分割任务中,Dice系数可能无法准确评估模型的性能。</em></p><h4 id="2-HD-豪斯多夫距离"><a href="#2-HD-豪斯多夫距离" class="headerlink" title="2.HD(豪斯多夫距离)"></a>2.HD(豪斯多夫距离)</h4><p><strong>HD:表示预测分割区域边界与真实区域边界之间的最大距离，其值越小代表预测边界分割误差越小、质量越好。</strong></p><p><strong>计算公式：</strong></p><p><img src="/posts/70fa35a7.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231102100120629.png" alt="image-20231102100120629" style="zoom:67%;"></p><p><img src="/posts/70fa35a7.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231102100057838.png" alt="image-20231102100057838" style="zoom:67%;"></p><p><strong>计算步骤：</strong></p><p>​    (1)对点集X中的每一个点x计算其到点集Y中的每一个点y的距离，保留最短距离，然后找出保留的最短距离中的最大距离记为Dxy。</p><p>​    (2)对点集Y中的每一个点y计算其到点集X中的每一个点x的距离，保留最短距离，然后找出保留最短距离中的最大距离记为Dyx。</p><p>​    (3)取Dxy和Dyx最大值作为点集X和Y之间的豪斯多夫距离。</p><p><strong>HD95(95％ 豪斯多夫距离):</strong></p><p>为了排除一些离群点造成的不合理距离，保持整体数值稳定性，一般选择从小到大排名前 95%的距离作为实际豪斯多夫距离，称之为 95% 豪斯多夫距离。</p><p><strong>注：Dice相似系数主要关注分割结果的整体准确性，HD95则更侧重于考虑分割边界的精确性</strong></p><p><strong>注： 豪斯多夫距离目标是捕捉两个集合之间的最大不一致，对于孤立的离群点或噪声非常敏感，不适用于噪声较多的图像。</strong></p><h4 id="3-ASD（平均表面距离）"><a href="#3-ASD（平均表面距离）" class="headerlink" title="3.ASD（平均表面距离）"></a>3.ASD（平均表面距离）</h4><p>平均表面距离：用来测量分割结果中的边界与真实标签中的边界之间的距离。</p><p><strong>计算分割结果中的每个像素与真实标签中的最近像素之间的距离，然后取平均值。</strong></p><p><img src="/posts/70fa35a7.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231102102746435.png" alt="image-20231102102746435" style="zoom: 50%;"></p><p><strong>ASSD(平均对称表面距离):</strong></p><p>​                                                            <script type="math/tex">\large ASSD(X,Y)={ASD(X,Y)+ASD(Y,X)}/2</script></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="3D-UX-NET"><a href="#3D-UX-NET" class="headerlink" title="3D UX-NET"></a>3D UX-NET</h2><p><strong>论文：《3D UX-NET: A LARGE KERNEL VOLUMETRIC CONVNET MODERNIZING HIERARCHICAL TRANSFORMER</strong><br><strong>FOR MEDICAL IMAGE SEGMENTATION》（ICLR 2023）</strong></p><h3 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1.网络结构"></a>1.网络结构</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115336.png" alt="image-20231106201433865"></p><p>采用具备大卷积核的投影层来提取 patch-wise 特征作为编码器的输入</p><p><strong>对Swin transformer的transformer block做了替换：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115856.png" alt="image-20231106202256333" style="zoom:67%;"></p><p>使用大卷积核(7 × 7 × 7)的深度卷积来模仿Swin Transformer的局部自注意力和窗口移动。</p><p>使用2 × 2 × 2、步幅为2的标准卷积块来实现下采样</p><p>在Swin Transformer中MLP隐藏层维度比输入维度宽四倍，引入了具有 1 × 1 × 1 卷积核大小的深度卷积缩放(DCS)，以独立地线性缩放每个通道特征，减少跨通道上下文产生的冗余信息</p><p>DCS：1x1x1的深度卷积+1x1x1的分组卷积</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115037.png" alt="image-20231106205655475" style="zoom:67%;"></p><p>从实验中发现：使用深度卷积缩放(DCS)参数量得到了减小，效果并没有下降</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115199.png" alt="image-20231106204002121"></p><p>编码器的输出特征由残差块作进一步的处理，以稳定提取的特征。（残差块由两个经过实例归一化的后归一化3 × 3 × 3卷积层组成）</p><p>转置卷积层实现上采样，其输出的特征与编码器的输出进行连接后，再次输入到残差块中。</p><h3 id="2-实验结果"><a href="#2-实验结果" class="headerlink" title="2.实验结果"></a>2.实验结果</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115341.png" alt="image-20231106210428239"></p><p>3D UX-Net 在这几个分割任务中均展示出最佳性能，并且 Dice 分数有了一定的提高</p>]]></content>
     
     
-      
-      
-    <summary type="html">&lt;h3 id=&quot;图像分割常用指标&quot;&gt;&lt;a href=&quot;#图像分割常用指标&quot; class=&quot;headerlink&quot; title=&quot;图像分割常用指标&quot;&gt;&lt;/a&gt;图像分割常用指标&lt;/h3&gt;&lt;h4 id=&quot;1-DSC（Dice相似系数）&quot;&gt;&lt;a href=&quot;#1-DSC（Dice相似系数</summary>
-      
+    <summary type="html">记录了3D UX-NET的网络结构及实验结果</summary>
     
     
     
@@ -486,16 +484,19 @@
   </entry>
   
   <entry>
-    <title>nnFormer</title>
-    <link href="https://wangak.cc/posts/9e11ec23.html"/>
-    <id>https://wangak.cc/posts/9e11ec23.html</id>
-    <published>2023-10-30T16:00:00.000Z</published>
-    <updated>2023-10-30T16:00:00.000Z</updated>
+    <title>图像分割常用指标</title>
+    <link href="https://wangak.cc/posts/70fa35a7.html"/>
+    <id>https://wangak.cc/posts/70fa35a7.html</id>
+    <published>2023-11-01T16:00:00.000Z</published>
+    <updated>2023-11-01T16:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="nnFormer"><a href="#nnFormer" class="headerlink" title="nnFormer"></a>nnFormer</h2><p><strong>论文：《nnFormer: Volumetric Medical Image Segmentation via a 3D Transformer》（TMI2022）</strong></p><h3 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1.网络结构"></a>1.网络结构</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202310252011844.png" alt="image-20231025201100423" style="zoom: 80%;"></p><h4 id="编码器"><a href="#编码器" class="headerlink" title="编码器"></a>编码器</h4><p><strong>nnFormer的输入：</strong>对原始图像中随机裁剪（HxWxD)，数据增强技术，有助于模型更好地学习不同部分的特征。</p><p><strong>The embedding layer:</strong>（将输入数据转换成高维张量）</p><ul><li><strong>使用卷积的好处：</strong>对比transformer使用线性层对patch的向量进行映射，卷积层能够更细致地捕获图像中的像素级信息（减少了训练的参数数量，卷积核在处理特定区域时更加专注）</li><li><strong>在初始阶段使用小卷积核的连续卷积层，相对于大卷积核的好处：</strong>降低计算复杂度,同时保持相同大小的感受野(非线性激活函数多了，语义表达能力增强了)</li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202310252109346.png" alt="image-20231025210627610"></p><p><em>注：根据输入的patch大小卷积步长也会有相应的变化</em></p><p><strong>Local Volume-based Multi-head Self-attention (LV-MSA)：</strong>将不同尺度的信息和高分辨率的空间信息相互关联</p><p>不同尺度的特征由下采样层生成，高分辨率的空间信息则由嵌入层编码</p><p>使用的是一种基于局部三维图像块的self-attention计算方式（跟Swin-UNet类似)</p><p><img src="https://typoraimg.wangak.cc/2023/img/202310252129451.png" alt="image-20231025212855680" style="zoom: 80%;"></p><p><strong>SLV-MSA:</strong>是LV-MSA的shifted版本（类似于Swin-UNet，目的是使局部的三维图像块之间产生联系）</p><p><img src="https://typoraimg.wangak.cc/2023/img/202310252130572.png" alt="image-20231025213050517" style="zoom: 67%;"></p><p><em>注：$S_H、S_W、S_D$代表每个图像块中的patch的数量</em></p><p>使用LV-MSA减少了计算的复杂度，计算复杂度和图像之间是线性的关系</p><p><img src="https://typoraimg.wangak.cc/2023/img/202310252139215.png" alt="image-20231025213709821" style="zoom: 80%;"></p><p>使用相对位置偏置B来引入位置信息</p><p><strong>The down-sampling layer：</strong></p><p>与Swin-UNet使用patch merging不同，作者选择了使用简单的卷积来实现下采样，卷积下采样可以在不同空间维度上应用不同的步长，以根据问题的要求调整下采样率。（可以根据数据的特点来灵活设置，避免过度下采样，对于三维的图像在某些维度上数据切片数量有限，这时可以将该维度的步长设置为1）</p><h4 id="Bottleneck"><a href="#Bottleneck" class="headerlink" title="Bottleneck"></a>Bottleneck</h4><p>不同于编码器使用局部自注意力机制，Bottleneck中使用全局自注意力。</p><p>计算复杂度：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202310271637998.png" alt="image-20231027153408838" style="zoom: 80%;"></p><p>编码器部分减小了h、w、d，这为GV-MSA的应用创造了条件，与LV-MSA相比，GV-MSA能够提供更大的感受野</p><h4 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h4><p><strong>上采样操作</strong>：使用转置卷积</p><p><strong>Skip Attention：</strong>（使不同层之间的信息交流变得更加灵活）</p><p><img src="https://typoraimg.wangak.cc/2023/img/202310271636161.png" alt="image-20231027155805206" style="zoom: 67%;"></p><h3 id="2-实验部分"><a href="#2-实验部分" class="headerlink" title="2.实验部分"></a>2.实验部分</h3><h4 id="与基于Transformer的方法学的比较"><a href="#与基于Transformer的方法学的比较" class="headerlink" title="与基于Transformer的方法学的比较"></a>与基于Transformer的方法学的比较</h4><p><strong>脑肿瘤分割</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202310271636932.png" alt="image-20231027162254249" style="zoom: 67%;"></p><p>列出了所有模型在脑瘤分割任务上的实验结果,nnFormer在所有类别中取得了最低的HD95和最高的DSC分数。</p><p><strong>多器官分割（Synapse）</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202310302100261.png" alt="image-20231029163515666"></p><p>与以前基于Transformer的方法相比，nnFormer在分割胰腺(Pancreas)和胃(Stomach)方面更有优势</p><p><strong>与nnUNet的比较</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202310302100944.png" alt="image-20231030203836841"></p><p>nnFormer的HD95似乎更有优势，其可以更好地划分对象边界。</p><p>nnAvg：对nnFormer和nnUNet的预测结果进行平均化，发现整体的性能得到了提高，表明nnFormer和nnUNet是可以互补的。</p><h4 id="消融实验"><a href="#消融实验" class="headerlink" title="消融实验"></a>消融实验</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202310302100685.png" alt="image-20231030205355146"></p><ul><li><p>嵌入层使用小卷积核大小的连续卷积层</p></li><li><p>卷积下采样层替换掉了patch Merging层</p></li><li><p>GV-MSA替换了Bottleneck的LV-MSA</p></li><li><p>Skip Attention代替跳跃连接</p></li><li>SLV-MSA层与LV-MSA层级联，全局自注意力层的数量增加一倍</li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="图像分割常用指标"><a href="#图像分割常用指标" class="headerlink" title="图像分割常用指标"></a>图像分割常用指标</h3><h4 id="1-DSC（Dice相似系数）"><a href="#1-DSC（Dice相似系数）" class="headerlink" title="1.DSC（Dice相似系数）"></a>1.DSC（Dice相似系数）</h4><p><strong>DSC：用于衡量区域的重合程度</strong></p><p><strong>计算公式：</strong></p><script type="math/tex; mode=display">DSC = (2 * |A ∩ B|) / (|A| + |B|)</script><p>其中，A为算法生成的分割结果的像素集合，B为参考分割结果的像素集合</p><ul><li><p>DSC值范围在0到1之间，其中0表示完全不相似，1表示完全相似。</p></li><li><p>DSC值越接近1，表示算法生成的分割结果与参考分割结果越相似</p></li></ul><p><em>注：Dice相似系数仅考虑了像素的重叠情况，而没有考虑像素之间的空间关系，在存在模糊边界的分割任务中,Dice系数可能无法准确评估模型的性能。</em></p><h4 id="2-HD-豪斯多夫距离"><a href="#2-HD-豪斯多夫距离" class="headerlink" title="2.HD(豪斯多夫距离)"></a>2.HD(豪斯多夫距离)</h4><p><strong>HD:表示预测分割区域边界与真实区域边界之间的最大距离，其值越小代表预测边界分割误差越小、质量越好。</strong></p><p><strong>计算公式：</strong></p><p><img src="/posts/70fa35a7.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231102100120629.png" alt="image-20231102100120629" style="zoom:67%;"></p><p><img src="/posts/70fa35a7.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231102100057838.png" alt="image-20231102100057838" style="zoom:67%;"></p><p><strong>计算步骤：</strong></p><p>​    (1)对点集X中的每一个点x计算其到点集Y中的每一个点y的距离，保留最短距离，然后找出保留的最短距离中的最大距离记为Dxy。</p><p>​    (2)对点集Y中的每一个点y计算其到点集X中的每一个点x的距离，保留最短距离，然后找出保留最短距离中的最大距离记为Dyx。</p><p>​    (3)取Dxy和Dyx最大值作为点集X和Y之间的豪斯多夫距离。</p><p><strong>HD95(95％ 豪斯多夫距离):</strong></p><p>为了排除一些离群点造成的不合理距离，保持整体数值稳定性，一般选择从小到大排名前 95%的距离作为实际豪斯多夫距离，称之为 95% 豪斯多夫距离。</p><p><strong>注：Dice相似系数主要关注分割结果的整体准确性，HD95则更侧重于考虑分割边界的精确性</strong></p><p><strong>注： 豪斯多夫距离目标是捕捉两个集合之间的最大不一致，对于孤立的离群点或噪声非常敏感，不适用于噪声较多的图像。</strong></p><h4 id="3-ASD（平均表面距离）"><a href="#3-ASD（平均表面距离）" class="headerlink" title="3.ASD（平均表面距离）"></a>3.ASD（平均表面距离）</h4><p>平均表面距离：用来测量分割结果中的边界与真实标签中的边界之间的距离。</p><p><strong>计算分割结果中的每个像素与真实标签中的最近像素之间的距离，然后取平均值。</strong></p><p><img src="/posts/70fa35a7.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231102102746435.png" alt="image-20231102102746435" style="zoom: 50%;"></p><p><strong>ASSD(平均对称表面距离):</strong></p><p>​                                                            <script type="math/tex">\large ASSD(X,Y)={ASD(X,Y)+ASD(Y,X)}/2</script></p>]]></content>
     
     
-    <summary type="html">记录了nnFormer的网络结构及实验结果</summary>
+      
+      
+    <summary type="html">&lt;h3 id=&quot;图像分割常用指标&quot;&gt;&lt;a href=&quot;#图像分割常用指标&quot; class=&quot;headerlink&quot; title=&quot;图像分割常用指标&quot;&gt;&lt;/a&gt;图像分割常用指标&lt;/h3&gt;&lt;h4 id=&quot;1-DSC（Dice相似系数）&quot;&gt;&lt;a href=&quot;#1-DSC（Dice相似系数</summary>
+      
     
     
     
