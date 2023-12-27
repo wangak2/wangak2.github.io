@@ -41,6 +41,32 @@
   </entry>
   
   <entry>
+    <title>水文</title>
+    <link href="https://wangak.cc/posts/aa01fe8.html"/>
+    <id>https://wangak.cc/posts/aa01fe8.html</id>
+    <published>2023-12-26T16:00:00.000Z</published>
+    <updated>2023-12-27T12:23:39.952Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="SpectFormer"><a href="#SpectFormer" class="headerlink" title="SpectFormer"></a>SpectFormer</h2><p><strong>论文：《SpectFormer: Frequency and Attention is what you need in a Vision Transformer》（arxiv 2023）</strong></p><p>频域层和多头注意力层结合起来，可以使Transformer能够捕捉到适当的特征表示，提升模型的特征建模能力，从而提升模型的性能。</p><p>频域层由一个快速傅里叶变换层（FFT)和一个逆傅里叶层（IFFT)构成</p><p><em>注：FFT和IFFT的操作，也可使用小波变换和逆小波变换来实现</em></p><p><img src="/posts/aa01fe8.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231224161116413.png" alt="image-20231224161116413" style="zoom:67%;"></p><p>FFT把图像信息转到频域空间，然后可以对频域信号进行操作，使用具有可学习权重参数<script type="math/tex">W_c</script>的门控层来确定每个频率分量的权重，以便适当地捕获图像的线条和边缘，如可以去除低频部分，保留高频部分，用于突出图像的主要特征，然后通过IFFT做一个逆变换，把频域图还原到时域中。频域层之后用层归一化和多层感知器 (MLP) 块用于通道混合。</p><p>SpecFormer考虑了局部特征，这有助于捕获局部频率，以及更深层的全局特征，这有助于捕获长期依赖关系。</p><p>与GFNnet对比：SpecFormer可以更加清晰地捕获局部特征，如图像的线条和边缘</p><p><em>注：GFNet是完全使用频域层来进行建模</em></p><p><img src="/posts/aa01fe8.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231224161421871.png" alt="image-20231224161421871"></p><p><em>频域层和注意力层结合，通过频域层捕获局部信息，注意力层捕获全局信息，同时可以灵活调整频域层和注意力层各自的层数</em></p><p><strong>混合建模形式的实验验证：</strong></p><p><img src="/posts/aa01fe8.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231224163639771.png" alt="image-20231224163639771" style="zoom:67%;"></p><p><em>注：Inverse SpecFormer是将频域层和注意力层对调，即注意力层在前，频域层在后</em></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;SpectFormer&quot;&gt;&lt;a href=&quot;#SpectFormer&quot; class=&quot;headerlink&quot; title=&quot;SpectFormer&quot;&gt;&lt;/a&gt;SpectFormer&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;论文：《SpectFormer: Frequency</summary>
+      
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    
+  </entry>
+  
+  <entry>
     <title>shader</title>
     <link href="https://wangak.cc/posts/fff39e28.html"/>
     <id>https://wangak.cc/posts/fff39e28.html</id>
@@ -291,29 +317,6 @@
   </entry>
   
   <entry>
-    <title>SG-Former</title>
-    <link href="https://wangak.cc/posts/c53f4cce.html"/>
-    <id>https://wangak.cc/posts/c53f4cce.html</id>
-    <published>2023-11-29T16:00:00.000Z</published>
-    <updated>2023-11-29T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="SG-Former"><a href="#SG-Former" class="headerlink" title="SG-Former"></a>SG-Former</h2><p><strong>论文：《SG-Former: Self-guided Transformer with Evolving Token Reallocation》（ICCV 2023)</strong></p><h4 id="1-探究动机"><a href="#1-探究动机" class="headerlink" title="1.探究动机"></a>1.探究动机</h4><p>ViT使用全局的自注意力机制，但带来了较高的计算成本。</p><p>Swin Transformer设计了窗口注意力，而牺牲了建模全局信息的能力。</p><p><strong>提出SG-Fomer（Self-guided Transformer):</strong>利用<strong>显著性</strong>图，根据每个区域的显著性来分配token，将更多的token分配给显著性区域以获取细粒度的注意力，而将更少的token分配给次要的区域以换取计算效率和全局的感受野。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145871.png" alt="image-20231130202913356"></p><p><em>注：在显著性区域（狗脸）分配更多的token</em></p><h4 id="2-网络设计"><a href="#2-网络设计" class="headerlink" title="2.网络设计"></a>2.网络设计</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145135.png" alt="image-20231130203138889" style="zoom:80%;"></p><p><strong>Hybrid-Scale Transformer blocks:</strong>提取多尺度的信息并为Self-Guided Transformer Block提供显著性图</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145630.png" alt="image-20231129153810548" style="zoom: 67%;"></p><p>把H个注意力头分成h组，在第j组的注意力头有一个尺度因子<script type="math/tex">S_j</script>,即对于K,V的每<script type="math/tex">S_j*S_j</script>个token合并为一个token，把K、V的窗口大小设为M,Q的窗口大小设为<script type="math/tex">S_jM*S_jM</script>(使Q中token与K、V中的token对齐）</p><p><em>注：</em></p><p><em>（1）K,V的窗口大小在所有组中都是固定的，均为M,而Q的窗口大小还和$S_j$有关</em>，每一组的输出均为N*M,N为token序列的长度</p><p><em>（2）token的合并是通过卷积实现的</em></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145504.png" alt="image-20231130205331048" style="zoom: 67%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145396.png" alt="image-20231130205438728" style="zoom: 67%;"></p><p>Token 的重要性被视为所有 Token 和当前 Token 的乘积之和：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145068.png" alt="image-20231129153230302" style="zoom: 67%;"></p><p><em>注：S是对所有的$S_i$求和的结果，即为最终的注意力图，用于混合尺度引导</em></p><p><strong>Self-Guided Transformer Block：</strong></p><p>为了降低计算成本，同时保持计算后特征映射的大小不变，固定Q的大小，使用IAM（importance guided aggregation module)对K和V的token进行聚合</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145350.png" alt="image-20231130211007377" style="zoom: 80%;"></p><p><em>注：S为显著性图，r为合并比率</em></p><p>将S平均分为n个子区域S1，S2,……Sn,每个区域设置不同的合并比率r1,r2,……，rn,子区域越重要，合并比率越小，输入特征X按X1,X2,……,Xn分组，每组有不同的合并比率</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145872.png" alt="image-20231130212526902" style="zoom: 67%;"></p><p><em>注：token的合并通过全连接层实现</em></p><h4 id="3-实验"><a href="#3-实验" class="headerlink" title="3.实验"></a>3.实验</h4><p>与其他结构在语义分割任务中的对比：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202312010859765.png" alt="image-20231130215028355" style="zoom: 50%;"></p>]]></content>
-    
-    
-    <summary type="html">记录了SG-Former的网络结构及实验结果</summary>
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
-    
-  </entry>
-  
-  <entry>
     <title>局部光照模型及着色方法</title>
     <link href="https://wangak.cc/posts/af9d8c8.html"/>
     <id>https://wangak.cc/posts/af9d8c8.html</id>
@@ -336,6 +339,29 @@
     
     
     <category term="图形学" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SG-Former</title>
+    <link href="https://wangak.cc/posts/c53f4cce.html"/>
+    <id>https://wangak.cc/posts/c53f4cce.html</id>
+    <published>2023-11-29T16:00:00.000Z</published>
+    <updated>2023-11-29T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="SG-Former"><a href="#SG-Former" class="headerlink" title="SG-Former"></a>SG-Former</h2><p><strong>论文：《SG-Former: Self-guided Transformer with Evolving Token Reallocation》（ICCV 2023)</strong></p><h4 id="1-探究动机"><a href="#1-探究动机" class="headerlink" title="1.探究动机"></a>1.探究动机</h4><p>ViT使用全局的自注意力机制，但带来了较高的计算成本。</p><p>Swin Transformer设计了窗口注意力，而牺牲了建模全局信息的能力。</p><p><strong>提出SG-Fomer（Self-guided Transformer):</strong>利用<strong>显著性</strong>图，根据每个区域的显著性来分配token，将更多的token分配给显著性区域以获取细粒度的注意力，而将更少的token分配给次要的区域以换取计算效率和全局的感受野。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145871.png" alt="image-20231130202913356"></p><p><em>注：在显著性区域（狗脸）分配更多的token</em></p><h4 id="2-网络设计"><a href="#2-网络设计" class="headerlink" title="2.网络设计"></a>2.网络设计</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145135.png" alt="image-20231130203138889" style="zoom:80%;"></p><p><strong>Hybrid-Scale Transformer blocks:</strong>提取多尺度的信息并为Self-Guided Transformer Block提供显著性图</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145630.png" alt="image-20231129153810548" style="zoom: 67%;"></p><p>把H个注意力头分成h组，在第j组的注意力头有一个尺度因子<script type="math/tex">S_j</script>,即对于K,V的每<script type="math/tex">S_j*S_j</script>个token合并为一个token，把K、V的窗口大小设为M,Q的窗口大小设为<script type="math/tex">S_jM*S_jM</script>(使Q中token与K、V中的token对齐）</p><p><em>注：</em></p><p><em>（1）K,V的窗口大小在所有组中都是固定的，均为M,而Q的窗口大小还和$S_j$有关</em>，每一组的输出均为N*M,N为token序列的长度</p><p><em>（2）token的合并是通过卷积实现的</em></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145504.png" alt="image-20231130205331048" style="zoom: 67%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145396.png" alt="image-20231130205438728" style="zoom: 67%;"></p><p>Token 的重要性被视为所有 Token 和当前 Token 的乘积之和：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145068.png" alt="image-20231129153230302" style="zoom: 67%;"></p><p><em>注：S是对所有的$S_i$求和的结果，即为最终的注意力图，用于混合尺度引导</em></p><p><strong>Self-Guided Transformer Block：</strong></p><p>为了降低计算成本，同时保持计算后特征映射的大小不变，固定Q的大小，使用IAM（importance guided aggregation module)对K和V的token进行聚合</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145350.png" alt="image-20231130211007377" style="zoom: 80%;"></p><p><em>注：S为显著性图，r为合并比率</em></p><p>将S平均分为n个子区域S1，S2,……Sn,每个区域设置不同的合并比率r1,r2,……，rn,子区域越重要，合并比率越小，输入特征X按X1,X2,……,Xn分组，每组有不同的合并比率</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311302145872.png" alt="image-20231130212526902" style="zoom: 67%;"></p><p><em>注：token的合并通过全连接层实现</em></p><h4 id="3-实验"><a href="#3-实验" class="headerlink" title="3.实验"></a>3.实验</h4><p>与其他结构在语义分割任务中的对比：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202312010859765.png" alt="image-20231130215028355" style="zoom: 50%;"></p>]]></content>
+    
+    
+    <summary type="html">记录了SG-Former的网络结构及实验结果</summary>
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
     
   </entry>
   
@@ -437,29 +463,6 @@
   </entry>
   
   <entry>
-    <title>3D UX-NET</title>
-    <link href="https://wangak.cc/posts/eabf9f8.html"/>
-    <id>https://wangak.cc/posts/eabf9f8.html</id>
-    <published>2023-11-06T16:00:00.000Z</published>
-    <updated>2023-11-06T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="3D-UX-NET"><a href="#3D-UX-NET" class="headerlink" title="3D UX-NET"></a>3D UX-NET</h2><p><strong>论文：《3D UX-NET: A LARGE KERNEL VOLUMETRIC CONVNET MODERNIZING HIERARCHICAL TRANSFORMER</strong><br><strong>FOR MEDICAL IMAGE SEGMENTATION》（ICLR 2023）</strong></p><h3 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1.网络结构"></a>1.网络结构</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115336.png" alt="image-20231106201433865"></p><p>采用具备大卷积核的投影层来提取 patch-wise 特征作为编码器的输入</p><p><strong>对Swin transformer的transformer block做了替换：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115856.png" alt="image-20231106202256333" style="zoom:67%;"></p><p>使用大卷积核(7 × 7 × 7)的深度卷积来模仿Swin Transformer的局部自注意力和窗口移动。</p><p>使用2 × 2 × 2、步幅为2的标准卷积块来实现下采样</p><p>在Swin Transformer中MLP隐藏层维度比输入维度宽四倍，引入了具有 1 × 1 × 1 卷积核大小的深度卷积缩放(DCS)，以独立地线性缩放每个通道特征，减少跨通道上下文产生的冗余信息</p><p>DCS：1x1x1的深度卷积+1x1x1的分组卷积</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115037.png" alt="image-20231106205655475" style="zoom:67%;"></p><p>从实验中发现：使用深度卷积缩放(DCS)参数量得到了减小，效果并没有下降</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115199.png" alt="image-20231106204002121"></p><p>编码器的输出特征由残差块作进一步的处理，以稳定提取的特征。（残差块由两个经过实例归一化的后归一化3 × 3 × 3卷积层组成）</p><p>转置卷积层实现上采样，其输出的特征与编码器的输出进行连接后，再次输入到残差块中。</p><h3 id="2-实验结果"><a href="#2-实验结果" class="headerlink" title="2.实验结果"></a>2.实验结果</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115341.png" alt="image-20231106210428239"></p><p>3D UX-Net 在这几个分割任务中均展示出最佳性能，并且 Dice 分数有了一定的提高</p>]]></content>
-    
-    
-    <summary type="html">记录了3D UX-NET的网络结构及实验结果</summary>
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
-    
-  </entry>
-  
-  <entry>
     <title>nnUNet v2模型训练</title>
     <link href="https://wangak.cc/posts/4a35a285.html"/>
     <id>https://wangak.cc/posts/4a35a285.html</id>
@@ -484,19 +487,16 @@
   </entry>
   
   <entry>
-    <title>图像分割常用指标</title>
-    <link href="https://wangak.cc/posts/70fa35a7.html"/>
-    <id>https://wangak.cc/posts/70fa35a7.html</id>
-    <published>2023-11-01T16:00:00.000Z</published>
-    <updated>2023-11-01T16:00:00.000Z</updated>
+    <title>3D UX-NET</title>
+    <link href="https://wangak.cc/posts/eabf9f8.html"/>
+    <id>https://wangak.cc/posts/eabf9f8.html</id>
+    <published>2023-11-06T16:00:00.000Z</published>
+    <updated>2023-11-06T16:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="图像分割常用指标"><a href="#图像分割常用指标" class="headerlink" title="图像分割常用指标"></a>图像分割常用指标</h3><h4 id="1-DSC（Dice相似系数）"><a href="#1-DSC（Dice相似系数）" class="headerlink" title="1.DSC（Dice相似系数）"></a>1.DSC（Dice相似系数）</h4><p><strong>DSC：用于衡量区域的重合程度</strong></p><p><strong>计算公式：</strong></p><script type="math/tex; mode=display">DSC = (2 * |A ∩ B|) / (|A| + |B|)</script><p>其中，A为算法生成的分割结果的像素集合，B为参考分割结果的像素集合</p><ul><li><p>DSC值范围在0到1之间，其中0表示完全不相似，1表示完全相似。</p></li><li><p>DSC值越接近1，表示算法生成的分割结果与参考分割结果越相似</p></li></ul><p><em>注：Dice相似系数仅考虑了像素的重叠情况，而没有考虑像素之间的空间关系，在存在模糊边界的分割任务中,Dice系数可能无法准确评估模型的性能。</em></p><h4 id="2-HD-豪斯多夫距离"><a href="#2-HD-豪斯多夫距离" class="headerlink" title="2.HD(豪斯多夫距离)"></a>2.HD(豪斯多夫距离)</h4><p><strong>HD:表示预测分割区域边界与真实区域边界之间的最大距离，其值越小代表预测边界分割误差越小、质量越好。</strong></p><p><strong>计算公式：</strong></p><p><img src="/posts/70fa35a7.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231102100120629.png" alt="image-20231102100120629" style="zoom:67%;"></p><p><img src="/posts/70fa35a7.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231102100057838.png" alt="image-20231102100057838" style="zoom:67%;"></p><p><strong>计算步骤：</strong></p><p>​    (1)对点集X中的每一个点x计算其到点集Y中的每一个点y的距离，保留最短距离，然后找出保留的最短距离中的最大距离记为Dxy。</p><p>​    (2)对点集Y中的每一个点y计算其到点集X中的每一个点x的距离，保留最短距离，然后找出保留最短距离中的最大距离记为Dyx。</p><p>​    (3)取Dxy和Dyx最大值作为点集X和Y之间的豪斯多夫距离。</p><p><strong>HD95(95％ 豪斯多夫距离):</strong></p><p>为了排除一些离群点造成的不合理距离，保持整体数值稳定性，一般选择从小到大排名前 95%的距离作为实际豪斯多夫距离，称之为 95% 豪斯多夫距离。</p><p><strong>注：Dice相似系数主要关注分割结果的整体准确性，HD95则更侧重于考虑分割边界的精确性</strong></p><p><strong>注： 豪斯多夫距离目标是捕捉两个集合之间的最大不一致，对于孤立的离群点或噪声非常敏感，不适用于噪声较多的图像。</strong></p><h4 id="3-ASD（平均表面距离）"><a href="#3-ASD（平均表面距离）" class="headerlink" title="3.ASD（平均表面距离）"></a>3.ASD（平均表面距离）</h4><p>平均表面距离：用来测量分割结果中的边界与真实标签中的边界之间的距离。</p><p><strong>计算分割结果中的每个像素与真实标签中的最近像素之间的距离，然后取平均值。</strong></p><p><img src="/posts/70fa35a7.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20231102102746435.png" alt="image-20231102102746435" style="zoom: 50%;"></p><p><strong>ASSD(平均对称表面距离):</strong></p><p>​                                                            <script type="math/tex">\large ASSD(X,Y)={ASD(X,Y)+ASD(Y,X)}/2</script></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="3D-UX-NET"><a href="#3D-UX-NET" class="headerlink" title="3D UX-NET"></a>3D UX-NET</h2><p><strong>论文：《3D UX-NET: A LARGE KERNEL VOLUMETRIC CONVNET MODERNIZING HIERARCHICAL TRANSFORMER</strong><br><strong>FOR MEDICAL IMAGE SEGMENTATION》（ICLR 2023）</strong></p><h3 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1.网络结构"></a>1.网络结构</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115336.png" alt="image-20231106201433865"></p><p>采用具备大卷积核的投影层来提取 patch-wise 特征作为编码器的输入</p><p><strong>对Swin transformer的transformer block做了替换：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115856.png" alt="image-20231106202256333" style="zoom:67%;"></p><p>使用大卷积核(7 × 7 × 7)的深度卷积来模仿Swin Transformer的局部自注意力和窗口移动。</p><p>使用2 × 2 × 2、步幅为2的标准卷积块来实现下采样</p><p>在Swin Transformer中MLP隐藏层维度比输入维度宽四倍，引入了具有 1 × 1 × 1 卷积核大小的深度卷积缩放(DCS)，以独立地线性缩放每个通道特征，减少跨通道上下文产生的冗余信息</p><p>DCS：1x1x1的深度卷积+1x1x1的分组卷积</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115037.png" alt="image-20231106205655475" style="zoom:67%;"></p><p>从实验中发现：使用深度卷积缩放(DCS)参数量得到了减小，效果并没有下降</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115199.png" alt="image-20231106204002121"></p><p>编码器的输出特征由残差块作进一步的处理，以稳定提取的特征。（残差块由两个经过实例归一化的后归一化3 × 3 × 3卷积层组成）</p><p>转置卷积层实现上采样，其输出的特征与编码器的输出进行连接后，再次输入到残差块中。</p><h3 id="2-实验结果"><a href="#2-实验结果" class="headerlink" title="2.实验结果"></a>2.实验结果</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311062115341.png" alt="image-20231106210428239"></p><p>3D UX-Net 在这几个分割任务中均展示出最佳性能，并且 Dice 分数有了一定的提高</p>]]></content>
     
     
-      
-      
-    <summary type="html">&lt;h3 id=&quot;图像分割常用指标&quot;&gt;&lt;a href=&quot;#图像分割常用指标&quot; class=&quot;headerlink&quot; title=&quot;图像分割常用指标&quot;&gt;&lt;/a&gt;图像分割常用指标&lt;/h3&gt;&lt;h4 id=&quot;1-DSC（Dice相似系数）&quot;&gt;&lt;a href=&quot;#1-DSC（Dice相似系数</summary>
-      
+    <summary type="html">记录了3D UX-NET的网络结构及实验结果</summary>
     
     
     
