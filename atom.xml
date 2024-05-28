@@ -6,7 +6,7 @@
   <link href="https://wangak.cc/atom.xml" rel="self"/>
   
   <link href="https://wangak.cc/"/>
-  <updated>2024-05-28T01:55:11.179Z</updated>
+  <updated>2024-05-28T02:18:03.822Z</updated>
   <id>https://wangak.cc/</id>
   
   <author>
@@ -17,11 +17,69 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>AGILEFORMER:SPATIALLY AGILE TRANSFORMER UNET FOR MEDICAL IMAGE SEGMENTATION</title>
+    <link href="https://wangak.cc/posts/6b854769.html"/>
+    <id>https://wangak.cc/posts/6b854769.html</id>
+    <published>2024-05-13T16:00:00.000Z</published>
+    <updated>2024-05-28T02:18:03.822Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="AGILEFORMER-SPATIALLY-AGILE-TRANSFORMER-UNET-FOR-MEDICAL-IMAGE-SEGMENTATION"><a href="#AGILEFORMER-SPATIALLY-AGILE-TRANSFORMER-UNET-FOR-MEDICAL-IMAGE-SEGMENTATION" class="headerlink" title="AGILEFORMER: SPATIALLY AGILE TRANSFORMER UNET FOR MEDICAL IMAGE SEGMENTATION"></a>AGILEFORMER: SPATIALLY AGILE TRANSFORMER UNET FOR MEDICAL IMAGE SEGMENTATION</h2><p>论文：《AGILEFORMER: SPATIALLY AGILE TRANSFORMER UNET FOR MEDICAL IMAGE SEGMENTATION》（arXiv 2024）</p><ul><li><p>作者使用了一种新的patch embedding取代了vit-unet中标准的patch embedding</p></li><li><p>采用空间动态自注意力来捕获空间变化特征</p></li><li><p>提出了一种新的多尺度可变形位置编码</p></li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202405141004754.png" alt="image-20240511095459528"></p><h4 id="可变形的patch-embedding"><a href="#可变形的patch-embedding" class="headerlink" title="可变形的patch embedding"></a><strong>可变形的patch embedding</strong></h4><p>通过可变形卷积卷积核的采样位置可以根据输入的特征图进行微小的偏移，从而可以实现更灵活的特征提取。通过引入可变形的采样位置，使得补丁嵌入可以更好地适应不规则的结构，从而提高了特征提取的灵活性和准确性。</p><ul><li><p>第一个patch embedding：使用两个连续的可变形卷积层，这两个连续重叠的可变形patch embedding可以更好地提取局部特征，弥补了自注意力中局部性的不足</p></li><li><p>下采样层：通过3×3卷积完成下采样</p></li></ul><h4 id="空间动态自注意力"><a href="#空间动态自注意力" class="headerlink" title="空间动态自注意力"></a><strong>空间动态自注意力</strong></h4><p><strong>可变形多头自注意力：</strong></p><p>第h个头的计算过程如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141004778.png" alt="image-20240511100930114" style="zoom:67%;"></p><p>注：f是输入的特征图，ϕ是插值函数，用于生成偏移后的特征图<script type="math/tex">\hat{f}</script>,<script type="math/tex">∆p_h</script>是第h个头部生成的偏移量,其通过一个卷积层生成</p><p><strong>邻域多头自注意力：</strong></p><p>与标准自注意力不同，标准自注意力计算特征图f中每个位置p的元素与其他位置元素的相似度，而邻域注意力只利用位置p周围k个最近邻的信息来计算注意力权重，而不是与所有位置的元素计算相似度。减少了标准自注意力的计算复杂度，从二次降至近似于空间维度线性的复杂度。重新引入了局部操作到自注意力中，使得模型具有平移等变性，从而提高了保留局部信息的能力。</p><h4 id="多尺度可变形位置编码"><a href="#多尺度可变形位置编码" class="headerlink" title="多尺度可变形位置编码"></a>多尺度可变形位置编码</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202405141004551.png" alt="image-20240511102232095" style="zoom:67%;"></p><p>通过在跨多个尺度对不规则采样的位置信息进行编码。</p><p>公式如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141004922.png" alt="image-20240511102056849"></p><p><em>注：f是输入特征图，<script type="math/tex">P_θ</script>实现为多尺度可变形深度卷积层，具有不同的核大小（3×3和5×5）</em></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;AGILEFORMER-SPATIALLY-AGILE-TRANSFORMER-UNET-FOR-MEDICAL-IMAGE-SEGMENTATION&quot;&gt;&lt;a href=&quot;#AGILEFORMER-SPATIALLY-AGILE-TRANSFORMER-UNET-</summary>
+      
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    
+    <category term="特征提取" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BEFUnet:A Hybrid CNN-Transformer Architecture for Precise Medical Image Segmentation</title>
+    <link href="https://wangak.cc/posts/7a30900a.html"/>
+    <id>https://wangak.cc/posts/7a30900a.html</id>
+    <published>2024-05-13T16:00:00.000Z</published>
+    <updated>2024-05-28T02:17:42.252Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="BEFUnet-A-Hybrid-CNN-Transformer-Architecture-for-Precise-Medical-Image-Segmentation"><a href="#BEFUnet-A-Hybrid-CNN-Transformer-Architecture-for-Precise-Medical-Image-Segmentation" class="headerlink" title="BEFUnet: A Hybrid CNN-Transformer Architecture for Precise Medical Image Segmentation"></a>BEFUnet: A Hybrid CNN-Transformer Architecture for Precise Medical Image Segmentation</h2><p>论文：《BEFUnet: A Hybrid CNN-Transformer Architecture for Precise Medical Image Segmentation》（arXiv 2024）</p><p>本文提出了一种创新的u型网络BEFUnet，该网络增强了体特征和边缘特征的融合，以实现精确的医学图像分割</p><p><strong>双分支编码器：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141006324.png" alt="image-20240504130415926" style="zoom:67%;"></p><ul><li><p><strong>边缘编码器：</strong>由四个阶段组成，每个阶段包含4个PDC块用于特征检测，并利用最大池化对各阶段之间的特征进行降采样来得到分层特征</p><p>注：PDC块包括一个深度卷积层、一个ReLU层和一个1×1的卷积层</p></li><li><p><strong>主体编码器：</strong>使用Swin-Transfomer对具有全局信息的高级特征进行编码</p></li></ul><p>将提取的边缘和体特征输入到LCAF模块进行融合</p><p><strong>LCAF：</strong>选择性地将边缘图和主体图进行交叉注意力，来融合边缘和主体的特征</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141006843.png" alt="image-20240504131627922" style="zoom:67%;"></p><p><strong>DLF模块：</strong>为确保层级之间的特征一致性，使用交叉注意力机制来跨尺度融合信息</p><p>较浅的层级包含更精确的定位信息，而较深的层级携带更适合解码器的更多语义信息，考虑到节省计算资源，只将最浅层（<script type="math/tex">P^l</script>)和最后一层（<script type="math/tex">P^s</script>)进行融合</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141006502.png" alt="image-20240504133235606" style="zoom:67%;"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;BEFUnet-A-Hybrid-CNN-Transformer-Architecture-for-Precise-Medical-Image-Segmentation&quot;&gt;&lt;a href=&quot;#BEFUnet-A-Hybrid-CNN-Transformer-Arc</summary>
+      
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    
+    <category term="特征融合" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/"/>
+    
+    <category term="双编码器" scheme="https://wangak.cc/tags/%E5%8F%8C%E7%BC%96%E7%A0%81%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>SegMamba:Long-range Sequential Modeling Mamba For 3D Medical Image Segmentation</title>
     <link href="https://wangak.cc/posts/f4ee98c4.html"/>
     <id>https://wangak.cc/posts/f4ee98c4.html</id>
     <published>2024-05-13T16:00:00.000Z</published>
-    <updated>2024-05-28T01:55:11.179Z</updated>
+    <updated>2024-05-28T01:55:18.223Z</updated>
     
     <content type="html"><![CDATA[<h2 id="SegMamba-Long-range-Sequential-Modeling-Mamba-For-3D-Medical-Image-Segmentation"><a href="#SegMamba-Long-range-Sequential-Modeling-Mamba-For-3D-Medical-Image-Segmentation" class="headerlink" title="SegMamba: Long-range Sequential Modeling Mamba For 3D Medical Image Segmentation"></a>SegMamba: Long-range Sequential Modeling Mamba For 3D Medical Image Segmentation</h2><p>论文：《SegMamba: Long-range Sequential Modeling Mamba For 3D Medical Image Segmentation》（arXiv 2024）</p><p>论文贡献：</p><ul><li>设计了ToM模块，用以增强三维特征的顺序建模</li><li>设计了门控空间卷积模块（GSC)，用以增强每个ToM之前空间维度上的特征表示</li></ul><h4 id="网络结构："><a href="#网络结构：" class="headerlink" title="网络结构："></a><strong>网络结构：</strong></h4><p><img src="https://typoraimg.wangak.cc/2023/img/202405141007030.png" alt="image-20240507091527951"></p><p><strong>1.Stem</strong></p><p>采用深度卷积，内核大小为7×7×7，填充为3×3×3，步幅为2×2×2。</p><p><strong>2.TSMamba块</strong></p><p>计算过程如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141007633.png" alt="image-20240507091715749" style="zoom:67%;"></p><p><em>注：其中GSC和ToM分别表示所提出的门控空间卷积模块和三向Mamba模块</em></p><p><strong>3.门控空间卷积(GSC)</strong></p><p>门控空间卷积(GSC)用于提取mamba层之前的空间关系</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141007183.png" alt="image-20240507092130322" style="zoom:67%;"></p><p>计算过程如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141007271.png" alt="image-20240507092149524" style="zoom:67%;"></p><p><strong>4.三向mamba（ToM)</strong></p><p>从三个方向计算特征依赖关系，将三维输入特征平铺成三个序列，进行相应的特征交互，得到融合后的三维特征</p><p>计算过程如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141007074.png" alt="image-20240507092415793" style="zoom:67%;"></p>]]></content>
     
@@ -43,34 +101,6 @@
     <category term="特征增强" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E5%A2%9E%E5%BC%BA/"/>
     
     <category term="mamba类" scheme="https://wangak.cc/tags/mamba%E7%B1%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HCF-Net</title>
-    <link href="https://wangak.cc/posts/d349cca5.html"/>
-    <id>https://wangak.cc/posts/d349cca5.html</id>
-    <published>2024-05-06T16:00:00.000Z</published>
-    <updated>2024-05-07T11:47:50.556Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="SegFormer3D"><a href="#SegFormer3D" class="headerlink" title="SegFormer3D"></a>SegFormer3D</h2><p><strong>论文：《SegFormer3D: an Efficient Transformer for 3D Medical Image Segmentation》（arXiv 2024）</strong></p><p>作者提出了SegFormer3D使用全mlp解码器来聚合局部和全局注意力特征，来产生高度准确的分割掩码</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927153.png" alt="image-20240427155943100" style="zoom:67%;"></p><p><strong>对于编码器部分：</strong></p><ul><li><p>使用patch merging进行下采样：与池化操作相比克服了像素生成过程中的邻域信息丢失的问题，同时也能节省一定的运算量</p></li><li><p>使用efficient self-attention：捕获全局信息的同时，用缩放系数R减少了self-attention计算的时间复杂度</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927313.png" alt="image-20240427161059247" style="zoom:67%;"></p></li><li><p>舍弃了固定的位置编码，使用mix ffn模块来提取位置信息：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927148.png" alt="image-20240427161359128" style="zoom: 50%;"></p></li></ul><p><strong>对于解码器部分：</strong>使用了全MLP的结构，使用了一个统一的模块完成了对不同尺度的特征的解码过程，简化了解码过程，确保在各种数据集中对体积特征进行高效且一致的解码，避免了过度参数化。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927399.png" alt="image-20240427161629423" style="zoom:67%;"></p><p><strong>参数量和性能的比较：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927981.png" alt="image-20240427162144102" style="zoom: 50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927799.png" alt="image-20240427162104575" style="zoom:67%;"></p><p>作者在编码器和解码器的设计中，都使用轻量化的操作（编码器部分的patch merging、efficient self-attention和解码器使用全mlp解码器来聚合局部和全局注意力特征），模型参数量和计算量都有明显的下降，但性能表现不如nnformer</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;SegFormer3D&quot;&gt;&lt;a href=&quot;#SegFormer3D&quot; class=&quot;headerlink&quot; title=&quot;SegFormer3D&quot;&gt;&lt;/a&gt;SegFormer3D&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;论文：《SegFormer3D: an Effici</summary>
-      
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
-    
-    <category term="特征融合" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/"/>
     
   </entry>
   
@@ -101,6 +131,34 @@
     <category term="特征融合" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/"/>
     
     <category term="特征增强" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E5%A2%9E%E5%BC%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SegFormer3D</title>
+    <link href="https://wangak.cc/posts/ee049a76.html"/>
+    <id>https://wangak.cc/posts/ee049a76.html</id>
+    <published>2024-05-06T16:00:00.000Z</published>
+    <updated>2024-05-28T02:17:15.463Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="SegFormer3D"><a href="#SegFormer3D" class="headerlink" title="SegFormer3D"></a>SegFormer3D</h2><p><strong>论文：《SegFormer3D: an Efficient Transformer for 3D Medical Image Segmentation》（arXiv 2024）</strong></p><p>作者提出了SegFormer3D使用全mlp解码器来聚合局部和全局注意力特征，来产生高度准确的分割掩码</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927153.png" alt="image-20240427155943100" style="zoom:67%;"></p><p><strong>对于编码器部分：</strong></p><ul><li><p>使用patch merging进行下采样：与池化操作相比克服了像素生成过程中的邻域信息丢失的问题，同时也能节省一定的运算量</p></li><li><p>使用efficient self-attention：捕获全局信息的同时，用缩放系数R减少了self-attention计算的时间复杂度</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927313.png" alt="image-20240427161059247" style="zoom:67%;"></p></li><li><p>舍弃了固定的位置编码，使用mix ffn模块来提取位置信息：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927148.png" alt="image-20240427161359128" style="zoom: 50%;"></p></li></ul><p><strong>对于解码器部分：</strong>使用了全MLP的结构，使用了一个统一的模块完成了对不同尺度的特征的解码过程，简化了解码过程，确保在各种数据集中对体积特征进行高效且一致的解码，避免了过度参数化。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927399.png" alt="image-20240427161629423" style="zoom:67%;"></p><p><strong>参数量和性能的比较：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927981.png" alt="image-20240427162144102" style="zoom: 50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927799.png" alt="image-20240427162104575" style="zoom:67%;"></p><p>作者在编码器和解码器的设计中，都使用轻量化的操作（编码器部分的patch merging、efficient self-attention和解码器使用全mlp解码器来聚合局部和全局注意力特征），模型参数量和计算量都有明显的下降，但性能表现不如nnformer</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;SegFormer3D&quot;&gt;&lt;a href=&quot;#SegFormer3D&quot; class=&quot;headerlink&quot; title=&quot;SegFormer3D&quot;&gt;&lt;/a&gt;SegFormer3D&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;论文：《SegFormer3D: an Effici</summary>
+      
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    
+    <category term="特征融合" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/"/>
     
   </entry>
   
@@ -498,59 +556,6 @@
     <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
     
     <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>shader</title>
-    <link href="https://wangak.cc/posts/fff39e28.html"/>
-    <id>https://wangak.cc/posts/fff39e28.html</id>
-    <published>2023-12-14T16:00:00.000Z</published>
-    <updated>2023-12-15T00:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="1-GLSL中向量的数据类型"><a href="#1-GLSL中向量的数据类型" class="headerlink" title="1.GLSL中向量的数据类型"></a>1.GLSL中向量的数据类型</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202312252046456.png" alt="image-20231215145202684"></p><h4 id="2-Uniform"><a href="#2-Uniform" class="headerlink" title="2.Uniform"></a>2.Uniform</h4><p><strong>uniform</strong>是一种在顶点着色器和片段着色器之间进行数据传递的机制，uniform变量是全局的，其值在每个渲染迭代中对所有顶点或片段是一致的。</p><p><strong>变量声明：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uniform vec3 cameraPosition;</span><br></pre></td></tr></table></figure><p><strong>使用：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//返回自窗口初始化以来的秒数</span><br><span class="line">float timeValue = glfwGetTime();</span><br><span class="line">//将timeValue缩放到[0, 1]范围</span><br><span class="line">float greenValue = sin(timeValue) / 2.0f + 0.5f;</span><br><span class="line">//查询uniform ourColor的位置值</span><br><span class="line">int vertexColorLocation = glGetUniformLocation(shaderProgram, &quot;ourColor&quot;);</span><br><span class="line">//设置uniform值</span><br><span class="line">glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);</span><br></pre></td></tr></table></figure><h4 id="3-颜色插值"><a href="#3-颜色插值" class="headerlink" title="3.颜色插值"></a>3.颜色插值</h4><p>OpenGL会自动在顶点着色器和片段着色器之间进行插值</p><p><strong>定义顶点着色器和片段着色器：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">float vertices[] = &#123;</span><br><span class="line">// 位置              // 颜色</span><br><span class="line"> 0.8f, 0.2f, 0.0f,  1.0f, 0.0f, 0.0f,   // 右下</span><br><span class="line"> 0.3f, 0.4f, 0.0f,  0.0f, 1.0f, 0.0f,   // 左下</span><br><span class="line"> 0.0f,  0.1f, 0.0f,  0.0f, 0.0f, 1.0f,    // 顶部</span><br><span class="line"> 0.2f,  0.9f, 0.0f,  0.8f, 0.6f, 1.0f</span><br><span class="line">&#125;;</span><br><span class="line">unsigned int indices[] = &#123;</span><br><span class="line">0,1,2, // 第一个三角形</span><br><span class="line">2,1,3  // 第二个三角形</span><br><span class="line">&#125;;</span><br><span class="line">const char* vertexShaderSource = &quot;#version 330 core\n&quot;</span><br><span class="line">&quot;layout (location = 0) in vec3 aPos;\n&quot;</span><br><span class="line">&quot;layout(location=1) in vec3 aColor;&quot;</span><br><span class="line">&quot;out vec4 vertexColor;\n&quot;</span><br><span class="line">&quot;void main()\n&quot;</span><br><span class="line">&quot;&#123;\n&quot;</span><br><span class="line">&quot;   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n&quot;</span><br><span class="line">&quot;vertexColor=vec4(aColor.x,aColor.y,aColor.z,1.0f);\n&quot;</span><br><span class="line">&quot;&#125;\0&quot;;</span><br><span class="line"></span><br><span class="line">const char* fragmentShaderSource =</span><br><span class="line">&quot;#version 330 core\n&quot;</span><br><span class="line">&quot;out vec4 FragColor;\n&quot;</span><br><span class="line">&quot;uniform vec4 ourColor; &quot;</span><br><span class="line">&quot;in vec4 vertexColor;\n&quot;</span><br><span class="line">&quot;void main()&#123;\n&quot;</span><br><span class="line">&quot;FragColor = vertexColor;&#125;\n &quot;;</span><br></pre></td></tr></table></figure><p><strong>配置顶点属性指针：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 位置属性</span><br><span class="line">glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);</span><br><span class="line">glEnableVertexAttribArray(0);</span><br><span class="line">// 颜色属性</span><br><span class="line">glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));</span><br><span class="line">glEnableVertexAttribArray(1);</span><br></pre></td></tr></table></figure><p><strong>效果：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252046360.png" alt="image-20231215170557358" style="zoom:67%;"></p><p><em>注：片段着色器不会直接从 <code>VBO</code> 中读取数据，而是通过与顶点着色器的输出交互，通过插值的方式在片段上进行着色。</em></p><h4 id="4-文件流读取着色器内容"><a href="#4-文件流读取着色器内容" class="headerlink" title="4.文件流读取着色器内容"></a>4.文件流读取着色器内容</h4>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h4 id=&quot;1-GLSL中向量的数据类型&quot;&gt;&lt;a href=&quot;#1-GLSL中向量的数据类型&quot; class=&quot;headerlink&quot; title=&quot;1.GLSL中向量的数据类型&quot;&gt;&lt;/a&gt;1.GLSL中向量的数据类型&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;https://typo</summary>
-      
-    
-    
-    
-    <category term="图形学" scheme="https://wangak.cc/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
-    
-    
-    <category term="图形学" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
-    
-    <category term="opengl" scheme="https://wangak.cc/tags/opengl/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>窗口与三角形</title>
-    <link href="https://wangak.cc/posts/aa216b4c.html"/>
-    <id>https://wangak.cc/posts/aa216b4c.html</id>
-    <published>2023-12-14T16:00:00.000Z</published>
-    <updated>2023-12-15T00:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1-窗口"><a href="#1-窗口" class="headerlink" title="1.窗口"></a>1.窗口</h3><p><strong>创建GLFW窗口对象</strong></p><p><code>GLFWwindow* window = glfwCreateWindow(800, 600, &quot;opengl&quot;,NULL,NULL);</code></p><ul><li>800:width</li><li>600:height</li><li>“opengl”:title</li></ul><p><strong>初始化GLEW</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">glewExperimental = true;//设置 GLEW 的实验性模式</span><br><span class="line">if (glewInit() != GLEW_OK)</span><br><span class="line">&#123;</span><br><span class="line">printf(&quot;Init GLEW failed&quot;);</span><br><span class="line">glfwTerminate();</span><br><span class="line">return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>窗口渲染框架：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">#define GLEW_STATIC</span><br><span class="line">#include&lt;GL/glew.h&gt;</span><br><span class="line">#include&lt;GLFW/glfw3.h&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">void processInput(GLFWwindow* window)</span><br><span class="line">&#123;</span><br><span class="line">if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)//GLFW_KEY_ESCAPE:表示esc键，glfwGetKey：获取窗口中键的状态</span><br><span class="line">&#123;</span><br><span class="line">glfwSetWindowShouldClose(window, true);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">glfwInit();</span><br><span class="line">glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);</span><br><span class="line">glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);</span><br><span class="line">glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);</span><br><span class="line">//创建GLFW窗口对象</span><br><span class="line">GLFWwindow* window = glfwCreateWindow(800, 600, &quot;opengl&quot;,NULL,NULL);</span><br><span class="line">glfwMakeContextCurrent(window);//将当前需要渲染的窗口设置为window</span><br><span class="line">//初始化GLEW</span><br><span class="line">glewExperimental = true;//设置 GLEW 的实验性模式</span><br><span class="line">if (glewInit() != GLEW_OK)</span><br><span class="line">&#123;</span><br><span class="line">printf(&quot;Init GLEW failed&quot;);</span><br><span class="line">glfwTerminate();</span><br><span class="line">return -1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">glViewport(0, 0, 800, 600);</span><br><span class="line">while (!glfwWindowShouldClose(window))//判断窗口是否被关闭，未关闭则一直循环</span><br><span class="line">&#123;</span><br><span class="line">processInput(window);</span><br><span class="line">glClearColor(0.5f, 0.2f, 0.3f, 1.0f);//定义一种颜色（rgba四通道），每个通道取值为0~1.</span><br><span class="line">glClear(GL_COLOR_BUFFER_BIT); </span><br><span class="line">//GL_COLOR_BUFFER_BIT:颜色缓冲,glClear:将颜色缓冲填充成glClearColor设置的颜色</span><br><span class="line">glfwSwapBuffers(window);//交换双缓冲，渲染先在后台缓冲区进行，之后再与前台缓冲区交换</span><br><span class="line">//使用双缓冲是为了避免用户看到不完整的、中间过程的渲染结果</span><br><span class="line">glfwPollEvents();//检查有没有触发什么事件（比如键盘输入、鼠标移动等）</span><br><span class="line">&#125;</span><br><span class="line">glfwTerminate();//释放 GLFW 库分配的资源和清理 GLFW 环境</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="2-三角形"><a href="#2-三角形" class="headerlink" title="2.三角形"></a>2.三角形</h3><p><strong>图形渲染管线：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312151450311.png" alt="image-20231215095323007" style="zoom:67%;"></p><h4 id="2-1-定义并绑定VAO"><a href="#2-1-定义并绑定VAO" class="headerlink" title="2.1 定义并绑定VAO"></a>2.1 定义并绑定VAO</h4><p><strong>VAO（Vertex Array Object）</strong>：**保存了一系列的VBO配置和顶点属性指针，它负责告诉GPU，VBO中的信息到底该以几个为一组，对VBO起到解释的作用。</p><p><em>注：一个VAO可以对应多个VBO</em></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312151450544.png" alt="image-20231215093925600" style="zoom:67%;"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">unsigned int VAO;//也可以是unsigned int VAO[n],n为VAO的个数</span><br><span class="line">glGenVertexArrays(1, &amp;VAO);</span><br><span class="line">glBindVertexArray(VAO);</span><br></pre></td></tr></table></figure><h4 id="2-2-定义并绑定VBO"><a href="#2-2-定义并绑定VBO" class="headerlink" title="2.2 定义并绑定VBO"></a>2.2 定义并绑定VBO</h4><p><strong>VBO（Vertex Buffer Object）:</strong>用于存储实际的顶点数据，可以包含顶点坐标、法线、颜色等信息。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">unsigned int VBO;</span><br><span class="line">glGenBuffers(1, &amp;VBO);</span><br><span class="line">//绑定VBO</span><br><span class="line">glBindBuffer(GL_ARRAY_BUFFER, VBO);</span><br><span class="line">//数据传输到缓冲区，GL_STATIC_DRAW：静态绘制，顶点数据不会被修改</span><br><span class="line">glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);</span><br></pre></td></tr></table></figure><h4 id="2-3-创建顶点着色器"><a href="#2-3-创建顶点着色器" class="headerlink" title="2.3 创建顶点着色器"></a>2.3 创建顶点着色器</h4><p><strong>顶点着色器：</strong>对每个输入顶点的坐标进行计算和变换</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//vertexShaderSource</span><br><span class="line">const char* vertexShaderSource = &quot;#version 330 core\n&quot;</span><br><span class="line">&quot;layout (location = 0) in vec3 aPos;\n&quot;</span><br><span class="line">&quot;void main()\n&quot;</span><br><span class="line">&quot;&#123;\n&quot;</span><br><span class="line">&quot;   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n&quot;</span><br><span class="line">&quot;&#125;\0&quot;;</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//创建顶点着色器对象</span><br><span class="line">unsigned int vertexShader;</span><br><span class="line">vertexShader = glCreateShader(GL_VERTEX_SHADER);</span><br><span class="line">//设置顶点着色器源代码并编译</span><br><span class="line">glShaderSource(vertexShader, 1, &amp;vertexShaderSource, NULL);</span><br><span class="line">glCompileShader(vertexShader);</span><br></pre></td></tr></table></figure><h4 id="2-4-创建片段着色器"><a href="#2-4-创建片段着色器" class="headerlink" title="2.4 创建片段着色器"></a>2.4 创建片段着色器</h4><p><strong>片段着色器：</strong>用于对每个屏幕上的像素（片段）进行处理，决定最终的颜色。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//fragmentShaderSource</span><br><span class="line">const char* fragmentShaderSource =</span><br><span class="line">&quot;#version 330 core\n&quot;</span><br><span class="line">&quot;out vec4 FragColor;\n&quot;</span><br><span class="line">&quot;void main()&#123;\n&quot;</span><br><span class="line">&quot;FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);&#125;\n &quot;;</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//创建片段着色器对象</span><br><span class="line">unsigned int fragmentShader;</span><br><span class="line">fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);</span><br><span class="line">//设置源代码并编译</span><br><span class="line">glShaderSource(fragmentShader, 1, &amp;fragmentShaderSource, NULL);</span><br><span class="line">glCompileShader(fragmentShader);</span><br></pre></td></tr></table></figure><h4 id="2-5-创建着色器程序"><a href="#2-5-创建着色器程序" class="headerlink" title="2.5 创建着色器程序"></a>2.5 创建着色器程序</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">unsigned int shaderProgram;</span><br><span class="line">shaderProgram = glCreateProgram();</span><br><span class="line">glAttachShader(shaderProgram, vertexShader);</span><br><span class="line">glAttachShader(shaderProgram, fragmentShader);</span><br><span class="line">//将附加到着色器程序的各个着色器连接在一起，以形成一个完整的着色器程序。</span><br><span class="line">glLinkProgram(shaderProgram);</span><br></pre></td></tr></table></figure><h4 id="2-6-配置顶点属性指针"><a href="#2-6-配置顶点属性指针" class="headerlink" title="2.6 配置顶点属性指针"></a>2.6 配置顶点属性指针</h4><p><strong><code>glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 \* sizeof(float), (void\*)0);</code></strong></p><ul><li><code>0</code>: 指定顶点着色器中的顶点属性位置（location）。在顶点着色器代码中，使用 <code>layout(location = 0)</code> 来定义的。</li><li><code>3</code>: 指定每个顶点属性包含的分量数量，这里是3，表示三维坐标x、y、z。</li><li><code>GL_FLOAT</code>: 指定顶点属性的数据类型，这里是浮点数。</li><li><code>GL_FALSE</code>: 指定是否要归一化数据，对于浮点数数据，通常设置为GL_FALSE。</li><li><code>3 * sizeof(float)</code>: 指定相邻顶点属性之间的偏移量（以字节为单位）。这里表示每个顶点的大小为3个浮点数，所以偏移量为3 * sizeof(float)。</li><li><code>(void*)0</code>: void*无类型指针，指定第一个顶点属性在缓冲区中的偏移量。这里表示从缓冲区的开头开始使用。</li></ul><p><strong><code>glEnableVertexAttribArray(0);</code></strong>:启用顶点属性数组，OpenGL会按照之前配置的顶点属性指针从缓冲区中读取数据。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);</span><br><span class="line">glEnableVertexAttribArray(0);</span><br></pre></td></tr></table></figure><h4 id="2-7-绘制三角形"><a href="#2-7-绘制三角形" class="headerlink" title="2.7 绘制三角形"></a>2.7 绘制三角形</h4><p><strong><code>glDrawArrays(GL_TRIANGLES, 0, 3);</code></strong>:</p><ul><li><code>GL_TRIANGLES</code> 表示渲染的图元类型，这里是三角形。</li><li><code>0</code> 是起始顶点的索引，表示从顶点数组的第一个顶点开始渲染。</li><li><code>3</code> 是顶点的数量，表示渲染三个顶点。</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">glUseProgram(shaderProgram);</span><br><span class="line">glBindVertexArray(VAO);</span><br><span class="line">glDrawArrays(GL_TRIANGLES, 0, 3);</span><br></pre></td></tr></table></figure><h4 id="2-8-绘制多边形"><a href="#2-8-绘制多边形" class="headerlink" title="2.8 绘制多边形"></a>2.8 绘制多边形</h4><p>注意：opengl的绘制顺序是逆时针（右手系），当启用背面剔除时，背面将不可见。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">glEnable(GL_CULL_FACE);</span><br><span class="line">glCullFace(GL_BACK);</span><br></pre></td></tr></table></figure><p><strong>EBO（索引缓冲对象）：</strong>用于优化和节省内存</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">unsigned int indices[] = &#123;</span><br><span class="line">0, 1, 2, // 第一个三角形</span><br><span class="line">2, 1, 3  // 第二个三角形</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//定义并绑定EBO</span><br><span class="line">unsigned int EBO;</span><br><span class="line">glGenBuffers(1, &amp;EBO);</span><br><span class="line">glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);</span><br><span class="line">glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);</span><br></pre></td></tr></table></figure><p><strong>绘制：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">glUseProgram(shaderProgram);</span><br><span class="line">glBindVertexArray(VAO);</span><br><span class="line">/*glDrawArrays(GL_TRIANGLES, 0,3);*/</span><br><span class="line">glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);</span><br><span class="line">glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);</span><br></pre></td></tr></table></figure><h4 id="2-9-线框模式"><a href="#2-9-线框模式" class="headerlink" title="2.9 线框模式"></a>2.9 线框模式</h4><p><strong>启用线框模式：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);</span><br></pre></td></tr></table></figure><p><strong>取消线框模式：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;1-窗口&quot;&gt;&lt;a href=&quot;#1-窗口&quot; class=&quot;headerlink&quot; title=&quot;1.窗口&quot;&gt;&lt;/a&gt;1.窗口&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;创建GLFW窗口对象&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;GLFWwindow* window = </summary>
-      
-    
-    
-    
-    <category term="图形学" scheme="https://wangak.cc/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
-    
-    
-    <category term="图形学" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
-    
-    <category term="opengl" scheme="https://wangak.cc/tags/opengl/"/>
     
   </entry>
   
