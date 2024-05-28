@@ -6,7 +6,7 @@
   <link href="https://wangak.cc/atom.xml" rel="self"/>
   
   <link href="https://wangak.cc/"/>
-  <updated>2024-05-07T11:30:16.056Z</updated>
+  <updated>2024-05-28T01:55:11.179Z</updated>
   <id>https://wangak.cc/</id>
   
   <author>
@@ -17,11 +17,69 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>SegMamba:Long-range Sequential Modeling Mamba For 3D Medical Image Segmentation</title>
+    <link href="https://wangak.cc/posts/f4ee98c4.html"/>
+    <id>https://wangak.cc/posts/f4ee98c4.html</id>
+    <published>2024-05-13T16:00:00.000Z</published>
+    <updated>2024-05-28T01:55:11.179Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="SegMamba-Long-range-Sequential-Modeling-Mamba-For-3D-Medical-Image-Segmentation"><a href="#SegMamba-Long-range-Sequential-Modeling-Mamba-For-3D-Medical-Image-Segmentation" class="headerlink" title="SegMamba: Long-range Sequential Modeling Mamba For 3D Medical Image Segmentation"></a>SegMamba: Long-range Sequential Modeling Mamba For 3D Medical Image Segmentation</h2><p>论文：《SegMamba: Long-range Sequential Modeling Mamba For 3D Medical Image Segmentation》（arXiv 2024）</p><p>论文贡献：</p><ul><li>设计了ToM模块，用以增强三维特征的顺序建模</li><li>设计了门控空间卷积模块（GSC)，用以增强每个ToM之前空间维度上的特征表示</li></ul><h4 id="网络结构："><a href="#网络结构：" class="headerlink" title="网络结构："></a><strong>网络结构：</strong></h4><p><img src="https://typoraimg.wangak.cc/2023/img/202405141007030.png" alt="image-20240507091527951"></p><p><strong>1.Stem</strong></p><p>采用深度卷积，内核大小为7×7×7，填充为3×3×3，步幅为2×2×2。</p><p><strong>2.TSMamba块</strong></p><p>计算过程如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141007633.png" alt="image-20240507091715749" style="zoom:67%;"></p><p><em>注：其中GSC和ToM分别表示所提出的门控空间卷积模块和三向Mamba模块</em></p><p><strong>3.门控空间卷积(GSC)</strong></p><p>门控空间卷积(GSC)用于提取mamba层之前的空间关系</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141007183.png" alt="image-20240507092130322" style="zoom:67%;"></p><p>计算过程如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141007271.png" alt="image-20240507092149524" style="zoom:67%;"></p><p><strong>4.三向mamba（ToM)</strong></p><p>从三个方向计算特征依赖关系，将三维输入特征平铺成三个序列，进行相应的特征交互，得到融合后的三维特征</p><p>计算过程如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141007074.png" alt="image-20240507092415793" style="zoom:67%;"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;SegMamba-Long-range-Sequential-Modeling-Mamba-For-3D-Medical-Image-Segmentation&quot;&gt;&lt;a href=&quot;#SegMamba-Long-range-Sequential-Modeling-M</summary>
+      
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    
+    <category term="特征增强" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E5%A2%9E%E5%BC%BA/"/>
+    
+    <category term="mamba类" scheme="https://wangak.cc/tags/mamba%E7%B1%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HCF-Net</title>
+    <link href="https://wangak.cc/posts/d349cca5.html"/>
+    <id>https://wangak.cc/posts/d349cca5.html</id>
+    <published>2024-05-06T16:00:00.000Z</published>
+    <updated>2024-05-07T11:47:50.556Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="SegFormer3D"><a href="#SegFormer3D" class="headerlink" title="SegFormer3D"></a>SegFormer3D</h2><p><strong>论文：《SegFormer3D: an Efficient Transformer for 3D Medical Image Segmentation》（arXiv 2024）</strong></p><p>作者提出了SegFormer3D使用全mlp解码器来聚合局部和全局注意力特征，来产生高度准确的分割掩码</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927153.png" alt="image-20240427155943100" style="zoom:67%;"></p><p><strong>对于编码器部分：</strong></p><ul><li><p>使用patch merging进行下采样：与池化操作相比克服了像素生成过程中的邻域信息丢失的问题，同时也能节省一定的运算量</p></li><li><p>使用efficient self-attention：捕获全局信息的同时，用缩放系数R减少了self-attention计算的时间复杂度</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927313.png" alt="image-20240427161059247" style="zoom:67%;"></p></li><li><p>舍弃了固定的位置编码，使用mix ffn模块来提取位置信息：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927148.png" alt="image-20240427161359128" style="zoom: 50%;"></p></li></ul><p><strong>对于解码器部分：</strong>使用了全MLP的结构，使用了一个统一的模块完成了对不同尺度的特征的解码过程，简化了解码过程，确保在各种数据集中对体积特征进行高效且一致的解码，避免了过度参数化。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927399.png" alt="image-20240427161629423" style="zoom:67%;"></p><p><strong>参数量和性能的比较：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927981.png" alt="image-20240427162144102" style="zoom: 50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927799.png" alt="image-20240427162104575" style="zoom:67%;"></p><p>作者在编码器和解码器的设计中，都使用轻量化的操作（编码器部分的patch merging、efficient self-attention和解码器使用全mlp解码器来聚合局部和全局注意力特征），模型参数量和计算量都有明显的下降，但性能表现不如nnformer</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;SegFormer3D&quot;&gt;&lt;a href=&quot;#SegFormer3D&quot; class=&quot;headerlink&quot; title=&quot;SegFormer3D&quot;&gt;&lt;/a&gt;SegFormer3D&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;论文：《SegFormer3D: an Effici</summary>
+      
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    
+    <category term="特征融合" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Medical Image Segmentation via Cascaded Attention Decoding</title>
     <link href="https://wangak.cc/posts/3790531e.html"/>
     <id>https://wangak.cc/posts/3790531e.html</id>
     <published>2024-05-06T16:00:00.000Z</published>
-    <updated>2024-05-07T11:30:16.056Z</updated>
+    <updated>2024-05-07T11:47:50.554Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Medical-Image-Segmentation-via-Cascaded-Attention-Decoding"><a href="#Medical-Image-Segmentation-via-Cascaded-Attention-Decoding" class="headerlink" title="Medical Image Segmentation via Cascaded Attention Decoding"></a>Medical Image Segmentation via Cascaded Attention Decoding</h2><p><strong>论文：《Medical Image Segmentation via Cascaded Attention Decoding》（WACV 2023)</strong></p><p>这篇论文和之前看过的一些文章设计思路也差不多，通过对编码器四个阶段输出的特征进行了融合，不同之处在于这篇论文提出了AG和CAM两个模块进行特征的融合，先使用AG进行特征融合，再使用CAM进行增强</p><p><strong>级联注意解码器:</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071929069.png" alt="image-20240426162057053" style="zoom:67%;"></p><p>UpConv:对特征进行上采样</p><p>CAM:用于增强特征映射</p><p>作者使用了四个CAM块聚合编码器四个阶段输出的特征，三个AG模块将先前解码器上采样的特征与跳跃连接的特征结合起来</p><p><strong>AG：用于级联的特征融合</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071929850.png" alt="image-20240427213751108" style="zoom:67%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930154.png" alt="image-20240427213938485" style="zoom: 67%;"></p><p><strong>CAM:用于增强特征映射</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930371.png" alt="image-20240427214031982" style="zoom: 80%;"></p><p>CAM由通道注意力、空间注意力和一个卷积块组成，使用通道注意力、空间注意力可以来抑制背景信息</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930603.png" alt="image-20240427214223908" style="zoom:67%;"></p><p>注：这里的卷积块是由两个3×3的卷积层组成，每个卷积层后是一个BN和一个ReLU</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930828.png" alt="image-20240427214438165" style="zoom:67%;"></p><p><strong>多阶段损失和特征聚合：</strong></p><p>作者是通过对分层编码器的四个阶段输出的结果使用加性聚合的方式生成最后的预测图：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930176.png" alt="image-20240427214745978" style="zoom:67%;"></p><p><em>注1：p1、p2、p3、p4为四个预测头的特征映射，w、x、y、z为各个预测头像的权重。</em></p><p><em>注2：本文中作者将w、x、y、z均设为1</em></p><p>作者通过分别计算每个预测头的损失，来得到最终的损失：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930911.png" alt="image-20240427215042984" style="zoom:67%;"></p><p><em>注：实验中作者将α, β, γ,  ζ均设为了1</em></p><p><strong>整体的网络结构如下：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930348.png" alt="image-20240427215222965" style="zoom: 50%;"></p>]]></content>
     
@@ -47,18 +105,18 @@
   </entry>
   
   <entry>
-    <title>HCF-Net</title>
-    <link href="https://wangak.cc/posts/d349cca5.html"/>
-    <id>https://wangak.cc/posts/d349cca5.html</id>
-    <published>2024-05-06T16:00:00.000Z</published>
-    <updated>2024-05-07T11:28:02.795Z</updated>
+    <title>LHU-NET</title>
+    <link href="https://wangak.cc/posts/c46bf14d.html"/>
+    <id>https://wangak.cc/posts/c46bf14d.html</id>
+    <published>2024-04-24T16:00:00.000Z</published>
+    <updated>2024-04-25T11:20:57.093Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="SegFormer3D"><a href="#SegFormer3D" class="headerlink" title="SegFormer3D"></a>SegFormer3D</h2><p><strong>论文：《SegFormer3D: an Efficient Transformer for 3D Medical Image Segmentation》（arXiv 2024）</strong></p><p>作者提出了SegFormer3D使用全mlp解码器来聚合局部和全局注意力特征，来产生高度准确的分割掩码</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927153.png" alt="image-20240427155943100" style="zoom:67%;"></p><p><strong>对于编码器部分：</strong></p><ul><li><p>使用patch merging进行下采样：与池化操作相比克服了像素生成过程中的邻域信息丢失的问题，同时也能节省一定的运算量</p></li><li><p>使用efficient self-attention：捕获全局信息的同时，用缩放系数R减少了self-attention计算的时间复杂度</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927313.png" alt="image-20240427161059247" style="zoom:67%;"></p></li><li><p>舍弃了固定的位置编码，使用mix ffn模块来提取位置信息：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927148.png" alt="image-20240427161359128" style="zoom: 50%;"></p></li></ul><p><strong>对于解码器部分：</strong>使用了全MLP的结构，使用了一个统一的模块完成了对不同尺度的特征的解码过程，简化了解码过程，确保在各种数据集中对体积特征进行高效且一致的解码，避免了过度参数化。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927399.png" alt="image-20240427161629423" style="zoom:67%;"></p><p><strong>参数量和性能的比较：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927981.png" alt="image-20240427162144102" style="zoom: 50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927799.png" alt="image-20240427162104575" style="zoom:67%;"></p><p>作者在编码器和解码器的设计中，都使用轻量化的操作（编码器部分的patch merging、efficient self-attention和解码器使用全mlp解码器来聚合局部和全局注意力特征），模型参数量和计算量都有明显的下降，但性能表现不如nnformer</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="LHU-NET-A-LIGHT-HYBRID-U-NET-FOR-COST-EFFICIENT-HIGH-PERFORMANCE-VOLUMETRIC-MEDICAL-IMAGE-SEGMENTATION"><a href="#LHU-NET-A-LIGHT-HYBRID-U-NET-FOR-COST-EFFICIENT-HIGH-PERFORMANCE-VOLUMETRIC-MEDICAL-IMAGE-SEGMENTATION" class="headerlink" title="LHU-NET: A LIGHT HYBRID U-NET FOR COST-EFFICIENT, HIGH-PERFORMANCE VOLUMETRIC MEDICAL IMAGE SEGMENTATION"></a>LHU-NET: A LIGHT HYBRID U-NET FOR COST-EFFICIENT, HIGH-PERFORMANCE VOLUMETRIC MEDICAL IMAGE SEGMENTATION</h2><p><strong>论文：《LHU-Net: A Light Hybrid U-Net for Cost-Efficient, High-Performance Volumetric Medical Image Segmentation》（arXiv 2024)</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202404251917245.png" alt="image-20240414134752694" style="zoom:67%;"></p><p>LHU-Net：将基于卷积的块与混合注意力机制集成</p><p><strong>Init 阶段与Out阶段</strong>：</p><ul><li>该阶段从一个点卷积操作（PW-Conv）开始，应用于输入数据，调整通道维度以匹配后续级别的通道数。</li></ul><p><img src="/posts/c46bf14d.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20240414134832658.png" alt="image-20240414134832658"></p><ul><li><p>同时对于输入直接应用ResBlock，将其输出输入到Out阶段，与解码器的输出进行连接，产生最后的结果</p><p><img src="/posts/c46bf14d.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20240414135339973.png" alt="image-20240414135339973"></p></li></ul><p><em>注：<script type="math/tex">X_{CD}</script>​表示CNN解码器块输出</em></p><p><strong>CNN Blocks:</strong></p><p>初始空间维度需要大量的计算成本,Vit难以应用，故在此阶段的设计是为了优化参数效率和保留局部特征，在之后的阶段再提取全局特征</p><ul><li>Down Conv块的设计如下：</li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202404251917748.png" alt="image-20240414140026771"></p><p><strong>Hybrid Blocks（混合注意力）：</strong></p><p>在此阶段将局部细节和全局信息进行融合</p><ul><li><p><strong>Self-Adaptive Contextual Fusion Module：</strong>将空间注意力模块与卷积模块相结合，这种空间注意力模块将LKAd模块与自注意力机制的输出进行并行计算</p><p><img src="https://typoraimg.wangak.cc/2023/img/202404251917014.png" alt="image-20240414141611267"></p></li></ul><p>​     该模块最终的输出为：</p><p>​                                                                  <img src="https://typoraimg.wangak.cc/2023/img/202404251918107.png" alt="image-20240414141723308" style="zoom:67%;"></p><p>​     <em>注1：<script type="math/tex">δ_s</script>和<script type="math/tex">γ_s</script>​表示每个通道的可学习参数，控制两种不同注意机制的组合权值</em></p><p>​     <em>注2：Comb函数的定义如下：DW-Conv3 是一个 3×3×3 的卷积块</em></p><p><img src="https://typoraimg.wangak.cc/2023/img/202404251918397.png" alt="image-20240414142913765" style="zoom:67%;"></p><ul><li><p><strong>LKAd:</strong></p><p>其步骤如下：</p><ul><li>输入经过一个点卷积操作（Conv1），然后应用激活函数（GELU），以引入非线性和降低维度。</li><li>变换后的张量经过一系列深度卷积（DW-Conv）和深度膨胀卷积（DWD-Conv）操作，以提取多尺度特征并保留空间信息。</li><li>DDW-Conv3集成了可变形深度卷积可以自适应地对特征图进行采样，从而增强了模型捕获细粒度细节和长距离依赖的能力。</li></ul></li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202404251918886.png" alt="image-20240414142033147" style="zoom:67%;"></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;h2 id=&quot;SegFormer3D&quot;&gt;&lt;a href=&quot;#SegFormer3D&quot; class=&quot;headerlink&quot; title=&quot;SegFormer3D&quot;&gt;&lt;/a&gt;SegFormer3D&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;论文：《SegFormer3D: an Effici</summary>
+    <summary type="html">&lt;h2 id=&quot;LHU-NET-A-LIGHT-HYBRID-U-NET-FOR-COST-EFFICIENT-HIGH-PERFORMANCE-VOLUMETRIC-MEDICAL-IMAGE-SEGMENTATION&quot;&gt;&lt;a href=&quot;#LHU-NET-A-LIGHT-HY</summary>
       
     
     
@@ -70,7 +128,7 @@
     
     <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
     
-    <category term="特征融合" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/"/>
+    <category term="卷积+注意力" scheme="https://wangak.cc/tags/%E5%8D%B7%E7%A7%AF-%E6%B3%A8%E6%84%8F%E5%8A%9B/"/>
     
   </entry>
   
@@ -101,34 +159,6 @@
     <category term="特征融合" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/"/>
     
     <category term="下采样模块" scheme="https://wangak.cc/tags/%E4%B8%8B%E9%87%87%E6%A0%B7%E6%A8%A1%E5%9D%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LHU-NET</title>
-    <link href="https://wangak.cc/posts/c46bf14d.html"/>
-    <id>https://wangak.cc/posts/c46bf14d.html</id>
-    <published>2024-04-24T16:00:00.000Z</published>
-    <updated>2024-04-25T11:20:57.093Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="LHU-NET-A-LIGHT-HYBRID-U-NET-FOR-COST-EFFICIENT-HIGH-PERFORMANCE-VOLUMETRIC-MEDICAL-IMAGE-SEGMENTATION"><a href="#LHU-NET-A-LIGHT-HYBRID-U-NET-FOR-COST-EFFICIENT-HIGH-PERFORMANCE-VOLUMETRIC-MEDICAL-IMAGE-SEGMENTATION" class="headerlink" title="LHU-NET: A LIGHT HYBRID U-NET FOR COST-EFFICIENT, HIGH-PERFORMANCE VOLUMETRIC MEDICAL IMAGE SEGMENTATION"></a>LHU-NET: A LIGHT HYBRID U-NET FOR COST-EFFICIENT, HIGH-PERFORMANCE VOLUMETRIC MEDICAL IMAGE SEGMENTATION</h2><p><strong>论文：《LHU-Net: A Light Hybrid U-Net for Cost-Efficient, High-Performance Volumetric Medical Image Segmentation》（arXiv 2024)</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202404251917245.png" alt="image-20240414134752694" style="zoom:67%;"></p><p>LHU-Net：将基于卷积的块与混合注意力机制集成</p><p><strong>Init 阶段与Out阶段</strong>：</p><ul><li>该阶段从一个点卷积操作（PW-Conv）开始，应用于输入数据，调整通道维度以匹配后续级别的通道数。</li></ul><p><img src="/posts/c46bf14d.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20240414134832658.png" alt="image-20240414134832658"></p><ul><li><p>同时对于输入直接应用ResBlock，将其输出输入到Out阶段，与解码器的输出进行连接，产生最后的结果</p><p><img src="/posts/c46bf14d.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20240414135339973.png" alt="image-20240414135339973"></p></li></ul><p><em>注：<script type="math/tex">X_{CD}</script>​表示CNN解码器块输出</em></p><p><strong>CNN Blocks:</strong></p><p>初始空间维度需要大量的计算成本,Vit难以应用，故在此阶段的设计是为了优化参数效率和保留局部特征，在之后的阶段再提取全局特征</p><ul><li>Down Conv块的设计如下：</li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202404251917748.png" alt="image-20240414140026771"></p><p><strong>Hybrid Blocks（混合注意力）：</strong></p><p>在此阶段将局部细节和全局信息进行融合</p><ul><li><p><strong>Self-Adaptive Contextual Fusion Module：</strong>将空间注意力模块与卷积模块相结合，这种空间注意力模块将LKAd模块与自注意力机制的输出进行并行计算</p><p><img src="https://typoraimg.wangak.cc/2023/img/202404251917014.png" alt="image-20240414141611267"></p></li></ul><p>​     该模块最终的输出为：</p><p>​                                                                  <img src="https://typoraimg.wangak.cc/2023/img/202404251918107.png" alt="image-20240414141723308" style="zoom:67%;"></p><p>​     <em>注1：<script type="math/tex">δ_s</script>和<script type="math/tex">γ_s</script>​表示每个通道的可学习参数，控制两种不同注意机制的组合权值</em></p><p>​     <em>注2：Comb函数的定义如下：DW-Conv3 是一个 3×3×3 的卷积块</em></p><p><img src="https://typoraimg.wangak.cc/2023/img/202404251918397.png" alt="image-20240414142913765" style="zoom:67%;"></p><ul><li><p><strong>LKAd:</strong></p><p>其步骤如下：</p><ul><li>输入经过一个点卷积操作（Conv1），然后应用激活函数（GELU），以引入非线性和降低维度。</li><li>变换后的张量经过一系列深度卷积（DW-Conv）和深度膨胀卷积（DWD-Conv）操作，以提取多尺度特征并保留空间信息。</li><li>DDW-Conv3集成了可变形深度卷积可以自适应地对特征图进行采样，从而增强了模型捕获细粒度细节和长距离依赖的能力。</li></ul></li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202404251918886.png" alt="image-20240414142033147" style="zoom:67%;"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;LHU-NET-A-LIGHT-HYBRID-U-NET-FOR-COST-EFFICIENT-HIGH-PERFORMANCE-VOLUMETRIC-MEDICAL-IMAGE-SEGMENTATION&quot;&gt;&lt;a href=&quot;#LHU-NET-A-LIGHT-HY</summary>
-      
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
-    
-    <category term="卷积+注意力" scheme="https://wangak.cc/tags/%E5%8D%B7%E7%A7%AF-%E6%B3%A8%E6%84%8F%E5%8A%9B/"/>
     
   </entry>
   
@@ -521,32 +551,6 @@
     <category term="图形学" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
     
     <category term="opengl" scheme="https://wangak.cc/tags/opengl/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>D-LKA Attention</title>
-    <link href="https://wangak.cc/posts/bf4c3cab.html"/>
-    <id>https://wangak.cc/posts/bf4c3cab.html</id>
-    <published>2023-12-14T16:00:00.000Z</published>
-    <updated>2023-12-14T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="D-LKA-Attention"><a href="#D-LKA-Attention" class="headerlink" title="D-LKA Attention"></a>D-LKA Attention</h1><p><strong>论文：《Beyond Self-Attention: Deformable Large Kernel Attention for Medical Image Segmentation》（WACV 2024)</strong></p><h3 id="1-网络结构"><a href="#1-网络结构" class="headerlink" title="1.网络结构"></a>1.网络结构</h3><p><strong>网络结构：</strong><br>                                            <img src="https://typoraimg.wangak.cc/2023/img/202312252047820.png" alt="image-20231218151015722" style="zoom:67%;"></p><p><strong>LKA：</strong>将卷积分解为三个部分：深度卷积、深度空洞卷积和逐点卷积</p><p>LKA吸收了卷积和self-attention的优点，包括局部结构信息、长依赖性和适应性。</p><p><strong>DW-Conv:</strong>可以利用图像的局部上下文信息</p><p><strong>DW-D-Conv：</strong>捕获LKA中的长程依赖性方面起到了作用</p><p><strong>1×1 Conv：</strong>通道维度中的关系</p><p><strong>2d-LKA的参数量：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252047832.png" alt="image-20231218150016851" style="zoom: 67%;"></p><p><em>注：普通卷积kernel大小为K，DW-Conv的kernel为K/d，DW-D-Conv的kernel为(2d-1)</em></p><p><strong>3d-LKA的参数量：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252047618.png" alt="image-20231218150455218" style="zoom:67%;"></p><p>d（扩张率）是通过对参数量求导确定的，找使参数量导数为0，即参数量最小的扩张率</p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252047839.png" alt="image-20231218150728812" style="zoom:67%;"></p><p><strong>D-LKA：</strong>在LKA的基础上，使用可变形深度卷积代替深度卷积，用可变形深度空洞卷积代替空洞卷积</p><p><em>注：可变形卷积提高了捕获不规则形状和大小的物体的能力</em></p><p><strong>D-LKA模块结构：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252047842.png" alt="image-20231218152019184" style="zoom: 50%;"></p><h3 id="2-实验"><a href="#2-实验" class="headerlink" title="2.实验"></a>2.实验</h3><p><strong>2d的D-LKA在多器官数据集上的表现：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252047330.png" alt="image-20231218154533519" style="zoom:67%;"></p><p><strong>3d的D-LKA在多器官数据集上的表现：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312252047355.png" alt="image-20231218154633563"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;D-LKA-Attention&quot;&gt;&lt;a href=&quot;#D-LKA-Attention&quot; class=&quot;headerlink&quot; title=&quot;D-LKA Attention&quot;&gt;&lt;/a&gt;D-LKA Attention&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;论文：《Beyond</summary>
-      
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
     
   </entry>
   

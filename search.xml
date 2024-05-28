@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>Medical Image Segmentation via Cascaded Attention Decoding</title>
-      <link href="/posts/3790531e.html"/>
-      <url>/posts/3790531e.html</url>
+      <title>SegMamba:Long-range Sequential Modeling Mamba For 3D Medical Image Segmentation</title>
+      <link href="/posts/f4ee98c4.html"/>
+      <url>/posts/f4ee98c4.html</url>
       
-        <content type="html"><![CDATA[<h2 id="Medical-Image-Segmentation-via-Cascaded-Attention-Decoding"><a href="#Medical-Image-Segmentation-via-Cascaded-Attention-Decoding" class="headerlink" title="Medical Image Segmentation via Cascaded Attention Decoding"></a>Medical Image Segmentation via Cascaded Attention Decoding</h2><p><strong>论文：《Medical Image Segmentation via Cascaded Attention Decoding》（WACV 2023)</strong></p><p>这篇论文和之前看过的一些文章设计思路也差不多，通过对编码器四个阶段输出的特征进行了融合，不同之处在于这篇论文提出了AG和CAM两个模块进行特征的融合，先使用AG进行特征融合，再使用CAM进行增强</p><p><strong>级联注意解码器:</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071929069.png" alt="image-20240426162057053" style="zoom:67%;"></p><p>UpConv:对特征进行上采样</p><p>CAM:用于增强特征映射</p><p>作者使用了四个CAM块聚合编码器四个阶段输出的特征，三个AG模块将先前解码器上采样的特征与跳跃连接的特征结合起来</p><p><strong>AG：用于级联的特征融合</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071929850.png" alt="image-20240427213751108" style="zoom:67%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930154.png" alt="image-20240427213938485" style="zoom: 67%;"></p><p><strong>CAM:用于增强特征映射</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930371.png" alt="image-20240427214031982" style="zoom: 80%;"></p><p>CAM由通道注意力、空间注意力和一个卷积块组成，使用通道注意力、空间注意力可以来抑制背景信息</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930603.png" alt="image-20240427214223908" style="zoom:67%;"></p><p>注：这里的卷积块是由两个3×3的卷积层组成，每个卷积层后是一个BN和一个ReLU</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930828.png" alt="image-20240427214438165" style="zoom:67%;"></p><p><strong>多阶段损失和特征聚合：</strong></p><p>作者是通过对分层编码器的四个阶段输出的结果使用加性聚合的方式生成最后的预测图：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930176.png" alt="image-20240427214745978" style="zoom:67%;"></p><p><em>注1：p1、p2、p3、p4为四个预测头的特征映射，w、x、y、z为各个预测头像的权重。</em></p><p><em>注2：本文中作者将w、x、y、z均设为1</em></p><p>作者通过分别计算每个预测头的损失，来得到最终的损失：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930911.png" alt="image-20240427215042984" style="zoom:67%;"></p><p><em>注：实验中作者将α, β, γ,  ζ均设为了1</em></p><p><strong>整体的网络结构如下：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930348.png" alt="image-20240427215222965" style="zoom: 50%;"></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="SegMamba-Long-range-Sequential-Modeling-Mamba-For-3D-Medical-Image-Segmentation"><a href="#SegMamba-Long-range-Sequential-Modeling-Mamba-For-3D-Medical-Image-Segmentation" class="headerlink" title="SegMamba: Long-range Sequential Modeling Mamba For 3D Medical Image Segmentation"></a>SegMamba: Long-range Sequential Modeling Mamba For 3D Medical Image Segmentation</h2><p>论文：《SegMamba: Long-range Sequential Modeling Mamba For 3D Medical Image Segmentation》（arXiv 2024）</p><p>论文贡献：</p><ul><li>设计了ToM模块，用以增强三维特征的顺序建模</li><li>设计了门控空间卷积模块（GSC)，用以增强每个ToM之前空间维度上的特征表示</li></ul><h4 id="网络结构："><a href="#网络结构：" class="headerlink" title="网络结构："></a><strong>网络结构：</strong></h4><p><img src="https://typoraimg.wangak.cc/2023/img/202405141007030.png" alt="image-20240507091527951"></p><p><strong>1.Stem</strong></p><p>采用深度卷积，内核大小为7×7×7，填充为3×3×3，步幅为2×2×2。</p><p><strong>2.TSMamba块</strong></p><p>计算过程如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141007633.png" alt="image-20240507091715749" style="zoom:67%;"></p><p><em>注：其中GSC和ToM分别表示所提出的门控空间卷积模块和三向Mamba模块</em></p><p><strong>3.门控空间卷积(GSC)</strong></p><p>门控空间卷积(GSC)用于提取mamba层之前的空间关系</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141007183.png" alt="image-20240507092130322" style="zoom:67%;"></p><p>计算过程如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141007271.png" alt="image-20240507092149524" style="zoom:67%;"></p><p><strong>4.三向mamba（ToM)</strong></p><p>从三个方向计算特征依赖关系，将三维输入特征平铺成三个序列，进行相应的特征交互，得到融合后的三维特征</p><p>计算过程如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141007074.png" alt="image-20240507092415793" style="zoom:67%;"></p>]]></content>
       
       
       <categories>
@@ -24,9 +24,9 @@
             
             <tag> 图像分割 </tag>
             
-            <tag> 特征融合 </tag>
-            
             <tag> 特征增强 </tag>
+            
+            <tag> mamba类 </tag>
             
         </tags>
       
@@ -64,11 +64,11 @@
     
     
     <entry>
-      <title>HCF-Net</title>
-      <link href="/posts/d349cca5.html"/>
-      <url>/posts/d349cca5.html</url>
+      <title>Medical Image Segmentation via Cascaded Attention Decoding</title>
+      <link href="/posts/3790531e.html"/>
+      <url>/posts/3790531e.html</url>
       
-        <content type="html"><![CDATA[<h2 id="HCF-Net-Hierarchical-Context-Fusion-Network-for-Infrared-Small-Object-Detection"><a href="#HCF-Net-Hierarchical-Context-Fusion-Network-for-Infrared-Small-Object-Detection" class="headerlink" title="HCF-Net: Hierarchical Context Fusion Network for Infrared Small Object Detection"></a>HCF-Net: Hierarchical Context Fusion Network for Infrared Small Object Detection</h2><p><strong>论文：《HCF-Net: Hierarchical Context Fusion Network for Infrared Small Object Detection》（arXiv 2024)</strong></p><p>PPA采用分层特征融合和注意机制来维护和增强对小物体的表示，确保关键信息通过多次下采样步骤得以保留。</p><p>DASI增强了U-Net中的跳跃连接，侧重于高维和低维特征的自适应选择和精细融合，以增强小物体的显著性。</p><p>位于网络深处的MDCR加强了多尺度特征提取和通道信息表示，捕捉各种感受野范围内的特征。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202404251920292.png" alt="image-20240416133737554" style="zoom:67%;"></p><h4 id="1-PPA"><a href="#1-PPA" class="headerlink" title="1.PPA"></a>1.PPA</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202404251920768.png" alt="image-20240416134505795" style="zoom:67%;"></p><p>对于小目标而言，经过多次下采样容易丢失关键信息，作者使用PPA模块取代了编码器和解码器中的传统卷积的操作，来解决此问题。</p><p>PPA使用了多分支提取策略，多分支策略有助于捕获物体的多尺度特征，从而提高对小目标的特征提取能力。其由三个平行分支组成：局部、全局、串行卷积。</p><p>PPA步骤如下：</p><ul><li>对于输入特征F,先使用点卷积调整通道数，然后输入到三个分支</li><li><p>通过三个分支分别计算得到<script type="math/tex">F_{local}、F_{global}、F_{conv}</script></p></li><li><p>将三个分支的输出结果相加得到最后的输出</p></li></ul><p><strong>Patch-Aware:</strong></p><p>使用 Unfold 和 reshape 操作将特征张量 F’ 划分为一组空间上连续的patch,对这些 patch 进行通道方向上的平均，得到大小为 (p × p, H’/p, W’/p) 的结果，接着使用 FFN 进行线性计算。随后，应用激活函数来获得线性计算特征在空间维度上的概率分布，并相应调整它们的权重,对加权结果进行特征选择，从 tokens 和通道中选择与任务相关的特征。</p><p><em>注：局部和全局分支的区分是通过patch的大小参数p来控制的</em></p><p><strong>特征融合和注意力：</strong></p><p>在进行了多分支的特征提取后，利用注意力机制进行自适应的特征增强，该注意力模块由通道注意力和空间注意力组成，其过程如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202404251920747.png" alt="image-20240416143044284" style="zoom:67%;"></p><p><em>注：其中，⊗ 表示元素相乘，<script type="math/tex">F_c∈ R^{H'×W'×C'}</script>、<script type="math/tex">F_s∈ R^{H'×W'×C'}</script>分别表示通道注意力和空间注意力处理后的特征，<script type="math/tex">M_c∈ R^{1×1×C'}</script>是通道注意力图,<script type="math/tex">M_s∈ R^{H'×W'×1}</script>是空间注意力图。δ和 B 分别表示ReLU和BN，F’’是PPA的最终的输出</em></p><h4 id="2-维度感知选择性整合模块"><a href="#2-维度感知选择性整合模块" class="headerlink" title="2.维度感知选择性整合模块"></a><strong>2.维度感知选择性整合模块</strong></h4><p><img src="https://typoraimg.wangak.cc/2023/img/202404251920269.png" alt="image-20240416144400263" style="zoom: 80%;"></p><p>DASI能够根据物体的大小自适应地选择合适的特征进行融合，DASI通过卷积、插值等操作，将高维特征<script type="math/tex">F_h∈R^{H_h×W_h×C_h}</script>和低维特征<script type="math/tex">F_l∈R^{H_l×W_l×C_l}</script>与当前层的特征<script type="math/tex">F_u∈R^{H×W×C}</script>进行初步对齐。随后，它将这些特征在通道维度上分成四个相等的部分，从而得到 <script type="math/tex">{(h_i)}_{i=1}^4 ∈R^{H × W × C/4}</script>, <script type="math/tex">{(I_i)}_{i=1}^4 ∈R^{H × W × C/4}</script>, <script type="math/tex">{(u_i)}_{i=1}^4 ∈R^{H × W × C/4}</script>,其中 <script type="math/tex">h_i、 I_i和 u_i</script> 分别表示高维、低维和当前层特征的第 i 个分区特征。<br>该模块最终的输出结构为：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202404251920852.png" alt="image-20240416145650808" style="zoom:67%;"></p><p><em>注： α是通过应用于<script type="math/tex">u_i</script>的激活函数所得到的值，当α> 0.5，则模型优先考虑细粒度特征，当α &lt; 0.5，则强调上下文特征。</em></p><h4 id="3-MDCR"><a href="#3-MDCR" class="headerlink" title="3.MDCR"></a>3.MDCR</h4><p>在 MDCR 中，引入了多个深度可分离卷积层，以不同的扩张率捕捉各种感受野大小的空间特征，从而能够对物体和背景之间的差异进行更详细的建模，增强其分辨小物体的能力。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202404251920901.png" alt="image-20240416150546927" style="zoom:67%;"></p><p>将输入特征沿通道维度分成四部分，每个部分以不同的扩张率进行深度可分离卷积，然后通过对每个部分的通道交错重排来增强多尺度特征的多样性，最后使用点卷积将这四部分的信息进行融合。</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="Medical-Image-Segmentation-via-Cascaded-Attention-Decoding"><a href="#Medical-Image-Segmentation-via-Cascaded-Attention-Decoding" class="headerlink" title="Medical Image Segmentation via Cascaded Attention Decoding"></a>Medical Image Segmentation via Cascaded Attention Decoding</h2><p><strong>论文：《Medical Image Segmentation via Cascaded Attention Decoding》（WACV 2023)</strong></p><p>这篇论文和之前看过的一些文章设计思路也差不多，通过对编码器四个阶段输出的特征进行了融合，不同之处在于这篇论文提出了AG和CAM两个模块进行特征的融合，先使用AG进行特征融合，再使用CAM进行增强</p><p><strong>级联注意解码器:</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071929069.png" alt="image-20240426162057053" style="zoom:67%;"></p><p>UpConv:对特征进行上采样</p><p>CAM:用于增强特征映射</p><p>作者使用了四个CAM块聚合编码器四个阶段输出的特征，三个AG模块将先前解码器上采样的特征与跳跃连接的特征结合起来</p><p><strong>AG：用于级联的特征融合</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071929850.png" alt="image-20240427213751108" style="zoom:67%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930154.png" alt="image-20240427213938485" style="zoom: 67%;"></p><p><strong>CAM:用于增强特征映射</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930371.png" alt="image-20240427214031982" style="zoom: 80%;"></p><p>CAM由通道注意力、空间注意力和一个卷积块组成，使用通道注意力、空间注意力可以来抑制背景信息</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930603.png" alt="image-20240427214223908" style="zoom:67%;"></p><p>注：这里的卷积块是由两个3×3的卷积层组成，每个卷积层后是一个BN和一个ReLU</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930828.png" alt="image-20240427214438165" style="zoom:67%;"></p><p><strong>多阶段损失和特征聚合：</strong></p><p>作者是通过对分层编码器的四个阶段输出的结果使用加性聚合的方式生成最后的预测图：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930176.png" alt="image-20240427214745978" style="zoom:67%;"></p><p><em>注1：p1、p2、p3、p4为四个预测头的特征映射，w、x、y、z为各个预测头像的权重。</em></p><p><em>注2：本文中作者将w、x、y、z均设为1</em></p><p>作者通过分别计算每个预测头的损失，来得到最终的损失：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930911.png" alt="image-20240427215042984" style="zoom:67%;"></p><p><em>注：实验中作者将α, β, γ,  ζ均设为了1</em></p><p><strong>整体的网络结构如下：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071930348.png" alt="image-20240427215222965" style="zoom: 50%;"></p>]]></content>
       
       
       <categories>
@@ -86,7 +86,7 @@
             
             <tag> 特征融合 </tag>
             
-            <tag> 下采样模块 </tag>
+            <tag> 特征增强 </tag>
             
         </tags>
       
@@ -116,6 +116,37 @@
             <tag> 图像分割 </tag>
             
             <tag> 卷积+注意力 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>HCF-Net</title>
+      <link href="/posts/d349cca5.html"/>
+      <url>/posts/d349cca5.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="HCF-Net-Hierarchical-Context-Fusion-Network-for-Infrared-Small-Object-Detection"><a href="#HCF-Net-Hierarchical-Context-Fusion-Network-for-Infrared-Small-Object-Detection" class="headerlink" title="HCF-Net: Hierarchical Context Fusion Network for Infrared Small Object Detection"></a>HCF-Net: Hierarchical Context Fusion Network for Infrared Small Object Detection</h2><p><strong>论文：《HCF-Net: Hierarchical Context Fusion Network for Infrared Small Object Detection》（arXiv 2024)</strong></p><p>PPA采用分层特征融合和注意机制来维护和增强对小物体的表示，确保关键信息通过多次下采样步骤得以保留。</p><p>DASI增强了U-Net中的跳跃连接，侧重于高维和低维特征的自适应选择和精细融合，以增强小物体的显著性。</p><p>位于网络深处的MDCR加强了多尺度特征提取和通道信息表示，捕捉各种感受野范围内的特征。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202404251920292.png" alt="image-20240416133737554" style="zoom:67%;"></p><h4 id="1-PPA"><a href="#1-PPA" class="headerlink" title="1.PPA"></a>1.PPA</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202404251920768.png" alt="image-20240416134505795" style="zoom:67%;"></p><p>对于小目标而言，经过多次下采样容易丢失关键信息，作者使用PPA模块取代了编码器和解码器中的传统卷积的操作，来解决此问题。</p><p>PPA使用了多分支提取策略，多分支策略有助于捕获物体的多尺度特征，从而提高对小目标的特征提取能力。其由三个平行分支组成：局部、全局、串行卷积。</p><p>PPA步骤如下：</p><ul><li>对于输入特征F,先使用点卷积调整通道数，然后输入到三个分支</li><li><p>通过三个分支分别计算得到<script type="math/tex">F_{local}、F_{global}、F_{conv}</script></p></li><li><p>将三个分支的输出结果相加得到最后的输出</p></li></ul><p><strong>Patch-Aware:</strong></p><p>使用 Unfold 和 reshape 操作将特征张量 F’ 划分为一组空间上连续的patch,对这些 patch 进行通道方向上的平均，得到大小为 (p × p, H’/p, W’/p) 的结果，接着使用 FFN 进行线性计算。随后，应用激活函数来获得线性计算特征在空间维度上的概率分布，并相应调整它们的权重,对加权结果进行特征选择，从 tokens 和通道中选择与任务相关的特征。</p><p><em>注：局部和全局分支的区分是通过patch的大小参数p来控制的</em></p><p><strong>特征融合和注意力：</strong></p><p>在进行了多分支的特征提取后，利用注意力机制进行自适应的特征增强，该注意力模块由通道注意力和空间注意力组成，其过程如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202404251920747.png" alt="image-20240416143044284" style="zoom:67%;"></p><p><em>注：其中，⊗ 表示元素相乘，<script type="math/tex">F_c∈ R^{H'×W'×C'}</script>、<script type="math/tex">F_s∈ R^{H'×W'×C'}</script>分别表示通道注意力和空间注意力处理后的特征，<script type="math/tex">M_c∈ R^{1×1×C'}</script>是通道注意力图,<script type="math/tex">M_s∈ R^{H'×W'×1}</script>是空间注意力图。δ和 B 分别表示ReLU和BN，F’’是PPA的最终的输出</em></p><h4 id="2-维度感知选择性整合模块"><a href="#2-维度感知选择性整合模块" class="headerlink" title="2.维度感知选择性整合模块"></a><strong>2.维度感知选择性整合模块</strong></h4><p><img src="https://typoraimg.wangak.cc/2023/img/202404251920269.png" alt="image-20240416144400263" style="zoom: 80%;"></p><p>DASI能够根据物体的大小自适应地选择合适的特征进行融合，DASI通过卷积、插值等操作，将高维特征<script type="math/tex">F_h∈R^{H_h×W_h×C_h}</script>和低维特征<script type="math/tex">F_l∈R^{H_l×W_l×C_l}</script>与当前层的特征<script type="math/tex">F_u∈R^{H×W×C}</script>进行初步对齐。随后，它将这些特征在通道维度上分成四个相等的部分，从而得到 <script type="math/tex">{(h_i)}_{i=1}^4 ∈R^{H × W × C/4}</script>, <script type="math/tex">{(I_i)}_{i=1}^4 ∈R^{H × W × C/4}</script>, <script type="math/tex">{(u_i)}_{i=1}^4 ∈R^{H × W × C/4}</script>,其中 <script type="math/tex">h_i、 I_i和 u_i</script> 分别表示高维、低维和当前层特征的第 i 个分区特征。<br>该模块最终的输出结构为：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202404251920852.png" alt="image-20240416145650808" style="zoom:67%;"></p><p><em>注： α是通过应用于<script type="math/tex">u_i</script>的激活函数所得到的值，当α> 0.5，则模型优先考虑细粒度特征，当α &lt; 0.5，则强调上下文特征。</em></p><h4 id="3-MDCR"><a href="#3-MDCR" class="headerlink" title="3.MDCR"></a>3.MDCR</h4><p>在 MDCR 中，引入了多个深度可分离卷积层，以不同的扩张率捕捉各种感受野大小的空间特征，从而能够对物体和背景之间的差异进行更详细的建模，增强其分辨小物体的能力。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202404251920901.png" alt="image-20240416150546927" style="zoom:67%;"></p><p>将输入特征沿通道维度分成四部分，每个部分以不同的扩张率进行深度可分离卷积，然后通过对每个部分的通道交错重排来增强多尺度特征的多样性，最后使用点卷积将这四部分的信息进行融合。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机视觉 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机视觉 </tag>
+            
+            <tag> 图像分割 </tag>
+            
+            <tag> 特征融合 </tag>
+            
+            <tag> 下采样模块 </tag>
             
         </tags>
       
@@ -1663,9 +1694,9 @@
             
             <tag> python </tag>
             
-            <tag> 深度学习 </tag>
-            
             <tag> 感知机 </tag>
+            
+            <tag> 深度学习 </tag>
             
         </tags>
       
@@ -1798,9 +1829,9 @@
     
     
     <entry>
-      <title>tags</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>comments</title>
+      <link href="/comments/index.html"/>
+      <url>/comments/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -1809,9 +1840,9 @@
     
     
     <entry>
-      <title>comments</title>
-      <link href="/comments/index.html"/>
-      <url>/comments/index.html</url>
+      <title>tags</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
