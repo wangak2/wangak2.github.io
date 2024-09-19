@@ -6,7 +6,7 @@
   <link href="https://wangak.cc/atom.xml" rel="self"/>
   
   <link href="https://wangak.cc/"/>
-  <updated>2024-06-23T04:05:01.869Z</updated>
+  <updated>2024-09-19T02:12:25.345Z</updated>
   <id>https://wangak.cc/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MobileUNETR:A Lightweight End-To-End Hybrid Vision Transformer For Efficient Medical Image Segmentation</title>
+    <link href="https://wangak.cc/posts/c34814e1.html"/>
+    <id>https://wangak.cc/posts/c34814e1.html</id>
+    <published>2024-09-18T16:00:00.000Z</published>
+    <updated>2024-09-19T02:12:25.345Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="MobileUNETR-A-Lightweight-End-To-End-Hybrid-Vision-Transformer-For-Efficient-Medical-Image-Segmentation"><a href="#MobileUNETR-A-Lightweight-End-To-End-Hybrid-Vision-Transformer-For-Efficient-Medical-Image-Segmentation" class="headerlink" title="MobileUNETR: A Lightweight End-To-End Hybrid Vision Transformer For Efficient Medical Image Segmentation"></a>MobileUNETR: A Lightweight End-To-End Hybrid Vision Transformer For Efficient Medical Image Segmentation</h3><p><strong>论文：《MobileUNETR: A Lightweight End-To-End Hybrid Vision Transformer For Efficient Medical Image Segmentation》（ECCV 2024）</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202409191008537.png" alt="image-20240918195745497"></p><p><strong>Hybrid Encoder Block:</strong>利用深度可分离卷积将特征投影到高维，再利用MobileViT block捕获局部和全局信息</p><p><strong>Hybrid Decoder Block:</strong>首先，使用转置卷积进行上采样；然后，将得到的特征与跳跃连接的特征进行拼接；最后，使用MobileViT block得到改进后的分割结果</p><h4 id="MobileViT-block"><a href="#MobileViT-block" class="headerlink" title="MobileViT block"></a>MobileViT block</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202409191008262.png" alt="image-20240918200915992" style="zoom:67%;"></p><ul><li><strong>Local representations:</strong>先使用n×n卷积进行特征提取，再使用1×1卷积调整通道数，获取局部特征</li><li><strong>global representations:</strong>通过Unfold和Fold操作实现，对相同颜色的小色块会进行Attention，以此来减小Attention计算的复杂度，来获取全局特征</li><li><strong>Fusion:</strong>通过与原始特征图的拼接，来实现融合</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;MobileUNETR-A-Lightweight-End-To-End-Hybrid-Vision-Transformer-For-Efficient-Medical-Image-Segmentation&quot;&gt;&lt;a href=&quot;#MobileUNETR-A-Lig</summary>
+      
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Improving Transformers with Dynamically Composable Multi-Head Attention</title>
+    <link href="https://wangak.cc/posts/2d10fdc6.html"/>
+    <id>https://wangak.cc/posts/2d10fdc6.html</id>
+    <published>2024-06-24T16:00:00.000Z</published>
+    <updated>2024-09-19T02:11:38.681Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Improving-Transformers-with-Dynamically-Composable-Multi-Head-Attention"><a href="#Improving-Transformers-with-Dynamically-Composable-Multi-Head-Attention" class="headerlink" title="Improving Transformers with Dynamically Composable Multi-Head Attention"></a>Improving Transformers with Dynamically Composable Multi-Head Attention</h2><p><strong>论文：《Improving Transformers with Dynamically Composable Multi-Head Attention》（ICML 2024）</strong></p><p><strong>多头注意力（MHA)的不足：</strong>对于多头注意力（MHA)，其注意力头是独立工作的，这种独立性限制了每个头能捕捉到的特征和关系的多样性，注意力矩阵存在低秩瓶颈和冗余。</p><p>作者提出了<strong>动态组合多头注意力（DCMHA)</strong>,其解决了MHA的不足，通过动态组合注意力头来提高模型的表达能力。</p><p>动态可组合多头注意力（DCMHA）中，核心是一个 <strong>Compose 函数</strong>，它根据查询 <script type="math/tex">Q_i</script>和键 <script type="math/tex">K_j</script>以及可训练参数 <script type="math/tex">\theta</script>，将它们的注意力向量 <script type="math/tex">A_{:ij}</script>∈<script type="math/tex">{R}^H</script>A:ij∈RH 转换为新的向量 <script type="math/tex">A'_{:ij}</script>​</p><p>注：假设T、S是查询和键序列长度，用<script type="math/tex">A_h</script>​表示第h个头的注意力矩阵</p><p>​    <script type="math/tex">A_{:ij}</script>表示注意力向量，它是查询向量 <script type="math/tex">Q_i</script>和键向量 <script type="math/tex">K_j</script>之间的注意力得分向量</p><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351820.png" alt="image-20240612150016488" style="zoom: 67%;"></p><p>​                                <img src="https://typoraimg.wangak.cc/2023/img/202406251351020.png" alt="image-20240612150213603" style="zoom:67%;">         </p><p>​        为了实现 DCMHA，在 MHA 的计算中插入两个 Compose 函数，其中一个在 softmax 之前应用于注意力分数张量 <script type="math/tex">A_S</script>，另一个在 softmax 之后应用于注意力权重张量 <script type="math/tex">A_W</script>，步骤如下：</p><ul><li>注意力分数 <script type="math/tex">A_S</script> 计算：</li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351826.png" alt="image-20240612150526297" style="zoom: 67%;"></p><ul><li>注意力权重 <script type="math/tex">A_W</script> 计算：</li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351155.png" alt="image-20240612150547712" style="zoom:67%;"></p><ul><li><p>DCMHA模块最后的输出为：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351933.png" alt="image-20240612150756075" style="zoom:67%;"></p><p><strong>Compose 函数:</strong></p></li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351096.png" alt="image-20240612161027897" style="zoom:67%;"></p><p>注意力向量<script type="math/tex">A_{:ij}</script>经过5个分支进行变化，然后相加</p><ul><li><p>第一个分支（基础投影）：<script type="math/tex">A_{:ij}</script>首先由一个权重矩阵<script type="math/tex">W_b</script>进行投影</p></li><li><p>第二个分支（查询的动态投影）：<script type="math/tex">A_{:ij}</script>通过 <script type="math/tex">w_{q1}∈R^{H×R}</script>投影到低维 <script type="math/tex">R</script>,再通过<script type="math/tex">w_{q2}∈R^{R×H}</script>投影回原始维度<script type="math/tex">H</script>,其中动态权重 <script type="math/tex">w_{q1}</script> 和 <script type="math/tex">w_{q2}</script>  由 查询向量<script type="math/tex">Q_i</script> 计算得出。</p></li><li><p>第三个分支（查询的动态门控）：<script type="math/tex">A_{:ij}</script>乘以一个门控权重<script type="math/tex">w_{qg}</script>控制每个头保留或忘记原始分数。</p></li><li><p>第四个分支（键的动态投影）：类似于第二个分支</p></li><li><p>第五个分支（键的动态门控）：类似于第三个分支</p></li></ul><p>最终的 <script type="math/tex">A'_{:ij}</script>为：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351275.png" alt="image-20240612162302939" style="zoom:50%;"></p><p><em>注：DCMHA的可训练参数<script type="math/tex">\theta</script>为：{<script type="math/tex">W_b</script>、<script type="math/tex">w_{q1}</script>、<script type="math/tex">w_{q2}</script>、<script type="math/tex">w_{qg}</script>、<script type="math/tex">w_{k1}</script>、<script type="math/tex">w_{k2}</script>、<script type="math/tex">w_{kg}</script>}</em></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Improving-Transformers-with-Dynamically-Composable-Multi-Head-Attention&quot;&gt;&lt;a href=&quot;#Improving-Transformers-with-Dynamically-Composabl</summary>
+      
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    
+  </entry>
   
   <entry>
     <title>Frequency Channel Attention Networks</title>
@@ -47,7 +99,7 @@
     <link href="https://wangak.cc/posts/6b854769.html"/>
     <id>https://wangak.cc/posts/6b854769.html</id>
     <published>2024-06-12T16:00:00.000Z</published>
-    <updated>2024-06-23T04:05:01.870Z</updated>
+    <updated>2024-09-02T06:26:13.893Z</updated>
     
     <content type="html"><![CDATA[<h2 id="SCConv-Spatial-and-Channel-Reconstruction-Convolution-for-Feature-Redundancy"><a href="#SCConv-Spatial-and-Channel-Reconstruction-Convolution-for-Feature-Redundancy" class="headerlink" title="SCConv: Spatial and Channel Reconstruction Convolution for Feature Redundancy"></a>SCConv: Spatial and Channel Reconstruction Convolution for Feature Redundancy</h2><p><strong>论文：《SCConv: Spatial and Channel Reconstruction Convolution for Feature Redundancy》（cvpr2023）</strong></p><p><strong>SCConv由空间重构单元（SRU)和通道重构单元（CRU)组成。</strong></p><ul><li>SRU采用分离重构的方法来抑制空间冗余</li><li>CRU采用分离变换融合的策略减少通道冗余</li></ul><h4 id="SCConv的结构"><a href="#SCConv的结构" class="headerlink" title="SCConv的结构"></a><strong>SCConv的结构</strong></h4><p><img src="https://typoraimg.wangak.cc/2023/img/202406131012152.png" alt="image-20240529144607573"></p><p>利用SRU运算获得空间细化特征<script type="math/tex">X^w</script>,然后利用CRU运算获得通道细化特征Y,通过SCConv可以减少中间特征映射之间的冗余并增强CNN的特征表示</p><p><strong>空间重构单元（SRU)：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202406131012043.png" alt="image-20240529152914871" style="zoom: 50%;"></p><p>空间重构单元(SRU)利用了分离和重构操作，分离操作的目的是将信息丰富的特征图与空间内容对应的信息较少的特征图分离开来</p><ul><li>利用组归一化（GN)中的因子<script type="math/tex">\gamma</script>来评估不同特征图的信息内容：</li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202406131012790.png" alt="image-20240529150814239" style="zoom:67%;"></p><p><em>注：因子<script type="math/tex">\gamma</script>是可训练的参数<script type="math/tex">\gamma\in{R^C}</script>,可利用其测量通道的像素方差，更丰富的空间信息反映了更多空间像素的变化，从而导致更大的<script type="math/tex">\gamma</script></em></p><ul><li>归一化后的权重<script type="math/tex">W_{\gamma}</script>通过下式得到：</li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202406131012984.png" alt="image-20240529151546208" style="zoom:67%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202406131012200.png" alt="image-20240529151624068" style="zoom:67%;"></p><p><em>注:通过Gate门控来得到信息权重<script type="math/tex">W_1</script>和非信息权重<script type="math/tex">W_2</script>（Gate门控通过设置一个阈值，大于阈值置为1得到信息权重，小于置为0得到非信息权重）</em></p><ul><li><p>然后用输入特征X分别乘以信息权重<script type="math/tex">W_1</script>和非信息权重<script type="math/tex">W_2</script>，得到信息量大的<script type="math/tex">X_1^w</script>和信息量小的<script type="math/tex">X_2^w</script></p></li><li><p>最后，使用交叉重构运算将加权后的两个不同的信息特征结合起来</p></li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202406131012343.png" alt="image-20240529152948213" style="zoom:67%;"></p><p>​    <em>注：∪是concat操作</em></p><p><strong>通道重构单元（CRU)：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202406131012084.png" alt="image-20240529154145674" style="zoom:67%;"></p><p>使用CRU来取代了标准卷积，其通过三个操作符实现（Split、Transform、Fuse)</p><ul><li><p><strong>Split:</strong>将输入的<script type="math/tex">X^w</script>的通道分割为αC和(1-α)C两部分（α是分割比），之后再使用1×1卷积来压缩特征通道，来提高计算效率</p></li><li><p><strong>Transform:</strong></p><ul><li><p>对<script type="math/tex">X_{up}</script>​​使用（GWC、PWC)取代标准卷积来降低计算成本，之后再对输出进行汇总：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202406131012988.png" alt="image-20240529154614185" style="zoom:67%;"></p></li><li><p>对<script type="math/tex">X_{low}</script>使用PWC作为对<script type="math/tex">X_{up}</script>的补充</p></li></ul></li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202406131012549.png" alt="image-20240529155523501" style="zoom:67%;"></p><ul><li>Fuse:对<script type="math/tex">Y_1</script>和<script type="math/tex">Y_2</script>进行融合</li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202406131012883.png" alt="image-20240529155734692" style="zoom:67%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202406131012620.png" alt="image-20240529155800507" style="zoom: 67%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202406131013076.png" alt="image-20240529155813158" style="zoom:67%;"></p>]]></content>
     
@@ -65,54 +117,6 @@
     <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
     
     <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://wangak.cc/posts/0.html"/>
-    <id>https://wangak.cc/posts/0.html</id>
-    <published>2024-06-11T06:53:51.210Z</published>
-    <updated>2024-06-25T05:52:39.553Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">title: Improving Transformers with Dynamically Composable Multi-Head Attention</span><br><span class="line">tags:</span><br><span class="line">  - 计算机视觉</span><br><span class="line">  - 图像分割</span><br><span class="line">categories: 计算机视觉</span><br><span class="line">date: 2024-06-25 00:00:00</span><br></pre></td></tr></table></figure><h2 id="Improving-Transformers-with-Dynamically-Composable-Multi-Head-Attention"><a href="#Improving-Transformers-with-Dynamically-Composable-Multi-Head-Attention" class="headerlink" title="Improving Transformers with Dynamically Composable Multi-Head Attention"></a>Improving Transformers with Dynamically Composable Multi-Head Attention</h2><p><strong>论文：《Improving Transformers with Dynamically Composable Multi-Head Attention》（ICML 2024）</strong></p><p><strong>多头注意力（MHA)的不足：</strong>对于多头注意力（MHA)，其注意力头是独立工作的，这种独立性限制了每个头能捕捉到的特征和关系的多样性，注意力矩阵存在低秩瓶颈和冗余。</p><p>作者提出了<strong>动态组合多头注意力（DCMHA)</strong>,其解决了MHA的不足，通过动态组合注意力头来提高模型的表达能力。</p><p>动态可组合多头注意力（DCMHA）中，核心是一个 <strong>Compose 函数</strong>，它根据查询 <script type="math/tex">Q_i</script>和键 <script type="math/tex">K_j</script>以及可训练参数 <script type="math/tex">\theta</script>，将它们的注意力向量 <script type="math/tex">A_{:ij}</script>∈<script type="math/tex">{R}^H</script>A:ij∈RH 转换为新的向量 <script type="math/tex">A'_{:ij}</script>​</p><p>注：假设T、S是查询和键序列长度，用<script type="math/tex">A_h</script>​表示第h个头的注意力矩阵</p><p>​    <script type="math/tex">A_{:ij}</script>表示注意力向量，它是查询向量 <script type="math/tex">Q_i</script>和键向量 <script type="math/tex">K_j</script>之间的注意力得分向量</p><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351820.png" alt="image-20240612150016488" style="zoom: 67%;"></p><p>​                                <img src="https://typoraimg.wangak.cc/2023/img/202406251351020.png" alt="image-20240612150213603" style="zoom:67%;">         </p><p>​        为了实现 DCMHA，在 MHA 的计算中插入两个 Compose 函数，其中一个在 softmax 之前应用于注意力分数张量 <script type="math/tex">A_S</script>，另一个在 softmax 之后应用于注意力权重张量 <script type="math/tex">A_W</script>，步骤如下：</p><ul><li>注意力分数 <script type="math/tex">A_S</script> 计算：</li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351826.png" alt="image-20240612150526297" style="zoom: 67%;"></p><ul><li>注意力权重 <script type="math/tex">A_W</script> 计算：</li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351155.png" alt="image-20240612150547712" style="zoom:67%;"></p><ul><li><p>DCMHA模块最后的输出为：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351933.png" alt="image-20240612150756075" style="zoom:67%;"></p><p><strong>Compose 函数:</strong></p></li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351096.png" alt="image-20240612161027897" style="zoom:67%;"></p><p>注意力向量<script type="math/tex">A_{:ij}</script>经过5个分支进行变化，然后相加</p><ul><li><p>第一个分支（基础投影）：<script type="math/tex">A_{:ij}</script>首先由一个权重矩阵<script type="math/tex">W_b</script>进行投影</p></li><li><p>第二个分支（查询的动态投影）：<script type="math/tex">A_{:ij}</script>通过 <script type="math/tex">w_{q1}∈R^{H×R}</script>投影到低维 <script type="math/tex">R</script>,再通过<script type="math/tex">w_{q2}∈R^{R×H}</script>投影回原始维度<script type="math/tex">H</script>,其中动态权重 <script type="math/tex">w_{q1}</script> 和 <script type="math/tex">w_{q2}</script>  由 查询向量<script type="math/tex">Q_i</script> 计算得出。</p></li><li><p>第三个分支（查询的动态门控）：<script type="math/tex">A_{:ij}</script>乘以一个门控权重<script type="math/tex">w_{qg}</script>控制每个头保留或忘记原始分数。</p></li><li><p>第四个分支（键的动态投影）：类似于第二个分支</p></li><li><p>第五个分支（键的动态门控）：类似于第三个分支</p></li></ul><p>最终的 <script type="math/tex">A'_{:ij}</script>为：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351275.png" alt="image-20240612162302939" style="zoom:50%;"></p><p><em>注：DCMHA的可训练参数<script type="math/tex">\theta</script>为：{<script type="math/tex">W_b</script>、<script type="math/tex">w_{q1}</script>、<script type="math/tex">w_{q2}</script>、<script type="math/tex">w_{qg}</script>、<script type="math/tex">w_{k1}</script>、<script type="math/tex">w_{k2}</script>、<script type="math/tex">w_{kg}</script>}</em></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span c</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>AGILEFORMER:SPATIALLY AGILE TRANSFORMER UNET FOR MEDICAL IMAGE SEGMENTATION</title>
-    <link href="https://wangak.cc/posts/6b854769.html"/>
-    <id>https://wangak.cc/posts/6b854769.html</id>
-    <published>2024-05-13T16:00:00.000Z</published>
-    <updated>2024-05-28T02:18:35.262Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="AGILEFORMER-SPATIALLY-AGILE-TRANSFORMER-UNET-FOR-MEDICAL-IMAGE-SEGMENTATION"><a href="#AGILEFORMER-SPATIALLY-AGILE-TRANSFORMER-UNET-FOR-MEDICAL-IMAGE-SEGMENTATION" class="headerlink" title="AGILEFORMER: SPATIALLY AGILE TRANSFORMER UNET FOR MEDICAL IMAGE SEGMENTATION"></a>AGILEFORMER: SPATIALLY AGILE TRANSFORMER UNET FOR MEDICAL IMAGE SEGMENTATION</h2><p>论文：《AGILEFORMER: SPATIALLY AGILE TRANSFORMER UNET FOR MEDICAL IMAGE SEGMENTATION》（arXiv 2024）</p><ul><li><p>作者使用了一种新的patch embedding取代了vit-unet中标准的patch embedding</p></li><li><p>采用空间动态自注意力来捕获空间变化特征</p></li><li><p>提出了一种新的多尺度可变形位置编码</p></li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202405141004754.png" alt="image-20240511095459528"></p><h4 id="可变形的patch-embedding"><a href="#可变形的patch-embedding" class="headerlink" title="可变形的patch embedding"></a><strong>可变形的patch embedding</strong></h4><p>通过可变形卷积卷积核的采样位置可以根据输入的特征图进行微小的偏移，从而可以实现更灵活的特征提取。通过引入可变形的采样位置，使得补丁嵌入可以更好地适应不规则的结构，从而提高了特征提取的灵活性和准确性。</p><ul><li><p>第一个patch embedding：使用两个连续的可变形卷积层，这两个连续重叠的可变形patch embedding可以更好地提取局部特征，弥补了自注意力中局部性的不足</p></li><li><p>下采样层：通过3×3卷积完成下采样</p></li></ul><h4 id="空间动态自注意力"><a href="#空间动态自注意力" class="headerlink" title="空间动态自注意力"></a><strong>空间动态自注意力</strong></h4><p><strong>可变形多头自注意力：</strong></p><p>第h个头的计算过程如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141004778.png" alt="image-20240511100930114" style="zoom:67%;"></p><p>注：f是输入的特征图，ϕ是插值函数，用于生成偏移后的特征图<script type="math/tex">\hat{f}</script>,<script type="math/tex">∆p_h</script>是第h个头部生成的偏移量,其通过一个卷积层生成</p><p><strong>邻域多头自注意力：</strong></p><p>与标准自注意力不同，标准自注意力计算特征图f中每个位置p的元素与其他位置元素的相似度，而邻域注意力只利用位置p周围k个最近邻的信息来计算注意力权重，而不是与所有位置的元素计算相似度。减少了标准自注意力的计算复杂度，从二次降至近似于空间维度线性的复杂度。重新引入了局部操作到自注意力中，使得模型具有平移等变性，从而提高了保留局部信息的能力。</p><h4 id="多尺度可变形位置编码"><a href="#多尺度可变形位置编码" class="headerlink" title="多尺度可变形位置编码"></a>多尺度可变形位置编码</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202405141004551.png" alt="image-20240511102232095" style="zoom:67%;"></p><p>通过在跨多个尺度对不规则采样的位置信息进行编码。</p><p>公式如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141004922.png" alt="image-20240511102056849"></p><p><em>注：f是输入特征图，<script type="math/tex">P_θ</script>实现为多尺度可变形深度卷积层，具有不同的核大小（3×3和5×5）</em></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;AGILEFORMER-SPATIALLY-AGILE-TRANSFORMER-UNET-FOR-MEDICAL-IMAGE-SEGMENTATION&quot;&gt;&lt;a href=&quot;#AGILEFORMER-SPATIALLY-AGILE-TRANSFORMER-UNET-</summary>
-      
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
-    
-    <category term="特征提取" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96/"/>
     
   </entry>
   
@@ -143,6 +147,34 @@
     <category term="特征融合" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/"/>
     
     <category term="双编码器" scheme="https://wangak.cc/tags/%E5%8F%8C%E7%BC%96%E7%A0%81%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AGILEFORMER:SPATIALLY AGILE TRANSFORMER UNET FOR MEDICAL IMAGE SEGMENTATION</title>
+    <link href="https://wangak.cc/posts/6b854769.html"/>
+    <id>https://wangak.cc/posts/6b854769.html</id>
+    <published>2024-05-13T16:00:00.000Z</published>
+    <updated>2024-05-28T02:18:35.262Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="AGILEFORMER-SPATIALLY-AGILE-TRANSFORMER-UNET-FOR-MEDICAL-IMAGE-SEGMENTATION"><a href="#AGILEFORMER-SPATIALLY-AGILE-TRANSFORMER-UNET-FOR-MEDICAL-IMAGE-SEGMENTATION" class="headerlink" title="AGILEFORMER: SPATIALLY AGILE TRANSFORMER UNET FOR MEDICAL IMAGE SEGMENTATION"></a>AGILEFORMER: SPATIALLY AGILE TRANSFORMER UNET FOR MEDICAL IMAGE SEGMENTATION</h2><p>论文：《AGILEFORMER: SPATIALLY AGILE TRANSFORMER UNET FOR MEDICAL IMAGE SEGMENTATION》（arXiv 2024）</p><ul><li><p>作者使用了一种新的patch embedding取代了vit-unet中标准的patch embedding</p></li><li><p>采用空间动态自注意力来捕获空间变化特征</p></li><li><p>提出了一种新的多尺度可变形位置编码</p></li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202405141004754.png" alt="image-20240511095459528"></p><h4 id="可变形的patch-embedding"><a href="#可变形的patch-embedding" class="headerlink" title="可变形的patch embedding"></a><strong>可变形的patch embedding</strong></h4><p>通过可变形卷积卷积核的采样位置可以根据输入的特征图进行微小的偏移，从而可以实现更灵活的特征提取。通过引入可变形的采样位置，使得补丁嵌入可以更好地适应不规则的结构，从而提高了特征提取的灵活性和准确性。</p><ul><li><p>第一个patch embedding：使用两个连续的可变形卷积层，这两个连续重叠的可变形patch embedding可以更好地提取局部特征，弥补了自注意力中局部性的不足</p></li><li><p>下采样层：通过3×3卷积完成下采样</p></li></ul><h4 id="空间动态自注意力"><a href="#空间动态自注意力" class="headerlink" title="空间动态自注意力"></a><strong>空间动态自注意力</strong></h4><p><strong>可变形多头自注意力：</strong></p><p>第h个头的计算过程如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141004778.png" alt="image-20240511100930114" style="zoom:67%;"></p><p>注：f是输入的特征图，ϕ是插值函数，用于生成偏移后的特征图<script type="math/tex">\hat{f}</script>,<script type="math/tex">∆p_h</script>是第h个头部生成的偏移量,其通过一个卷积层生成</p><p><strong>邻域多头自注意力：</strong></p><p>与标准自注意力不同，标准自注意力计算特征图f中每个位置p的元素与其他位置元素的相似度，而邻域注意力只利用位置p周围k个最近邻的信息来计算注意力权重，而不是与所有位置的元素计算相似度。减少了标准自注意力的计算复杂度，从二次降至近似于空间维度线性的复杂度。重新引入了局部操作到自注意力中，使得模型具有平移等变性，从而提高了保留局部信息的能力。</p><h4 id="多尺度可变形位置编码"><a href="#多尺度可变形位置编码" class="headerlink" title="多尺度可变形位置编码"></a>多尺度可变形位置编码</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202405141004551.png" alt="image-20240511102232095" style="zoom:67%;"></p><p>通过在跨多个尺度对不规则采样的位置信息进行编码。</p><p>公式如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141004922.png" alt="image-20240511102056849"></p><p><em>注：f是输入特征图，<script type="math/tex">P_θ</script>实现为多尺度可变形深度卷积层，具有不同的核大小（3×3和5×5）</em></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;AGILEFORMER-SPATIALLY-AGILE-TRANSFORMER-UNET-FOR-MEDICAL-IMAGE-SEGMENTATION&quot;&gt;&lt;a href=&quot;#AGILEFORMER-SPATIALLY-AGILE-TRANSFORMER-UNET-</summary>
+      
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    
+    <category term="特征提取" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96/"/>
     
   </entry>
   
@@ -405,7 +437,7 @@
     <link href="https://wangak.cc/posts/16e5c57e.html"/>
     <id>https://wangak.cc/posts/16e5c57e.html</id>
     <published>2024-03-18T16:00:00.000Z</published>
-    <updated>2024-03-19T11:41:41.551Z</updated>
+    <updated>2024-09-10T13:45:17.060Z</updated>
     
     <content type="html"><![CDATA[<h2 id="DELIGHT"><a href="#DELIGHT" class="headerlink" title="DELIGHT"></a>DELIGHT</h2><p><strong>论文：《DELIGHT DEEP AND LIGHT-WEIGHT TRANSFORMER》</strong></p><p>DeLighT比标准的基于Transfomer的模型具有更少的参数，在每个Transformer块中使用DeLighT转换</p><p>DeLighT架构促使在Transformer中用单头注意力和轻量级前馈层替代多头注意力和前馈层，从而减少了总网络参数和运算。</p><p>注：在多头注意力中，每个注意力头都有自己的参数矩阵，因此总参数量较大。而使用单头注意力，参数矩阵只需一个，可以减少参数量。多头注意力需要对每个头进行独立计算，然后将它们合并，而单头注意力只需要进行一次计算，因此在计算上更加高效。</p><h3 id="DeLighT-Transformer"><a href="#DeLighT-Transformer" class="headerlink" title="DeLighT Transformer"></a><strong>DeLighT Transformer</strong></h3><p><strong>DeLighT变换：</strong>将一个<script type="math/tex">d_m</script>维的输入向量映射到一个高维空间（Expansion），然后通过组线性变换（GLT)将其将维到一个<script type="math/tex">d_o</script>维的输出向量（Reduction)。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202403191940652.png" alt="image-20240319143848797"></p><p><em>注：组线性变换（GLT)用于降低Transformer模型的计算复杂度，分成N个组，每个组共享权重矩阵，通过输入的特定部分来输出局部的特征表示，其比线性更高效</em></p><p>为了学习全局表示，DeLighT变换使用特征重排在组线性变换中共享信息。</p><p><strong>模型表达能力的增加：</strong>传统Transformer增加输入维度<script type="math/tex">d_m</script>以增加表达力，而为了增加DeLighT块的表达力，不是增加输入维度<script type="math/tex">d_m</script>，而是通过Expansion和Reduction阶段增加中间DeLighT变换的深度和宽度。这使得我们可以使用更小的维度来计算注意力，从而需要更少的操作。</p><p>注：DeLighT变换的配置参数：GLTs的层数N、宽度乘法器<script type="math/tex">w_m</script>、输入维度<script type="math/tex">d_m</script>、输出维度<script type="math/tex">d_o</script>和GLTs的最大组数<script type="math/tex">g_{max}</script></p><p><strong>DeLighT变换具体步骤如下：</strong></p><ul><li>Expansion：将<script type="math/tex">d_m</script>维输入投影到高维空间，<script type="math/tex">d_{max}=w_md_m</script></li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202403191940643.png" alt="image-20240319151835407" style="zoom:50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202403191941700.png" alt="image-20240319153553608" style="zoom:50%;"></p><p><em>注：</em></p><ul><li><em><script type="math/tex">l</script>为GLT的层数，<script type="math/tex">g^l</script>表示<script type="math/tex">l</script>层的组数，W、b为可学习的权值和偏置</em></li><li><em><script type="math/tex">F</script>函数将输入分为<script type="math/tex">g^l</script>组然后进行线性变换得到Y</em></li><li><em><script type="math/tex">H</script>函数首先对<script type="math/tex">Y^{l-1}</script>​进行重排，来增加不同组间的信息的交互，然后将其和X进行混合</em></li></ul><p><strong>下图显示了DeLighT转换中的扩展阶段：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202403191940523.png" alt="image-20240319153106416"></p><p><strong>DeLighT Block：</strong>一个包含n个输入token的序列，每个标记的维度为<script type="math/tex">d_m</script>。这些n个<script type="math/tex">d_m</script>维的输入首先被送入DeLighT变换，产生n个维度为<script type="math/tex">d_o</script>的输出，其中<script type="math/tex">d_o < d_m</script>。这些n个<script type="math/tex">d_o</script>维的输出同时经过三个线性层投影，产生<script type="math/tex">d_o</script>维的查询Q、键K和值V</p><p><img src="https://typoraimg.wangak.cc/2023/img/202403191941128.png" alt="image-20240319160401455" style="zoom:50%;"></p><p><em>注：该模块将计算注意力的成本降低了<script type="math/tex">d_m/d_o</script>，作者取<script type="math/tex">d_o=d_m/2</script>​</em></p><p><strong>Light-weight FFN:</strong>r为降维因子，第一层将输入维度<script type="math/tex">d_m</script>降维到<script type="math/tex">d_m/r</script>，第二层将<script type="math/tex">d_m/r</script>再扩展到<script type="math/tex">d_m</script>​，相比于Transformer减少了FFN的参数和计算量</p><h3 id="块的扩展"><a href="#块的扩展" class="headerlink" title="块的扩展"></a><strong>块的扩展</strong></h3><p>与Transformer block相比，DeLighT block块的深度更深（N+4)</p><p>提高模型性能的方法通常通过<strong>增加模型维度（宽度缩放）、堆叠更多的块（深度缩放）</strong>，然而这种方式在小数据集上不是很有效。</p><p>作者认为这是因为缩放模型的宽度和深度在块之间是均匀分配参数的，这会导致模型学习到冗余的参数，于是作者<strong>将模型缩放扩展到块的级别</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202403191941032.png" alt="image-20240319192955781" style="zoom: 50%;"></p><p><strong>缩放DeLighT块:</strong>其深度和宽度分别由两个配置参数控制:GLT层数<script type="math/tex">N</script>和宽度乘法器<script type="math/tex">w_m</script>，通过引入了逐块缩放，创建了一个具有可变大小的DeLighT块的网络，在输入附近分配较浅和较窄的DeLighT块，在输出附近分配较深和较宽的DeLighT块。</p>]]></content>
     
@@ -423,6 +455,8 @@
     <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
     
     <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    
+    <category term="Transformer" scheme="https://wangak.cc/tags/Transformer/"/>
     
   </entry>
   
@@ -517,32 +551,6 @@
       
       
     <summary type="html">&lt;h2 id=&quot;MedSegDiff-v2&quot;&gt;&lt;a href=&quot;#MedSegDiff-v2&quot; class=&quot;headerlink&quot; title=&quot;MedSegDiff-v2&quot;&gt;&lt;/a&gt;MedSegDiff-v2&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;本文的贡献包括：&lt;/strong&gt;&lt;</summary>
-      
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ConvFormer</title>
-    <link href="https://wangak.cc/posts/badf7b43.html"/>
-    <id>https://wangak.cc/posts/badf7b43.html</id>
-    <published>2024-03-03T16:00:00.000Z</published>
-    <updated>2024-03-08T06:35:46.756Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="ConvFormer"><a href="#ConvFormer" class="headerlink" title="ConvFormer"></a>ConvFormer</h2><p><strong>论文：《ConvFormer: Plug-and-Play CNN-Style Transformers for Improving Medical Image Segmentation》（MICCAI 2023）</strong></p><p><strong>以往方法的不足：</strong></p><p>由于训练数据的不足，transformers效果较差（另一方面，医学图像本身的高冗余性）</p><p>在CNN-Transformer混合方法中，一方面，训练数据不足会使得transformers学习到次优的长距离依赖性，另一方面，直接将CNNs与transformers结合会使得网络偏向于学习CNNs，因为与transformers相比，CNNs的收敛性更容易实现，特别是在小规模训练数据上。</p><p>为解决该问题，作者提出了一个名为<strong>ConvFormer</strong>的即插即用模块</p><h3 id="网络结构："><a href="#网络结构：" class="headerlink" title="网络结构："></a><strong>网络结构：</strong></h3><p><img src="https://typoraimg.wangak.cc/2023/img/202403081435986.png" alt="image-20240304145207066" style="zoom:67%;"></p><p><strong>卷积+池化：</strong></p><p>上图最左边是传统的ViT，用一个个的patch作为自注意力的输入。</p><p>而作者用二维图像直接建立足够长的长程依赖，而不是分割为一堆一维序列，对于一个输入的图像通过卷积和池化来降低分辨率。</p><p><em>注：</em></p><p><em>1.上图中CBR是指卷积、批量归一化和Relu的组合</em></p><p><em>2.d为ViT中的每个patch大小S的对数</em></p><p>在此过程中，<img src="/posts/badf7b43.htm/Users\wangak\AppData\Roaming\Typora\typora-user-images\image-20240304150529624.png" alt="image-20240304150529624" style="zoom: 25%;"></p><p>其中，Cm对应于ViT中的嵌入维度</p><p><strong>CNN风格的自关注：</strong>为卷积+池化模块处理后的特征构建了一个自适应的卷积核</p><ul><li><p>利用可学习的矩阵乘上输入进来的特征，得到QKV：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202403081435314.png" alt="image-20240304151242512" style="zoom:50%;"></p></li><li><p>Q和K按照如下方式进行计算(余弦相似度)，对应于ViT里面的注意力分数计算：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202403081435848.png" alt="image-20240304151521415" style="zoom: 67%;"></p></li></ul><p><em>注1：Q和K作为分母，这样一来I矩阵的元素就不太容易变成0（如果某些位置的注意力值为0，那么表示模型在计算该位置的输出时不考虑与其他位置的相关性，可能导致模型在捕捉输入序列中重要的依赖关系和特征时出现问题。）</em></p><p><em>注2：<script type="math/tex">c_q</script>对应于ViT中𝑄、𝐾和𝑉的嵌入维度</em></p><ul><li>引入一个可学习的高斯距离图M：</li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202403081435731.png" alt="image-20240304151953190" style="zoom: 67%;"></p><p><em>注1：𝜃 ∈ (0, 1) 是一个可学习的网络参数，用于控制𝐴的感受野，𝛼 是一个超参数，用于控制感受野的倾向性。</em></p><p><em>注2：𝜃与感受野成正比。𝛼越大,𝐴越倾向于具有全局感受野。</em></p><p><strong>CFFN：</strong>仅由1 × 1卷积、批处理归一化和Relu两种组合组成。通过替换ViT中的线性投影和层归一化，CFFN使ConvFormer完全基于CNN，避免了CNN-Transformer混合方法在训练过程中CNN和Transformer之间的冲突。</p><h3 id="实验："><a href="#实验：" class="headerlink" title="实验："></a>实验：</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202403081435131.png" alt="image-20240304160737425" style="zoom:67%;"></p><p><em>注：ACDC(心脏诊断)、ISIC（皮肤病变）、ICH（血肿分割）</em></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;ConvFormer&quot;&gt;&lt;a href=&quot;#ConvFormer&quot; class=&quot;headerlink&quot; title=&quot;ConvFormer&quot;&gt;&lt;/a&gt;ConvFormer&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;论文：《ConvFormer: Plug-and-Play </summary>
       
     
     

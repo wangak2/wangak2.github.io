@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>MobileUNETR:A Lightweight End-To-End Hybrid Vision Transformer For Efficient Medical Image Segmentation</title>
+      <link href="/posts/c34814e1.html"/>
+      <url>/posts/c34814e1.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="MobileUNETR-A-Lightweight-End-To-End-Hybrid-Vision-Transformer-For-Efficient-Medical-Image-Segmentation"><a href="#MobileUNETR-A-Lightweight-End-To-End-Hybrid-Vision-Transformer-For-Efficient-Medical-Image-Segmentation" class="headerlink" title="MobileUNETR: A Lightweight End-To-End Hybrid Vision Transformer For Efficient Medical Image Segmentation"></a>MobileUNETR: A Lightweight End-To-End Hybrid Vision Transformer For Efficient Medical Image Segmentation</h3><p><strong>论文：《MobileUNETR: A Lightweight End-To-End Hybrid Vision Transformer For Efficient Medical Image Segmentation》（ECCV 2024）</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202409191008537.png" alt="image-20240918195745497"></p><p><strong>Hybrid Encoder Block:</strong>利用深度可分离卷积将特征投影到高维，再利用MobileViT block捕获局部和全局信息</p><p><strong>Hybrid Decoder Block:</strong>首先，使用转置卷积进行上采样；然后，将得到的特征与跳跃连接的特征进行拼接；最后，使用MobileViT block得到改进后的分割结果</p><h4 id="MobileViT-block"><a href="#MobileViT-block" class="headerlink" title="MobileViT block"></a>MobileViT block</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202409191008262.png" alt="image-20240918200915992" style="zoom:67%;"></p><ul><li><strong>Local representations:</strong>先使用n×n卷积进行特征提取，再使用1×1卷积调整通道数，获取局部特征</li><li><strong>global representations:</strong>通过Unfold和Fold操作实现，对相同颜色的小色块会进行Attention，以此来减小Attention计算的复杂度，来获取全局特征</li><li><strong>Fusion:</strong>通过与原始特征图的拼接，来实现融合</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机视觉 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机视觉 </tag>
+            
+            <tag> 图像分割 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Improving Transformers with Dynamically Composable Multi-Head Attention</title>
+      <link href="/posts/2d10fdc6.html"/>
+      <url>/posts/2d10fdc6.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="Improving-Transformers-with-Dynamically-Composable-Multi-Head-Attention"><a href="#Improving-Transformers-with-Dynamically-Composable-Multi-Head-Attention" class="headerlink" title="Improving Transformers with Dynamically Composable Multi-Head Attention"></a>Improving Transformers with Dynamically Composable Multi-Head Attention</h2><p><strong>论文：《Improving Transformers with Dynamically Composable Multi-Head Attention》（ICML 2024）</strong></p><p><strong>多头注意力（MHA)的不足：</strong>对于多头注意力（MHA)，其注意力头是独立工作的，这种独立性限制了每个头能捕捉到的特征和关系的多样性，注意力矩阵存在低秩瓶颈和冗余。</p><p>作者提出了<strong>动态组合多头注意力（DCMHA)</strong>,其解决了MHA的不足，通过动态组合注意力头来提高模型的表达能力。</p><p>动态可组合多头注意力（DCMHA）中，核心是一个 <strong>Compose 函数</strong>，它根据查询 <script type="math/tex">Q_i</script>和键 <script type="math/tex">K_j</script>以及可训练参数 <script type="math/tex">\theta</script>，将它们的注意力向量 <script type="math/tex">A_{:ij}</script>∈<script type="math/tex">{R}^H</script>A:ij∈RH 转换为新的向量 <script type="math/tex">A'_{:ij}</script>​</p><p>注：假设T、S是查询和键序列长度，用<script type="math/tex">A_h</script>​表示第h个头的注意力矩阵</p><p>​    <script type="math/tex">A_{:ij}</script>表示注意力向量，它是查询向量 <script type="math/tex">Q_i</script>和键向量 <script type="math/tex">K_j</script>之间的注意力得分向量</p><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351820.png" alt="image-20240612150016488" style="zoom: 67%;"></p><p>​                                <img src="https://typoraimg.wangak.cc/2023/img/202406251351020.png" alt="image-20240612150213603" style="zoom:67%;">         </p><p>​        为了实现 DCMHA，在 MHA 的计算中插入两个 Compose 函数，其中一个在 softmax 之前应用于注意力分数张量 <script type="math/tex">A_S</script>，另一个在 softmax 之后应用于注意力权重张量 <script type="math/tex">A_W</script>，步骤如下：</p><ul><li>注意力分数 <script type="math/tex">A_S</script> 计算：</li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351826.png" alt="image-20240612150526297" style="zoom: 67%;"></p><ul><li>注意力权重 <script type="math/tex">A_W</script> 计算：</li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351155.png" alt="image-20240612150547712" style="zoom:67%;"></p><ul><li><p>DCMHA模块最后的输出为：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351933.png" alt="image-20240612150756075" style="zoom:67%;"></p><p><strong>Compose 函数:</strong></p></li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351096.png" alt="image-20240612161027897" style="zoom:67%;"></p><p>注意力向量<script type="math/tex">A_{:ij}</script>经过5个分支进行变化，然后相加</p><ul><li><p>第一个分支（基础投影）：<script type="math/tex">A_{:ij}</script>首先由一个权重矩阵<script type="math/tex">W_b</script>进行投影</p></li><li><p>第二个分支（查询的动态投影）：<script type="math/tex">A_{:ij}</script>通过 <script type="math/tex">w_{q1}∈R^{H×R}</script>投影到低维 <script type="math/tex">R</script>,再通过<script type="math/tex">w_{q2}∈R^{R×H}</script>投影回原始维度<script type="math/tex">H</script>,其中动态权重 <script type="math/tex">w_{q1}</script> 和 <script type="math/tex">w_{q2}</script>  由 查询向量<script type="math/tex">Q_i</script> 计算得出。</p></li><li><p>第三个分支（查询的动态门控）：<script type="math/tex">A_{:ij}</script>乘以一个门控权重<script type="math/tex">w_{qg}</script>控制每个头保留或忘记原始分数。</p></li><li><p>第四个分支（键的动态投影）：类似于第二个分支</p></li><li><p>第五个分支（键的动态门控）：类似于第三个分支</p></li></ul><p>最终的 <script type="math/tex">A'_{:ij}</script>为：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351275.png" alt="image-20240612162302939" style="zoom:50%;"></p><p><em>注：DCMHA的可训练参数<script type="math/tex">\theta</script>为：{<script type="math/tex">W_b</script>、<script type="math/tex">w_{q1}</script>、<script type="math/tex">w_{q2}</script>、<script type="math/tex">w_{qg}</script>、<script type="math/tex">w_{k1}</script>、<script type="math/tex">w_{k2}</script>、<script type="math/tex">w_{kg}</script>}</em></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机视觉 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机视觉 </tag>
+            
+            <tag> 图像分割 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Frequency Channel Attention Networks</title>
       <link href="/posts/eb050326.html"/>
       <url>/posts/eb050326.html</url>
@@ -58,13 +112,31 @@
     
     
     <entry>
-      <title></title>
-      <link href="/posts/0.html"/>
-      <url>/posts/0.html</url>
+      <title>BEFUnet:A Hybrid CNN-Transformer Architecture for Precise Medical Image Segmentation</title>
+      <link href="/posts/7a30900a.html"/>
+      <url>/posts/7a30900a.html</url>
       
-        <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">title: Improving Transformers with Dynamically Composable Multi-Head Attention</span><br><span class="line">tags:</span><br><span class="line">  - 计算机视觉</span><br><span class="line">  - 图像分割</span><br><span class="line">categories: 计算机视觉</span><br><span class="line">date: 2024-06-25 00:00:00</span><br></pre></td></tr></table></figure><h2 id="Improving-Transformers-with-Dynamically-Composable-Multi-Head-Attention"><a href="#Improving-Transformers-with-Dynamically-Composable-Multi-Head-Attention" class="headerlink" title="Improving Transformers with Dynamically Composable Multi-Head Attention"></a>Improving Transformers with Dynamically Composable Multi-Head Attention</h2><p><strong>论文：《Improving Transformers with Dynamically Composable Multi-Head Attention》（ICML 2024）</strong></p><p><strong>多头注意力（MHA)的不足：</strong>对于多头注意力（MHA)，其注意力头是独立工作的，这种独立性限制了每个头能捕捉到的特征和关系的多样性，注意力矩阵存在低秩瓶颈和冗余。</p><p>作者提出了<strong>动态组合多头注意力（DCMHA)</strong>,其解决了MHA的不足，通过动态组合注意力头来提高模型的表达能力。</p><p>动态可组合多头注意力（DCMHA）中，核心是一个 <strong>Compose 函数</strong>，它根据查询 <script type="math/tex">Q_i</script>和键 <script type="math/tex">K_j</script>以及可训练参数 <script type="math/tex">\theta</script>，将它们的注意力向量 <script type="math/tex">A_{:ij}</script>∈<script type="math/tex">{R}^H</script>A:ij∈RH 转换为新的向量 <script type="math/tex">A'_{:ij}</script>​</p><p>注：假设T、S是查询和键序列长度，用<script type="math/tex">A_h</script>​表示第h个头的注意力矩阵</p><p>​    <script type="math/tex">A_{:ij}</script>表示注意力向量，它是查询向量 <script type="math/tex">Q_i</script>和键向量 <script type="math/tex">K_j</script>之间的注意力得分向量</p><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351820.png" alt="image-20240612150016488" style="zoom: 67%;"></p><p>​                                <img src="https://typoraimg.wangak.cc/2023/img/202406251351020.png" alt="image-20240612150213603" style="zoom:67%;">         </p><p>​        为了实现 DCMHA，在 MHA 的计算中插入两个 Compose 函数，其中一个在 softmax 之前应用于注意力分数张量 <script type="math/tex">A_S</script>，另一个在 softmax 之后应用于注意力权重张量 <script type="math/tex">A_W</script>，步骤如下：</p><ul><li>注意力分数 <script type="math/tex">A_S</script> 计算：</li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351826.png" alt="image-20240612150526297" style="zoom: 67%;"></p><ul><li>注意力权重 <script type="math/tex">A_W</script> 计算：</li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351155.png" alt="image-20240612150547712" style="zoom:67%;"></p><ul><li><p>DCMHA模块最后的输出为：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351933.png" alt="image-20240612150756075" style="zoom:67%;"></p><p><strong>Compose 函数:</strong></p></li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351096.png" alt="image-20240612161027897" style="zoom:67%;"></p><p>注意力向量<script type="math/tex">A_{:ij}</script>经过5个分支进行变化，然后相加</p><ul><li><p>第一个分支（基础投影）：<script type="math/tex">A_{:ij}</script>首先由一个权重矩阵<script type="math/tex">W_b</script>进行投影</p></li><li><p>第二个分支（查询的动态投影）：<script type="math/tex">A_{:ij}</script>通过 <script type="math/tex">w_{q1}∈R^{H×R}</script>投影到低维 <script type="math/tex">R</script>,再通过<script type="math/tex">w_{q2}∈R^{R×H}</script>投影回原始维度<script type="math/tex">H</script>,其中动态权重 <script type="math/tex">w_{q1}</script> 和 <script type="math/tex">w_{q2}</script>  由 查询向量<script type="math/tex">Q_i</script> 计算得出。</p></li><li><p>第三个分支（查询的动态门控）：<script type="math/tex">A_{:ij}</script>乘以一个门控权重<script type="math/tex">w_{qg}</script>控制每个头保留或忘记原始分数。</p></li><li><p>第四个分支（键的动态投影）：类似于第二个分支</p></li><li><p>第五个分支（键的动态门控）：类似于第三个分支</p></li></ul><p>最终的 <script type="math/tex">A'_{:ij}</script>为：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202406251351275.png" alt="image-20240612162302939" style="zoom:50%;"></p><p><em>注：DCMHA的可训练参数<script type="math/tex">\theta</script>为：{<script type="math/tex">W_b</script>、<script type="math/tex">w_{q1}</script>、<script type="math/tex">w_{q2}</script>、<script type="math/tex">w_{qg}</script>、<script type="math/tex">w_{k1}</script>、<script type="math/tex">w_{k2}</script>、<script type="math/tex">w_{kg}</script>}</em></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="BEFUnet-A-Hybrid-CNN-Transformer-Architecture-for-Precise-Medical-Image-Segmentation"><a href="#BEFUnet-A-Hybrid-CNN-Transformer-Architecture-for-Precise-Medical-Image-Segmentation" class="headerlink" title="BEFUnet: A Hybrid CNN-Transformer Architecture for Precise Medical Image Segmentation"></a>BEFUnet: A Hybrid CNN-Transformer Architecture for Precise Medical Image Segmentation</h2><p>论文：《BEFUnet: A Hybrid CNN-Transformer Architecture for Precise Medical Image Segmentation》（arXiv 2024）</p><p>本文提出了一种创新的u型网络BEFUnet，该网络增强了体特征和边缘特征的融合，以实现精确的医学图像分割</p><p><strong>双分支编码器：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141006324.png" alt="image-20240504130415926" style="zoom:67%;"></p><ul><li><p><strong>边缘编码器：</strong>由四个阶段组成，每个阶段包含4个PDC块用于特征检测，并利用最大池化对各阶段之间的特征进行降采样来得到分层特征</p><p>注：PDC块包括一个深度卷积层、一个ReLU层和一个1×1的卷积层</p></li><li><p><strong>主体编码器：</strong>使用Swin-Transfomer对具有全局信息的高级特征进行编码</p></li></ul><p>将提取的边缘和体特征输入到LCAF模块进行融合</p><p><strong>LCAF：</strong>选择性地将边缘图和主体图进行交叉注意力，来融合边缘和主体的特征</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141006843.png" alt="image-20240504131627922" style="zoom:67%;"></p><p><strong>DLF模块：</strong>为确保层级之间的特征一致性，使用交叉注意力机制来跨尺度融合信息</p><p>较浅的层级包含更精确的定位信息，而较深的层级携带更适合解码器的更多语义信息，考虑到节省计算资源，只将最浅层（<script type="math/tex">P^l</script>)和最后一层（<script type="math/tex">P^s</script>)进行融合</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141006502.png" alt="image-20240504133235606" style="zoom:67%;"></p>]]></content>
       
       
+      <categories>
+          
+          <category> 计算机视觉 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机视觉 </tag>
+            
+            <tag> 图像分割 </tag>
+            
+            <tag> 特征融合 </tag>
+            
+            <tag> 双编码器 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -92,37 +164,6 @@
             <tag> 图像分割 </tag>
             
             <tag> 特征提取 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>BEFUnet:A Hybrid CNN-Transformer Architecture for Precise Medical Image Segmentation</title>
-      <link href="/posts/7a30900a.html"/>
-      <url>/posts/7a30900a.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="BEFUnet-A-Hybrid-CNN-Transformer-Architecture-for-Precise-Medical-Image-Segmentation"><a href="#BEFUnet-A-Hybrid-CNN-Transformer-Architecture-for-Precise-Medical-Image-Segmentation" class="headerlink" title="BEFUnet: A Hybrid CNN-Transformer Architecture for Precise Medical Image Segmentation"></a>BEFUnet: A Hybrid CNN-Transformer Architecture for Precise Medical Image Segmentation</h2><p>论文：《BEFUnet: A Hybrid CNN-Transformer Architecture for Precise Medical Image Segmentation》（arXiv 2024）</p><p>本文提出了一种创新的u型网络BEFUnet，该网络增强了体特征和边缘特征的融合，以实现精确的医学图像分割</p><p><strong>双分支编码器：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141006324.png" alt="image-20240504130415926" style="zoom:67%;"></p><ul><li><p><strong>边缘编码器：</strong>由四个阶段组成，每个阶段包含4个PDC块用于特征检测，并利用最大池化对各阶段之间的特征进行降采样来得到分层特征</p><p>注：PDC块包括一个深度卷积层、一个ReLU层和一个1×1的卷积层</p></li><li><p><strong>主体编码器：</strong>使用Swin-Transfomer对具有全局信息的高级特征进行编码</p></li></ul><p>将提取的边缘和体特征输入到LCAF模块进行融合</p><p><strong>LCAF：</strong>选择性地将边缘图和主体图进行交叉注意力，来融合边缘和主体的特征</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141006843.png" alt="image-20240504131627922" style="zoom:67%;"></p><p><strong>DLF模块：</strong>为确保层级之间的特征一致性，使用交叉注意力机制来跨尺度融合信息</p><p>较浅的层级包含更精确的定位信息，而较深的层级携带更适合解码器的更多语义信息，考虑到节省计算资源，只将最浅层（<script type="math/tex">P^l</script>)和最后一层（<script type="math/tex">P^s</script>)进行融合</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405141006502.png" alt="image-20240504133235606" style="zoom:67%;"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 计算机视觉 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 计算机视觉 </tag>
-            
-            <tag> 图像分割 </tag>
-            
-            <tag> 特征融合 </tag>
-            
-            <tag> 双编码器 </tag>
             
         </tags>
       
@@ -413,6 +454,8 @@
             <tag> 计算机视觉 </tag>
             
             <tag> 图像分割 </tag>
+            
+            <tag> Transformer </tag>
             
         </tags>
       
@@ -941,11 +984,11 @@
     
     
     <entry>
-      <title>光栅化及深度测试</title>
-      <link href="/posts/499d8707.html"/>
-      <url>/posts/499d8707.html</url>
+      <title>Transformation</title>
+      <link href="/posts/ac17f787.html"/>
+      <url>/posts/ac17f787.html</url>
       
-        <content type="html"><![CDATA[<h2 id="光栅化"><a href="#光栅化" class="headerlink" title="光栅化"></a>光栅化</h2><p><strong>光栅化（Rasterization）</strong>是图形学中一种常用的渲染技术，用于将三维场景中的图形对象转换为二维像素表示，以便在计算机屏幕上显示，即将图形对象（通常是三角形）映射到屏幕上的像素格子，并确定每个像素的颜色值。</p><p><strong>选择三角形作为渲染的基本图元的原因：</strong></p><ul><li>因为三角形是最简单的几何形状之一，任意三个点可以确定一个平面上的三角形</li><li><p>任意多边形都可以被分解为若干个三角形，这种分解使得处理复杂的多边形图形变得更加容易。</p></li><li><p>三角形在仿射变换下保持平面性，对三角形的变换相对简单，而不会引入复杂的扭曲。</p></li></ul><h3 id="1-直线光栅化算法"><a href="#1-直线光栅化算法" class="headerlink" title="1.直线光栅化算法"></a>1.直线光栅化算法</h3><h4 id="1-1-DDA数值微分算法"><a href="#1-1-DDA数值微分算法" class="headerlink" title="1.1 DDA数值微分算法"></a>1.1 DDA数值微分算法</h4><p>通过两点确定一条直线的斜率（k)，若|k|&lt;=1,选择x方向作为步长（选择变换快的方向），若|k|&gt;1,选择y方向作为步长。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033642.png" alt="image-20231128195221236" style="zoom:50%;"></p><p>注：在所选的步长方向上，从起始点 <code>(x0, y0)</code> 开始，计算每个下一个点的坐标 <code>(xi, yi)</code>。对于x方向的步长，使用 <code>xi+1 = xi + 1</code>；对于 y 方向的步长，使用 <code>yi+1 = yi + m</code>。(y的结果要四舍五入)</p><h4 id="1-2-Bresenham直线绘制算法"><a href="#1-2-Bresenham直线绘制算法" class="headerlink" title="1.2 Bresenham直线绘制算法"></a>1.2 Bresenham直线绘制算法</h4><p>Bresenham直线绘制算法通过在每个步骤中选择最接近理想路径上的点来逐步绘制线段，从而避免了使用浮点数运算，提高了计算效率。</p><p><strong>pass</strong></p><h3 id="2-三角形光栅化算法"><a href="#2-三角形光栅化算法" class="headerlink" title="2.三角形光栅化算法"></a>2.三角形光栅化算法</h3><p><strong>每一个像素进行采样:</strong>判断像素中心是否在三角形内部</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034020.png" alt="image-20231128200407428" style="zoom: 50%;"></p><p><strong>判断一个点在三角形内部的方法：</strong>利用叉乘的性质</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034363.png" alt="image-20231128200536862" style="zoom:50%;"></p><p>​        分别计算 $P_0P_1×P_0Q、 P_1P_2×P_1Q、P_2P_0×P_2Q$，如果三者同号则代表点P在三条线段的同一边，那么必然处于三角形内部，如果不同号则代表该点一定在三角形外部<br><strong>利用bouding box减少点的计算：</strong>三角形通常只占屏幕很小的一部分，只对该bounding box内的点进行采样测试</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034364.png" alt="image-20231128201223186" style="zoom:50%;"></p><p><strong>锯齿现象：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034128.png" alt="image-20231128201443202" style="zoom:50%;"></p><p>产生的原因：只用了有限的采样点去逼近连续的三角形</p><h3 id="3-解决走样的方法"><a href="#3-解决走样的方法" class="headerlink" title="3.解决走样的方法"></a>3.解决走样的方法</h3><h4 id="3-1超采样反走样-Super-Sampling-AA"><a href="#3-1超采样反走样-Super-Sampling-AA" class="headerlink" title="3.1超采样反走样(Super Sampling AA)"></a>3.1超采样反走样(Super Sampling AA)</h4><p>用更多的采样点去逼近连续的三角形</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034872.png" alt="image-20231128201847832" style="zoom:50%;"></p><p>对着四个采样点分别计算颜色值，将这四个点的采样点的颜色值取均值，如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034448.png" alt="image-20231128202001340" style="zoom:50%;"></p><p><em>注：超采样的缺点是对计算资源的更高要求</em></p><h4 id="3-2多采样反走样-Multi-Sampling-AA"><a href="#3-2多采样反走样-Multi-Sampling-AA" class="headerlink" title="3.2多采样反走样(Multi-Sampling AA)"></a>3.2多采样反走样(Multi-Sampling AA)</h4><p>MSAA是对SSAA的改进，不再为每个采样点都计算颜色值，而只计算像素中采样点被覆盖的比例，而后在中心点处计算颜色值。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034470.png" alt="image-20231128202605057" style="zoom:50%;"></p><h4 id="3-3-先模糊（滤波），再采样"><a href="#3-3-先模糊（滤波），再采样" class="headerlink" title="3.3 先模糊（滤波），再采样"></a>3.3 先模糊（滤波），再采样</h4><p>通过在采样前进行滤波，可以去除信号中的高频分量，从而在采样时避免混叠效应，减少走样。</p><p>在频域中限制高频成分的影响，有助于避免走样问题</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034171.png" alt="image-20231128203246227" style="zoom:50%;"></p><h3 id="4-深度测试"><a href="#4-深度测试" class="headerlink" title="4.深度测试"></a>4.深度测试</h3><p>深度测试是指在渲染图像时确定像素的深度值（或称为Z值）以确定哪些像素应该显示在屏幕上。</p><p><em>注：深度测试是一种解决图形学中遮挡关系的技术，确保在屏幕上只显示最前面的像素，而将被遮挡的像素隐藏起来，从而呈现出正确的三维场景。</em></p><h4 id="Z-Buffer（深度缓冲）算法"><a href="#Z-Buffer（深度缓冲）算法" class="headerlink" title="Z-Buffer（深度缓冲）算法"></a>Z-Buffer（深度缓冲）算法</h4><p><strong>算法的基本思想：</strong>每个采样点（像素）存储当前的最小深度值，假设深度值（z值）始终为正值。如果一个像素的深度值较小，表示它离观察者更近；反之，如果深度值较大，则表示它离观察者更远。<strong>帧缓冲用于存储屏幕上每个像素的颜色信息，深度缓冲专门用于存储每个像素的深度值</strong>，如果当前像素的深度值较小（即更接近观察者），则更新深度缓冲和帧缓冲中的值；否则，将其视为被遮挡，不进行更新。</p><p>伪代码如下:</p><p><img src="https://typoraimg.wangak.cc/2023/img/202312011217448.png" alt="image-20231130085326419" style="zoom:50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312011217183.png" alt="image-20231130085351796" style="zoom:50%;"></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="Transformation"><a href="#Transformation" class="headerlink" title="Transformation"></a>Transformation</h2><h3 id="1-2D变换"><a href="#1-2D变换" class="headerlink" title="1. 2D变换"></a>1. 2D变换</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207409.png" alt="image-20231126190707151" style="zoom:50%;"></p><h4 id="1-1-缩放-scaling"><a href="#1-1-缩放-scaling" class="headerlink" title="1.1 缩放(scaling)"></a>1.1 缩放(scaling)</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207653.png" alt="image-20231126190747793" style="zoom:50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207767.png" alt="image-20231126190853847" style="zoom: 50%;"></p><h4 id="1-2-镜像变换"><a href="#1-2-镜像变换" class="headerlink" title="1.2 镜像变换"></a>1.2 镜像变换</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207557.png" alt="image-20231126191121990" style="zoom:50%;"></p><h4 id="1-3-切变（Shear-Matrix）"><a href="#1-3-切变（Shear-Matrix）" class="headerlink" title="1.3 切变（Shear Matrix）"></a>1.3 切变（Shear Matrix）</h4><p>如下图，变换过程中y坐标始终不变</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207966.png" alt="image-20231126192230389" style="zoom:50%;"></p><h4 id="1-4-旋转-Rotate"><a href="#1-4-旋转-Rotate" class="headerlink" title="1.4 旋转(Rotate)"></a>1.4 旋转(Rotate)</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208542.png" alt="image-20231126192327264" style="zoom:50%;"></p><h4 id="1-5-齐次坐标"><a href="#1-5-齐次坐标" class="headerlink" title="1.5 齐次坐标"></a>1.5 齐次坐标</h4><p><strong>平移：</strong><br><img src="https://typoraimg.wangak.cc/2023/img/202311271208287.png" alt="image-20231126193641073" style="zoom:50%;"></p><p><strong>为了表示平移操作引入了第三维坐标：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208639.png" alt="image-20231126193653818" style="zoom:50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208486.png" alt="image-20231126193714639" style="zoom:50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208369.png" alt="image-20231126193731535" style="zoom:50%;"></p><p><em>注：<strong>point+point</strong>的结果为两个点的中点</em></p><p><strong>仿射变换的两种形式：</strong><br><img src="https://typoraimg.wangak.cc/2023/img/202311271208436.png" alt="image-20231126194003729" style="zoom:50%;"></p><p><em>注：齐次坐标变换矩阵中的a,b,c,d与线性变换中的变换矩阵是对应的</em></p><h4 id="1-6-逆变换"><a href="#1-6-逆变换" class="headerlink" title="1.6 逆变换"></a>1.6 逆变换</h4><p><strong>逆变换：</strong>变换矩阵为原变换的逆矩阵</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208337.png" alt="image-20231126194715152" style="zoom:50%;"></p><h3 id="2-3D变换"><a href="#2-3D变换" class="headerlink" title="2. 3D变换"></a>2. 3D变换</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208498.png" alt="image-20231126195736702" style="zoom:50%;"></p><h4 id="2-1-仿射变换"><a href="#2-1-仿射变换" class="headerlink" title="2.1 仿射变换"></a>2.1 仿射变换</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208171.png" alt="image-20231126195828157" style="zoom:50%;"></p><p><em>注：该表示方法是先做线性变换，然后再平移</em></p><h4 id="2-2-旋转"><a href="#2-2-旋转" class="headerlink" title="2.2 旋转"></a>2.2 旋转</h4><ul><li><strong>在轴上</strong></li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033304.png" alt="image-20231127122527405" style="zoom:50%;"></p><ul><li><p><strong>一般的旋转</strong>：可以将任意的旋转分为在三个轴上的旋转，其中在三个轴上的旋转角度称为欧拉角</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033703.png" alt="image-20231127122758750" style="zoom:50%;"></p></li></ul><p>​    <strong>罗德里格斯公式(Rodrigues’ Rotation Formula):</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033828.png" alt="image-20231127123545604"></p><p>注：四元数的应用</p><h3 id="2-3-视图-相机变换（View-Camera-Transformation）"><a href="#2-3-视图-相机变换（View-Camera-Transformation）" class="headerlink" title="2.3 视图/相机变换（View / Camera Transformation）"></a>2.3 视图/相机变换（View / Camera Transformation）</h3><p><strong>相机的参数：</strong>初始位置、观看角度（向量）、竖直角度（向量）</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033677.png" alt="image-20231127125538822"></p><p><strong>标准化：</strong>观看位置为原点、观看角度为-Z、向上方向为Y</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033142.png" alt="image-20231127125835234" style="zoom:50%;"></p><p>变换的方法：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033832.png" alt="image-20231127125907343" style="zoom:50%;"></p><p>由于正向变换比较复杂，考虑<strong>通过其逆矩阵来实现</strong>：R为旋转变换矩阵、T为平移变换矩阵、M为整个过程的变换矩阵</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033482.png" alt="image-20231127130030303" style="zoom:50%;"></p><p><em>注：旋转矩阵为正交矩阵，逆矩阵即是其转置</em></p><p><em>注：视图变换变换的是相机，其他的物体随着相机一起变换</em></p><h3 id="3-投影变换"><a href="#3-投影变换" class="headerlink" title="3 投影变换"></a>3 投影变换</h3><h4 id="3-1-正交投影变换"><a href="#3-1-正交投影变换" class="headerlink" title="3.1 正交投影变换"></a>3.1 正交投影变换</h4><p><strong>正交投影变换：</strong>平移+压缩</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033623.png" alt="image-20231127131958838" style="zoom:50%;"></p><p><em>注：l,r为x轴上的距离，b,t为y轴上的距离</em></p><h4 id="3-2-透视投影变换"><a href="#3-2-透视投影变换" class="headerlink" title="3.2 透视投影变换"></a>3.2 透视投影变换</h4><p>透视投影类似人眼所看东西的方式，遵循近大远小,平行线也会变得不平行</p><p><strong>用正交变换表示透视投影变换：</strong><script type="math/tex">M_{ortho}M_{persp->ortho}</script></p><p>将透视变换压成投影<script type="math/tex">M_{persp->ortho}</script></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033023.png" alt="image-20231127212210693" style="zoom:50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033371.png" alt="image-20231127212333846" style="zoom:50%;"></p><p><em>注：其中n是近平面，f是远平面，在公式推导的过程中是<strong>默认n、f</strong>均为负数</em></p><p>因而透视投影矩阵为：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311301248538.png" alt="image-20231130123159569" style="zoom: 67%;"></p><p>又当投影接口的参数是张角fov，横纵比为aspect，近平面到原点的距离为near,远平面到原点的距离为far</p><p>由于长方体视窗体是轴对称，故有l=−r,b=−t,从原点看向−z方向看去，有n=−near,f=−far<br>                                                                    <img src="https://typoraimg.wangak.cc/2023/img/202311301247698.png" alt="image-20231130124140613" style="zoom: 67%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311301248703.png" alt="image-20231130124220304" style="zoom:67%;"></p><p>所以透视投影矩阵可化简为：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311301248469.png" alt="image-20231130124301880" style="zoom: 67%;"></p><h3 id="4-视口变换"><a href="#4-视口变换" class="headerlink" title="4.视口变换"></a>4.视口变换</h3><p><strong>视口变换</strong>用于将标准平面映射到屏幕的分辨率范围之内（缩放+平移），变换矩阵如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033944.png" alt="image-20231128150643474" style="zoom:50%;"></p><h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h3><p>将虚拟世界中以(x,y,z)为坐标的物体变换到以一个个像素位置(x,y) 来表示的屏幕坐标系之中(2维)的步骤：</p><ul><li><strong>模型变换(modeling tranformation)：</strong>这一步的目的是将虚拟世界中或者更具体点，游戏场景中的物体调整至他们应该在的位置</li><li><strong>摄像机变换(camera tranformation)：</strong>在游戏中我们真正在乎的是摄像机(或者说眼睛)所看到的东西，也就是需要得到物体与摄像机的相对位置</li><li><strong>投影变换(projection tranformation)：</strong>根据摄像机变换得到了所有可视范围内的物体对于摄像机的相对位置坐标(x,y,z)之后，便是根据是平行投影还是透视投影，将三维空间投影至标准二维平面([-1,1]^2)之上 （tips：这里的z并没有丢掉，为了之后的遮挡关系检测）</li><li><strong>视口变换(viewport transformation)：</strong>将处于标准平面映射到屏幕分辨率范围之内，即[-1,1]^2→[0,width]*[0,height], 其中width和height指屏幕分辨率大小</li></ul>]]></content>
       
       
       <categories>
@@ -966,11 +1009,11 @@
     
     
     <entry>
-      <title>Transformation</title>
-      <link href="/posts/ac17f787.html"/>
-      <url>/posts/ac17f787.html</url>
+      <title>光栅化及深度测试</title>
+      <link href="/posts/499d8707.html"/>
+      <url>/posts/499d8707.html</url>
       
-        <content type="html"><![CDATA[<h2 id="Transformation"><a href="#Transformation" class="headerlink" title="Transformation"></a>Transformation</h2><h3 id="1-2D变换"><a href="#1-2D变换" class="headerlink" title="1. 2D变换"></a>1. 2D变换</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207409.png" alt="image-20231126190707151" style="zoom:50%;"></p><h4 id="1-1-缩放-scaling"><a href="#1-1-缩放-scaling" class="headerlink" title="1.1 缩放(scaling)"></a>1.1 缩放(scaling)</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207653.png" alt="image-20231126190747793" style="zoom:50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207767.png" alt="image-20231126190853847" style="zoom: 50%;"></p><h4 id="1-2-镜像变换"><a href="#1-2-镜像变换" class="headerlink" title="1.2 镜像变换"></a>1.2 镜像变换</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207557.png" alt="image-20231126191121990" style="zoom:50%;"></p><h4 id="1-3-切变（Shear-Matrix）"><a href="#1-3-切变（Shear-Matrix）" class="headerlink" title="1.3 切变（Shear Matrix）"></a>1.3 切变（Shear Matrix）</h4><p>如下图，变换过程中y坐标始终不变</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271207966.png" alt="image-20231126192230389" style="zoom:50%;"></p><h4 id="1-4-旋转-Rotate"><a href="#1-4-旋转-Rotate" class="headerlink" title="1.4 旋转(Rotate)"></a>1.4 旋转(Rotate)</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208542.png" alt="image-20231126192327264" style="zoom:50%;"></p><h4 id="1-5-齐次坐标"><a href="#1-5-齐次坐标" class="headerlink" title="1.5 齐次坐标"></a>1.5 齐次坐标</h4><p><strong>平移：</strong><br><img src="https://typoraimg.wangak.cc/2023/img/202311271208287.png" alt="image-20231126193641073" style="zoom:50%;"></p><p><strong>为了表示平移操作引入了第三维坐标：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208639.png" alt="image-20231126193653818" style="zoom:50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208486.png" alt="image-20231126193714639" style="zoom:50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208369.png" alt="image-20231126193731535" style="zoom:50%;"></p><p><em>注：<strong>point+point</strong>的结果为两个点的中点</em></p><p><strong>仿射变换的两种形式：</strong><br><img src="https://typoraimg.wangak.cc/2023/img/202311271208436.png" alt="image-20231126194003729" style="zoom:50%;"></p><p><em>注：齐次坐标变换矩阵中的a,b,c,d与线性变换中的变换矩阵是对应的</em></p><h4 id="1-6-逆变换"><a href="#1-6-逆变换" class="headerlink" title="1.6 逆变换"></a>1.6 逆变换</h4><p><strong>逆变换：</strong>变换矩阵为原变换的逆矩阵</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208337.png" alt="image-20231126194715152" style="zoom:50%;"></p><h3 id="2-3D变换"><a href="#2-3D变换" class="headerlink" title="2. 3D变换"></a>2. 3D变换</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208498.png" alt="image-20231126195736702" style="zoom:50%;"></p><h4 id="2-1-仿射变换"><a href="#2-1-仿射变换" class="headerlink" title="2.1 仿射变换"></a>2.1 仿射变换</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202311271208171.png" alt="image-20231126195828157" style="zoom:50%;"></p><p><em>注：该表示方法是先做线性变换，然后再平移</em></p><h4 id="2-2-旋转"><a href="#2-2-旋转" class="headerlink" title="2.2 旋转"></a>2.2 旋转</h4><ul><li><strong>在轴上</strong></li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033304.png" alt="image-20231127122527405" style="zoom:50%;"></p><ul><li><p><strong>一般的旋转</strong>：可以将任意的旋转分为在三个轴上的旋转，其中在三个轴上的旋转角度称为欧拉角</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033703.png" alt="image-20231127122758750" style="zoom:50%;"></p></li></ul><p>​    <strong>罗德里格斯公式(Rodrigues’ Rotation Formula):</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033828.png" alt="image-20231127123545604"></p><p>注：四元数的应用</p><h3 id="2-3-视图-相机变换（View-Camera-Transformation）"><a href="#2-3-视图-相机变换（View-Camera-Transformation）" class="headerlink" title="2.3 视图/相机变换（View / Camera Transformation）"></a>2.3 视图/相机变换（View / Camera Transformation）</h3><p><strong>相机的参数：</strong>初始位置、观看角度（向量）、竖直角度（向量）</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033677.png" alt="image-20231127125538822"></p><p><strong>标准化：</strong>观看位置为原点、观看角度为-Z、向上方向为Y</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033142.png" alt="image-20231127125835234" style="zoom:50%;"></p><p>变换的方法：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033832.png" alt="image-20231127125907343" style="zoom:50%;"></p><p>由于正向变换比较复杂，考虑<strong>通过其逆矩阵来实现</strong>：R为旋转变换矩阵、T为平移变换矩阵、M为整个过程的变换矩阵</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033482.png" alt="image-20231127130030303" style="zoom:50%;"></p><p><em>注：旋转矩阵为正交矩阵，逆矩阵即是其转置</em></p><p><em>注：视图变换变换的是相机，其他的物体随着相机一起变换</em></p><h3 id="3-投影变换"><a href="#3-投影变换" class="headerlink" title="3 投影变换"></a>3 投影变换</h3><h4 id="3-1-正交投影变换"><a href="#3-1-正交投影变换" class="headerlink" title="3.1 正交投影变换"></a>3.1 正交投影变换</h4><p><strong>正交投影变换：</strong>平移+压缩</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033623.png" alt="image-20231127131958838" style="zoom:50%;"></p><p><em>注：l,r为x轴上的距离，b,t为y轴上的距离</em></p><h4 id="3-2-透视投影变换"><a href="#3-2-透视投影变换" class="headerlink" title="3.2 透视投影变换"></a>3.2 透视投影变换</h4><p>透视投影类似人眼所看东西的方式，遵循近大远小,平行线也会变得不平行</p><p><strong>用正交变换表示透视投影变换：</strong><script type="math/tex">M_{ortho}M_{persp->ortho}</script></p><p>将透视变换压成投影<script type="math/tex">M_{persp->ortho}</script></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033023.png" alt="image-20231127212210693" style="zoom:50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033371.png" alt="image-20231127212333846" style="zoom:50%;"></p><p><em>注：其中n是近平面，f是远平面，在公式推导的过程中是<strong>默认n、f</strong>均为负数</em></p><p>因而透视投影矩阵为：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311301248538.png" alt="image-20231130123159569" style="zoom: 67%;"></p><p>又当投影接口的参数是张角fov，横纵比为aspect，近平面到原点的距离为near,远平面到原点的距离为far</p><p>由于长方体视窗体是轴对称，故有l=−r,b=−t,从原点看向−z方向看去，有n=−near,f=−far<br>                                                                    <img src="https://typoraimg.wangak.cc/2023/img/202311301247698.png" alt="image-20231130124140613" style="zoom: 67%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311301248703.png" alt="image-20231130124220304" style="zoom:67%;"></p><p>所以透视投影矩阵可化简为：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311301248469.png" alt="image-20231130124301880" style="zoom: 67%;"></p><h3 id="4-视口变换"><a href="#4-视口变换" class="headerlink" title="4.视口变换"></a>4.视口变换</h3><p><strong>视口变换</strong>用于将标准平面映射到屏幕的分辨率范围之内（缩放+平移），变换矩阵如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033944.png" alt="image-20231128150643474" style="zoom:50%;"></p><h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h3><p>将虚拟世界中以(x,y,z)为坐标的物体变换到以一个个像素位置(x,y) 来表示的屏幕坐标系之中(2维)的步骤：</p><ul><li><strong>模型变换(modeling tranformation)：</strong>这一步的目的是将虚拟世界中或者更具体点，游戏场景中的物体调整至他们应该在的位置</li><li><strong>摄像机变换(camera tranformation)：</strong>在游戏中我们真正在乎的是摄像机(或者说眼睛)所看到的东西，也就是需要得到物体与摄像机的相对位置</li><li><strong>投影变换(projection tranformation)：</strong>根据摄像机变换得到了所有可视范围内的物体对于摄像机的相对位置坐标(x,y,z)之后，便是根据是平行投影还是透视投影，将三维空间投影至标准二维平面([-1,1]^2)之上 （tips：这里的z并没有丢掉，为了之后的遮挡关系检测）</li><li><strong>视口变换(viewport transformation)：</strong>将处于标准平面映射到屏幕分辨率范围之内，即[-1,1]^2→[0,width]*[0,height], 其中width和height指屏幕分辨率大小</li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="光栅化"><a href="#光栅化" class="headerlink" title="光栅化"></a>光栅化</h2><p><strong>光栅化（Rasterization）</strong>是图形学中一种常用的渲染技术，用于将三维场景中的图形对象转换为二维像素表示，以便在计算机屏幕上显示，即将图形对象（通常是三角形）映射到屏幕上的像素格子，并确定每个像素的颜色值。</p><p><strong>选择三角形作为渲染的基本图元的原因：</strong></p><ul><li>因为三角形是最简单的几何形状之一，任意三个点可以确定一个平面上的三角形</li><li><p>任意多边形都可以被分解为若干个三角形，这种分解使得处理复杂的多边形图形变得更加容易。</p></li><li><p>三角形在仿射变换下保持平面性，对三角形的变换相对简单，而不会引入复杂的扭曲。</p></li></ul><h3 id="1-直线光栅化算法"><a href="#1-直线光栅化算法" class="headerlink" title="1.直线光栅化算法"></a>1.直线光栅化算法</h3><h4 id="1-1-DDA数值微分算法"><a href="#1-1-DDA数值微分算法" class="headerlink" title="1.1 DDA数值微分算法"></a>1.1 DDA数值微分算法</h4><p>通过两点确定一条直线的斜率（k)，若|k|&lt;=1,选择x方向作为步长（选择变换快的方向），若|k|&gt;1,选择y方向作为步长。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282033642.png" alt="image-20231128195221236" style="zoom:50%;"></p><p>注：在所选的步长方向上，从起始点 <code>(x0, y0)</code> 开始，计算每个下一个点的坐标 <code>(xi, yi)</code>。对于x方向的步长，使用 <code>xi+1 = xi + 1</code>；对于 y 方向的步长，使用 <code>yi+1 = yi + m</code>。(y的结果要四舍五入)</p><h4 id="1-2-Bresenham直线绘制算法"><a href="#1-2-Bresenham直线绘制算法" class="headerlink" title="1.2 Bresenham直线绘制算法"></a>1.2 Bresenham直线绘制算法</h4><p>Bresenham直线绘制算法通过在每个步骤中选择最接近理想路径上的点来逐步绘制线段，从而避免了使用浮点数运算，提高了计算效率。</p><p><strong>pass</strong></p><h3 id="2-三角形光栅化算法"><a href="#2-三角形光栅化算法" class="headerlink" title="2.三角形光栅化算法"></a>2.三角形光栅化算法</h3><p><strong>每一个像素进行采样:</strong>判断像素中心是否在三角形内部</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034020.png" alt="image-20231128200407428" style="zoom: 50%;"></p><p><strong>判断一个点在三角形内部的方法：</strong>利用叉乘的性质</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034363.png" alt="image-20231128200536862" style="zoom:50%;"></p><p>​        分别计算 $P_0P_1×P_0Q、 P_1P_2×P_1Q、P_2P_0×P_2Q$，如果三者同号则代表点P在三条线段的同一边，那么必然处于三角形内部，如果不同号则代表该点一定在三角形外部<br><strong>利用bouding box减少点的计算：</strong>三角形通常只占屏幕很小的一部分，只对该bounding box内的点进行采样测试</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034364.png" alt="image-20231128201223186" style="zoom:50%;"></p><p><strong>锯齿现象：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034128.png" alt="image-20231128201443202" style="zoom:50%;"></p><p>产生的原因：只用了有限的采样点去逼近连续的三角形</p><h3 id="3-解决走样的方法"><a href="#3-解决走样的方法" class="headerlink" title="3.解决走样的方法"></a>3.解决走样的方法</h3><h4 id="3-1超采样反走样-Super-Sampling-AA"><a href="#3-1超采样反走样-Super-Sampling-AA" class="headerlink" title="3.1超采样反走样(Super Sampling AA)"></a>3.1超采样反走样(Super Sampling AA)</h4><p>用更多的采样点去逼近连续的三角形</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034872.png" alt="image-20231128201847832" style="zoom:50%;"></p><p>对着四个采样点分别计算颜色值，将这四个点的采样点的颜色值取均值，如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034448.png" alt="image-20231128202001340" style="zoom:50%;"></p><p><em>注：超采样的缺点是对计算资源的更高要求</em></p><h4 id="3-2多采样反走样-Multi-Sampling-AA"><a href="#3-2多采样反走样-Multi-Sampling-AA" class="headerlink" title="3.2多采样反走样(Multi-Sampling AA)"></a>3.2多采样反走样(Multi-Sampling AA)</h4><p>MSAA是对SSAA的改进，不再为每个采样点都计算颜色值，而只计算像素中采样点被覆盖的比例，而后在中心点处计算颜色值。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034470.png" alt="image-20231128202605057" style="zoom:50%;"></p><h4 id="3-3-先模糊（滤波），再采样"><a href="#3-3-先模糊（滤波），再采样" class="headerlink" title="3.3 先模糊（滤波），再采样"></a>3.3 先模糊（滤波），再采样</h4><p>通过在采样前进行滤波，可以去除信号中的高频分量，从而在采样时避免混叠效应，减少走样。</p><p>在频域中限制高频成分的影响，有助于避免走样问题</p><p><img src="https://typoraimg.wangak.cc/2023/img/202311282034171.png" alt="image-20231128203246227" style="zoom:50%;"></p><h3 id="4-深度测试"><a href="#4-深度测试" class="headerlink" title="4.深度测试"></a>4.深度测试</h3><p>深度测试是指在渲染图像时确定像素的深度值（或称为Z值）以确定哪些像素应该显示在屏幕上。</p><p><em>注：深度测试是一种解决图形学中遮挡关系的技术，确保在屏幕上只显示最前面的像素，而将被遮挡的像素隐藏起来，从而呈现出正确的三维场景。</em></p><h4 id="Z-Buffer（深度缓冲）算法"><a href="#Z-Buffer（深度缓冲）算法" class="headerlink" title="Z-Buffer（深度缓冲）算法"></a>Z-Buffer（深度缓冲）算法</h4><p><strong>算法的基本思想：</strong>每个采样点（像素）存储当前的最小深度值，假设深度值（z值）始终为正值。如果一个像素的深度值较小，表示它离观察者更近；反之，如果深度值较大，则表示它离观察者更远。<strong>帧缓冲用于存储屏幕上每个像素的颜色信息，深度缓冲专门用于存储每个像素的深度值</strong>，如果当前像素的深度值较小（即更接近观察者），则更新深度缓冲和帧缓冲中的值；否则，将其视为被遮挡，不进行更新。</p><p>伪代码如下:</p><p><img src="https://typoraimg.wangak.cc/2023/img/202312011217448.png" alt="image-20231130085326419" style="zoom:50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202312011217183.png" alt="image-20231130085351796" style="zoom:50%;"></p>]]></content>
       
       
       <categories>
@@ -1697,9 +1740,9 @@
       
         <tags>
             
-            <tag> 深度学习 </tag>
-            
             <tag> python </tag>
+            
+            <tag> 深度学习 </tag>
             
             <tag> 线性回归 </tag>
             
@@ -1755,9 +1798,9 @@
       
         <tags>
             
-            <tag> 深度学习 </tag>
-            
             <tag> python </tag>
+            
+            <tag> 深度学习 </tag>
             
             <tag> 神经网络 </tag>
             
@@ -1819,9 +1862,9 @@
       
         <tags>
             
-            <tag> 深度学习 </tag>
-            
             <tag> python </tag>
+            
+            <tag> 深度学习 </tag>
             
             <tag> 感知机 </tag>
             
@@ -1945,9 +1988,9 @@
     
     
     <entry>
-      <title>comments</title>
-      <link href="/comments/index.html"/>
-      <url>/comments/index.html</url>
+      <title>categories</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -1967,9 +2010,9 @@
     
     
     <entry>
-      <title>categories</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>comments</title>
+      <link href="/comments/index.html"/>
+      <url>/comments/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
