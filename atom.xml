@@ -6,7 +6,7 @@
   <link href="https://wangak.cc/atom.xml" rel="self"/>
   
   <link href="https://wangak.cc/"/>
-  <updated>2024-09-19T02:12:25.345Z</updated>
+  <updated>2024-09-19T02:12:31.180Z</updated>
   <id>https://wangak.cc/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://wangak.cc/posts/c34814e1.html"/>
     <id>https://wangak.cc/posts/c34814e1.html</id>
     <published>2024-09-18T16:00:00.000Z</published>
-    <updated>2024-09-19T02:12:25.345Z</updated>
+    <updated>2024-09-19T02:12:31.180Z</updated>
     
     <content type="html"><![CDATA[<h3 id="MobileUNETR-A-Lightweight-End-To-End-Hybrid-Vision-Transformer-For-Efficient-Medical-Image-Segmentation"><a href="#MobileUNETR-A-Lightweight-End-To-End-Hybrid-Vision-Transformer-For-Efficient-Medical-Image-Segmentation" class="headerlink" title="MobileUNETR: A Lightweight End-To-End Hybrid Vision Transformer For Efficient Medical Image Segmentation"></a>MobileUNETR: A Lightweight End-To-End Hybrid Vision Transformer For Efficient Medical Image Segmentation</h3><p><strong>论文：《MobileUNETR: A Lightweight End-To-End Hybrid Vision Transformer For Efficient Medical Image Segmentation》（ECCV 2024）</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202409191008537.png" alt="image-20240918195745497"></p><p><strong>Hybrid Encoder Block:</strong>利用深度可分离卷积将特征投影到高维，再利用MobileViT block捕获局部和全局信息</p><p><strong>Hybrid Decoder Block:</strong>首先，使用转置卷积进行上采样；然后，将得到的特征与跳跃连接的特征进行拼接；最后，使用MobileViT block得到改进后的分割结果</p><h4 id="MobileViT-block"><a href="#MobileViT-block" class="headerlink" title="MobileViT block"></a>MobileViT block</h4><p><img src="https://typoraimg.wangak.cc/2023/img/202409191008262.png" alt="image-20240918200915992" style="zoom:67%;"></p><ul><li><strong>Local representations:</strong>先使用n×n卷积进行特征提取，再使用1×1卷积调整通道数，获取局部特征</li><li><strong>global representations:</strong>通过Unfold和Fold操作实现，对相同颜色的小色块会进行Attention，以此来减小Attention计算的复杂度，来获取全局特征</li><li><strong>Fusion:</strong>通过与原始特征图的拼接，来实现融合</li></ul>]]></content>
     
