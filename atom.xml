@@ -6,7 +6,7 @@
   <link href="https://wangak.cc/atom.xml" rel="self"/>
   
   <link href="https://wangak.cc/"/>
-  <updated>2024-09-19T02:12:31.180Z</updated>
+  <updated>2024-10-12T07:51:32.065Z</updated>
   <id>https://wangak.cc/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ASSNet:Adaptive Semantic Segmentation Network for Microtumors and Multi-Organ Segmentation</title>
+    <link href="https://wangak.cc/posts/425a95d.html"/>
+    <id>https://wangak.cc/posts/425a95d.html</id>
+    <published>2024-10-11T16:00:00.000Z</published>
+    <updated>2024-10-12T07:51:32.065Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="ASSNet-Adaptive-Semantic-Segmentation-Network-for-Microtumors-and-Multi-Organ-Segmentation"><a href="#ASSNet-Adaptive-Semantic-Segmentation-Network-for-Microtumors-and-Multi-Organ-Segmentation" class="headerlink" title="ASSNet: Adaptive Semantic Segmentation Network for Microtumors and Multi-Organ Segmentation"></a>ASSNet: Adaptive Semantic Segmentation Network for Microtumors and Multi-Organ Segmentation</h2><p><strong>论文：</strong></p><p><strong>《ASSNet: Adaptive Semantic Segmentation Network for Microtumors and Multi-Organ Segmentation》（arXiv 2024）</strong></p><p><strong>主要贡献：</strong></p><ul><li>设计了一种结合ResUnet和Swin-transformer优点的混合模型ASSNet，该模型具有窗口注意力、空间注意力、U型架构和残差连接，以实现高效分割。</li><li>提出了一种自适应特征融合(AFF)解码器，该解码器能够最大化利用多尺度特征，同时捕捉远程依赖并细化目标边界。</li></ul><p>网络整体结构：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202410121507439.png" alt="image-20241008195242686" style="zoom:50%;"></p><p><strong>编码器：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202410121507617.png" alt="image-20241012125942275" style="zoom: 50%;"></p><ul><li>通过在不同分辨率上应用窗口注意力，编码器能够捕捉到图像中的多尺度信息</li><li>引入了一个增强的多层感知器，以在特征提取过程中显式地建模长距离依赖关系</li><li>EFFN结合深度卷积和像素卷积来增强局部特征的提取能力</li></ul><p><strong>Adaptive Feature Fusion (AFF) Decoder:</strong></p><p>该解码器包含三个关键组件:长距离依赖(LRD)块、多尺度特征融合(MFF)块和自适应语义中心(ASC)块。</p><p>Adaptive Feature Fusion (AFF) Decoder是为了解决多尺度特征融合和长距离依赖建模问题而设计的。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202410121507151.png" alt="image-20241012130531795" style="zoom: 50%;"></p><ul><li><p><strong>长距离依赖块(LRD)：</strong>通过一系列的卷积操作建模远距离像素间的关联。</p></li><li><p><strong>多尺度特征融合块(MFF):</strong>接收来自编码器不同分辨率层次的特征图,通过跳跃连接（skip connections）将这些多尺度特征与当前解码层的特征图进行融合。然后通过膨胀卷积扩张卷积处理这些融合的特征，提取出每个尺度下的关键信息。</p></li><li><p><strong>自适应语义中心块(ASC):</strong>类似于传统边缘检测方法,作者使用一种自适应平均池化（Adaptive Average Pooling）操作，结合全连接层对通道特征进行增强。</p></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;ASSNet-Adaptive-Semantic-Segmentation-Network-for-Microtumors-and-Multi-Organ-Segmentation&quot;&gt;&lt;a href=&quot;#ASSNet-Adaptive-Semantic-Segme</summary>
+      
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RotCAtt-TransUNet++:Novel Deep Neural Network for Sophisticated Cardiac Segmentation</title>
+    <link href="https://wangak.cc/posts/2d5c3529.html"/>
+    <id>https://wangak.cc/posts/2d5c3529.html</id>
+    <published>2024-09-27T16:00:00.000Z</published>
+    <updated>2024-10-12T07:51:21.498Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="RotCAtt-TransUNet-Novel-Deep-Neural-Network-for-Sophisticated-Cardiac-Segmentation"><a href="#RotCAtt-TransUNet-Novel-Deep-Neural-Network-for-Sophisticated-Cardiac-Segmentation" class="headerlink" title="RotCAtt-TransUNet++: Novel Deep Neural Network for Sophisticated Cardiac Segmentation"></a>RotCAtt-TransUNet++: Novel Deep Neural Network for Sophisticated Cardiac Segmentation</h2><p><strong>论文：《RotCAtt-TransUNet++: Novel Deep Neural Network for Sophisticated Cardiac Segmentation》（arXiv 2024）</strong></p><ul><li><p>提出了一种新颖的旋转注意力机制（Rotatory Attention），用于捕捉体数据中相邻切片的信息。</p></li><li><p>编码器部分引入了UNet++的嵌套跳跃连接和密集的多尺度下采样，确保了在不同尺度上保留关键特征</p></li><li>设计了一个通道交叉注意力机制，通过引导Transformer特征的通道和信息过滤，解决了编码器与解码器特征间语义模糊的问题。</li></ul><p>Transformer层有助于捕获片内交互，而旋转注意机制处理片间连接。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202409281659093.png" alt="image-20240927152207198" style="zoom: 50%;"></p><ul><li><p>在跳跃连接处对不同深度和不同分辨率的特征图进行了融合</p></li><li><p>对前三个特征映射X1、X2、X3以不同的patch大小进行线性嵌入（<script type="math/tex">Z_i</script>),然后，通过transformer块捕捉patch之间的交互，并通过旋转注意力机制聚合相邻切片的信息</p></li></ul><h4 id="Linear-Embedding-与-Positional-Embedding"><a href="#Linear-Embedding-与-Positional-Embedding" class="headerlink" title="Linear Embedding 与 Positional Embedding"></a><strong>Linear Embedding 与 Positional Embedding</strong></h4><p>对于不同分辨率的特征图采用不同大小的patch（这样做可以保持特征图的代表性，不同分辨率的特征图包含不同尺度的信息），较小的patch有助于提取图像的局部细节特征，而较大的patch则有助于提取全局或上下文特征，然后对使用卷积操作映射到一个统一的维度。</p><h4 id="Rotatory-Attention-Block"><a href="#Rotatory-Attention-Block" class="headerlink" title="Rotatory Attention Block"></a><strong>Rotatory Attention Block</strong></h4><p>作者使用旋转注意力机制来提取切片间的特征</p><p><img src="https://typoraimg.wangak.cc/2023/img/202409281659406.png" alt="image-20240927155203358" style="zoom: 50%;"></p><p>该机制来源于自然语言处理中的左-中-右分离神经网络，用于捕捉句子中相邻单词之间的上下文关系。（相邻的元素对理解的中心有重要贡献）</p><p><strong>输入：</strong>旋转注意力机制将批量大小视为多个连续切片的集合，并选择性地处理三个连续的切片—左切片（前一个切片）、目标切片（当前切片）和右切片（下一个切片）。     </p><p><strong>Left:</strong></p><ul><li>对左切片使用<script type="math/tex">W_k</script>和<script type="math/tex">W_v</script>来得到<script type="math/tex">K_l</script>和<script type="math/tex">V_l</script>​</li><li>使用对目标切片的平均池化的结果<script type="math/tex">r^t</script>作为查询，通过与<script type="math/tex">K_l</script>和<script type="math/tex">V_l</script>进行注意力的计算，得到左上下文融合后的特征</li></ul><p><strong>Right:</strong>同Left</p><p><strong>目标上下文交互：</strong>通过<strong>单注意力（SA）</strong>,将左上下文和右上下文整合到目标切片之中</p><p>最后，通过通道维度拼接和取平均的操作，得到最后的输出特征。</p><h4 id="Channel-wise-Attention-Gate-for-Feature-Fusion"><a href="#Channel-wise-Attention-Gate-for-Feature-Fusion" class="headerlink" title="Channel-wise Attention Gate for Feature Fusion"></a><strong>Channel-wise Attention Gate for Feature Fusion</strong></h4><ul><li><p>对输入特征图进行全局平均池化，生成一个描述各通道重要性的向量，通过线性层对该向量进行变换，生成一个注意力掩码。</p></li><li><p>将生成的注意力掩码与解码器的特征图进行逐元素相乘，从而得到加权后的特征图。</p></li><li>加权后的特征图与解码器的原始特征图进行连接，以增强解码过程中的信息流动，进一步提升分割精度。</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;RotCAtt-TransUNet-Novel-Deep-Neural-Network-for-Sophisticated-Cardiac-Segmentation&quot;&gt;&lt;a href=&quot;#RotCAtt-TransUNet-Novel-Deep-Neural-Ne</summary>
+      
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    
+  </entry>
   
   <entry>
     <title>MobileUNETR:A Lightweight End-To-End Hybrid Vision Transformer For Efficient Medical Image Segmentation</title>
@@ -209,6 +261,34 @@
   </entry>
   
   <entry>
+    <title>SegFormer3D</title>
+    <link href="https://wangak.cc/posts/ee049a76.html"/>
+    <id>https://wangak.cc/posts/ee049a76.html</id>
+    <published>2024-05-06T16:00:00.000Z</published>
+    <updated>2024-05-28T02:18:35.265Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="SegFormer3D"><a href="#SegFormer3D" class="headerlink" title="SegFormer3D"></a>SegFormer3D</h2><p><strong>论文：《SegFormer3D: an Efficient Transformer for 3D Medical Image Segmentation》（arXiv 2024）</strong></p><p>作者提出了SegFormer3D使用全mlp解码器来聚合局部和全局注意力特征，来产生高度准确的分割掩码</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927153.png" alt="image-20240427155943100" style="zoom:67%;"></p><p><strong>对于编码器部分：</strong></p><ul><li><p>使用patch merging进行下采样：与池化操作相比克服了像素生成过程中的邻域信息丢失的问题，同时也能节省一定的运算量</p></li><li><p>使用efficient self-attention：捕获全局信息的同时，用缩放系数R减少了self-attention计算的时间复杂度</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927313.png" alt="image-20240427161059247" style="zoom:67%;"></p></li><li><p>舍弃了固定的位置编码，使用mix ffn模块来提取位置信息：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927148.png" alt="image-20240427161359128" style="zoom: 50%;"></p></li></ul><p><strong>对于解码器部分：</strong>使用了全MLP的结构，使用了一个统一的模块完成了对不同尺度的特征的解码过程，简化了解码过程，确保在各种数据集中对体积特征进行高效且一致的解码，避免了过度参数化。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927399.png" alt="image-20240427161629423" style="zoom:67%;"></p><p><strong>参数量和性能的比较：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927981.png" alt="image-20240427162144102" style="zoom: 50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927799.png" alt="image-20240427162104575" style="zoom:67%;"></p><p>作者在编码器和解码器的设计中，都使用轻量化的操作（编码器部分的patch merging、efficient self-attention和解码器使用全mlp解码器来聚合局部和全局注意力特征），模型参数量和计算量都有明显的下降，但性能表现不如nnformer</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;SegFormer3D&quot;&gt;&lt;a href=&quot;#SegFormer3D&quot; class=&quot;headerlink&quot; title=&quot;SegFormer3D&quot;&gt;&lt;/a&gt;SegFormer3D&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;论文：《SegFormer3D: an Effici</summary>
+      
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    
+    <category term="特征融合" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Medical Image Segmentation via Cascaded Attention Decoding</title>
     <link href="https://wangak.cc/posts/3790531e.html"/>
     <id>https://wangak.cc/posts/3790531e.html</id>
@@ -235,34 +315,6 @@
     <category term="特征融合" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/"/>
     
     <category term="特征增强" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E5%A2%9E%E5%BC%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SegFormer3D</title>
-    <link href="https://wangak.cc/posts/ee049a76.html"/>
-    <id>https://wangak.cc/posts/ee049a76.html</id>
-    <published>2024-05-06T16:00:00.000Z</published>
-    <updated>2024-05-28T02:18:35.265Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="SegFormer3D"><a href="#SegFormer3D" class="headerlink" title="SegFormer3D"></a>SegFormer3D</h2><p><strong>论文：《SegFormer3D: an Efficient Transformer for 3D Medical Image Segmentation》（arXiv 2024）</strong></p><p>作者提出了SegFormer3D使用全mlp解码器来聚合局部和全局注意力特征，来产生高度准确的分割掩码</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927153.png" alt="image-20240427155943100" style="zoom:67%;"></p><p><strong>对于编码器部分：</strong></p><ul><li><p>使用patch merging进行下采样：与池化操作相比克服了像素生成过程中的邻域信息丢失的问题，同时也能节省一定的运算量</p></li><li><p>使用efficient self-attention：捕获全局信息的同时，用缩放系数R减少了self-attention计算的时间复杂度</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927313.png" alt="image-20240427161059247" style="zoom:67%;"></p></li><li><p>舍弃了固定的位置编码，使用mix ffn模块来提取位置信息：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927148.png" alt="image-20240427161359128" style="zoom: 50%;"></p></li></ul><p><strong>对于解码器部分：</strong>使用了全MLP的结构，使用了一个统一的模块完成了对不同尺度的特征的解码过程，简化了解码过程，确保在各种数据集中对体积特征进行高效且一致的解码，避免了过度参数化。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927399.png" alt="image-20240427161629423" style="zoom:67%;"></p><p><strong>参数量和性能的比较：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927981.png" alt="image-20240427162144102" style="zoom: 50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927799.png" alt="image-20240427162104575" style="zoom:67%;"></p><p>作者在编码器和解码器的设计中，都使用轻量化的操作（编码器部分的patch merging、efficient self-attention和解码器使用全mlp解码器来聚合局部和全局注意力特征），模型参数量和计算量都有明显的下降，但性能表现不如nnformer</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;SegFormer3D&quot;&gt;&lt;a href=&quot;#SegFormer3D&quot; class=&quot;headerlink&quot; title=&quot;SegFormer3D&quot;&gt;&lt;/a&gt;SegFormer3D&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;论文：《SegFormer3D: an Effici</summary>
-      
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
-    
-    <category term="特征融合" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/"/>
     
   </entry>
   
@@ -499,58 +551,6 @@
       
       
     <summary type="html">&lt;h2 id=&quot;TransNeXt&quot;&gt;&lt;a href=&quot;#TransNeXt&quot; class=&quot;headerlink&quot; title=&quot;TransNeXt&quot;&gt;&lt;/a&gt;TransNeXt&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;论文：《TransNeXt: Robust Foveal Visua</summary>
-      
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>H2Former</title>
-    <link href="https://wangak.cc/posts/457d0431.html"/>
-    <id>https://wangak.cc/posts/457d0431.html</id>
-    <published>2024-03-05T16:00:00.000Z</published>
-    <updated>2024-03-08T06:36:15.049Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="H2Former"><a href="#H2Former" class="headerlink" title="H2Former"></a>H2Former</h2><p><strong>论文：《H2Former: An Efficient Hierarchical Hybrid Transformer for Medical Image Segmentation》（TMI 2023）</strong></p><p><strong>文章贡献：</strong></p><ul><li>提出了一个分层混合模型，整合了CNN的局部信息、多尺度通道注意力特征和Transformer的长距离特征在一个统一的块内。</li><li>一个轻量级的多尺度通道注意力（MSCA）</li><li>在三个2D和两个3D医学图像分割任务上证明了模型的有效性</li></ul><h3 id="网络结构："><a href="#网络结构：" class="headerlink" title="网络结构："></a>网络结构：</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202403081435594.png" alt="image-20240306092858101" style="zoom:67%;"></p><p><strong>Conv stem:</strong>由一个卷积层和一个最大池化层，将输入的图像划分成多个patch，并对每个小块进行特征提取。</p><p><strong>Hybrid Transformer Block：</strong>在特征提取过程中引入多尺度通道注意力、卷积层和Transformer层，以解决卷积的局部性和Transformer单一尺度特征的局限性。</p><ul><li><p><strong>Multi-Scale Channel Attention (MSCA)：</strong>捕捉不同形状和尺度的多尺度特征，并通过通道注意力机制对这些特征进行校准，从而去增强模型的表达能力</p><p>对于每个特征图，MSCA将其划分为多个尺度的token，并将这些token连接起来形成多尺度token(该过程通过使用具有不同大小的卷积核，步长为1的卷积操作来实现)</p><p>具体操作如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202403081435419.png" alt="image-20240306154618072" style="zoom: 67%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202403081435989.png" alt="image-20240306154640535" style="zoom:67%;"></p></li></ul><p>​      注：MST是multi-scale tokenization layers，其是使用s×s的核，步长为1的卷积实现的*</p><p>​    之后再使用多尺度通道注意力对提取的特征进行校准：</p><p>​                                                <img src="https://typoraimg.wangak.cc/2023/img/202403081436595.png" alt="image-20240306155304766" style="zoom: 67%;"></p><p>​    注：GAP(全局平均池化)、σ（Sigmoid激活）、Conv1d(kernel为3的一维卷积层）</p><p><img src="https://typoraimg.wangak.cc/2023/img/202403081436773.png" alt="image-20240306154143774" style="zoom: 67%;"></p><p>​        为了降低MSCA的计算复杂度，大尺度时采用低维，小尺度时采用高维。对于第1阶段的高分辨率特征图，采用4 × 4、8 × 8、16 × 16和32 × 32四种尺度，输出维度分别为C/2、C/4、C/8和C/8。其余阶段，使用2 × 2和4 × 4两种尺度，输出维度分别为C/2、C/4。通过这样的方式，MSCA可以在合理的计算复杂度下提取多尺度特征。</p><ul><li><p><strong>Conv Block:</strong>采用卷积块提取局部空间特征</p></li><li><p><strong>Transformer Block:</strong>为了使Transfomer块能够感知多尺度通道特征和局部空间特征，将多尺度通道特征和局部空间特征集成为Transfomer块的输入。</p><p><em>注：MHSA是基于窗口的多头自注意</em></p></li></ul><h3 id="实验部分："><a href="#实验部分：" class="headerlink" title="实验部分："></a>实验部分：</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202403081436089.png" alt="image-20240306161724728" style="zoom: 50%;"><img src="https://typoraimg.wangak.cc/2023/img/202403081436692.png" alt="image-20240306161741487" style="zoom: 50%;"></p><p><em>注1：H2Former相较于纯Transformer方法、纯CNN方法具有比较明显的优势</em></p><p><em>注2：表一为皮肤病变分割任务，表二是息肉病灶分割任务</em></p><p><strong>分割结果的可视化的对比：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202403081436935.png" alt="image-20240306162509652" style="zoom:67%;"></p><p><em>注：前两行是皮肤病变分割的结果，后两行是息肉分割的结果。</em></p><p><em>通过对比发现：第一排的皮肤图像被毛发遮挡，第三排的息肉图像也被遮挡，但该模型仍可以产生清晰的边界，而其他模型的分割性能会因遮挡而下降</em></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;H2Former&quot;&gt;&lt;a href=&quot;#H2Former&quot; class=&quot;headerlink&quot; title=&quot;H2Former&quot;&gt;&lt;/a&gt;H2Former&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;论文：《H2Former: An Efficient Hierarchica</summary>
-      
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MedSegDiff-v2</title>
-    <link href="https://wangak.cc/posts/2d77667e.html"/>
-    <id>https://wangak.cc/posts/2d77667e.html</id>
-    <published>2024-03-04T16:00:00.000Z</published>
-    <updated>2024-03-06T13:06:37.351Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="MedSegDiff-v2"><a href="#MedSegDiff-v2" class="headerlink" title="MedSegDiff-v2"></a>MedSegDiff-v2</h2><p><strong>本文的贡献包括：</strong></p><ul><li>第一个将Transformer集成到基于扩散的通用医学图像分割模型中。 </li><li>提出了具有U-SA(Uncertain Spatial Attention)的Anchor Condition以减小扩散方差。</li><li>提出了具有SS-Former的Semantic Condition，以建模分割噪声和语义特征的相互作用。 </li><li>在包括5种图像模态的20个器官分割任务上实现了SOTA性能。</li></ul><h3 id="总体架构"><a href="#总体架构" class="headerlink" title="总体架构"></a>总体架构<img src="https://typoraimg.wangak.cc/2023/img/202403041215805.png" alt="image-20240104151754725"></h3><p><strong>条件模型（绿色UNet)：</strong>从原始图像中提取分割特征</p><p><strong>扩散模型（蓝色UNet)：</strong>有两个输入分别是锚点条件（蓝色箭头）和噪声分割信息（黑色箭头）</p><h3 id="锚定条件与U-SA"><a href="#锚定条件与U-SA" class="headerlink" title="锚定条件与U-SA"></a>锚定条件与U-SA</h3><p><strong>锚点条件：</strong>将条件模型的解码分割特征整合到扩散模型的编码器特征中（蓝色箭头）</p><p><strong>U-SA机制</strong>用于从条件模型中提取一个粗糙的锚点特征，并将其整合到扩散模型中，为扩散模型提供了一个正确的预测范围，同时也让它进一步完善了预测结果，具体做法如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202403041215835.png" alt="image-20240104161300625" style="zoom:67%;"></p><p><em>注1：<script type="math/tex">f_c^{-1}</script>是来自原始图像的条件分割特征，<script type="math/tex">f_d^0</script>是噪声分割图像的扩散特征</em></p><p><em>注2：<script type="math/tex">k_{Gauss}</script>为高斯卷积核目的是做平滑处理，然后取最大值是为了保留最相关的信息并且消除一些噪声和不必要的细节</em></p><h3 id="语义条件与SS-Former"><a href="#语义条件与SS-Former" class="headerlink" title="语义条件与SS-Former"></a>语义条件与SS-Former</h3><p><strong>SS-Former：</strong>使得模型可以学习条件语义特征与噪声信息的交互。</p><p>具体设计如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202403041215516.png" alt="image-20240104164023507"></p><p><strong><script type="math/tex">M=(F(c_0)W_q)(F(e)W_k)^T</script></strong></p><p><em>注1：绿色为语义信息，蓝色为噪声信息</em></p><p><em>注2：<script type="math/tex">W_q</script>和<script type="math/tex">W_k</script>是可学习的权重参数，它们用于线性映射，以调整语义信息和噪声信息之间的关系</em></p><p><strong>NBP-Filter:</strong>将语义信息和噪声信息交互得到的结果M调整到统一的频率范围(扩散模型生成的过程中具有一定的随机性，这种随机性会对数据进行一些扰动，NBP-Filter降低扩散生成过程中引入的随机性的影响)</p><p>NBP-Filter<strong>从坐标图学习权重图，坐标图的每个点代表了不同的频率分量，并且使用两个MLP层将时间信息投影到两个值</strong>，这两个值分别用于缩放和移位，然后使用得到的缩放因子和移位因子去调整坐标图的表示。</p><h2 id="实验部分"><a href="#实验部分" class="headerlink" title="实验部分"></a>实验部分</h2><p><strong>表1：MedSegDiff-V2在不同图像模态上与SOTA分割方法的比较。灰色背景表示这些方法是为特定任务提出的。</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202403041215578.png" alt="image-20240105132907016"></p><p>注：REFUGE2（眼底图像）、BraTs （脑肿瘤分割)、TNMIX(甲状腺结节分割)、ISIC（皮肤病变分割）</p><p><strong>表2：使用Dice分数评估MedSegDiff-V2与SOTA分割方法在AMOS数据集上的比较。最佳结果以粗体表示。</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202403041215186.png" alt="image-20240105133848749"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202403041215066.png" alt="image-20240105134743328" style="zoom:50%;"></p><p><strong>表3：MedSegDiff-V2在BTCV数据集上与其他先进分割方法的比较结果的表格。Dice Score用于评估模型性能，最佳结果以粗体标注。</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202403041215270.png" alt="image-20240105135108153"></p><h3 id="消融实验"><a href="#消融实验" class="headerlink" title="消融实验"></a><strong>消融实验</strong></h3><p><img src="https://typoraimg.wangak.cc/2023/img/202403041215511.png" alt="image-20240105135511006"></p><p>提出的U-SA在所有数据集上均优于先前的空间注意力。</p><p>仅使用SS-Former提供了较小的改进，但与NBP-Filter结合使用则带来了显著的改进，证明了提出的SS-Former设计的有效性。</p><h3 id="采样次数对模型效果的影响"><a href="#采样次数对模型效果的影响" class="headerlink" title="采样次数对模型效果的影响"></a>采样次数对模型效果的影响</h3><p>扩散模型具有一定的随机性，所以需要进行多次采样，然后将采样后的结果集成在一起。</p><p><strong>作者评估了各种基于扩散的医学分割模型的采样次数对模型效果的影响</strong><img src="https://typoraimg.wangak.cc/2023/img/202403041215838.png" alt="image-20240105140410979" style="zoom: 67%;"></p><p>最佳性能在大约50个集成后实现</p><p>MedSegDiff-V2其他扩散方法进行比较时，观察到它需要更少的采样次数来收敛。</p><p>MedSegDiff-V2更优越的起始点和更稳定的预测可以导致更高的性能上限</p><p><strong>作者在REFUGE2-Cup数据集上讨论了样本多样性对模型效果的影响</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202403041215579.png" alt="image-20240105143354543" style="zoom:67%;"></p><p><strong>CI(置信区间):</strong>置信区间越大，一致性越好。</p><p><strong>GED(广义能量距离)：</strong>GED越低，表示一致性越好。</p><p>U-SA在CI方面较低，而在GED方面较高，表明样本的多样性较大，表明其生成的样本大部分落在目标的不确定性区域内，效果不好。</p><p>而单独使用SS-Former而没有U-SA时，该模型在CI最高、GED最低的情况下达到了最好的一致性，未能充分利用扩散模型的多样性集成能力。</p><p>将U-SA和SS-Former组合成MedSegDiff-V2，性能得到了显著提高，表明SS-Former有助于减轻U-SA中生成的噪声，而U-SA为模型提供了更多的多样性，从而相互改进。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;MedSegDiff-v2&quot;&gt;&lt;a href=&quot;#MedSegDiff-v2&quot; class=&quot;headerlink&quot; title=&quot;MedSegDiff-v2&quot;&gt;&lt;/a&gt;MedSegDiff-v2&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;本文的贡献包括：&lt;/strong&gt;&lt;</summary>
       
     
     
