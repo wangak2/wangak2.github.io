@@ -6,7 +6,7 @@
   <link href="https://wangak.cc/atom.xml" rel="self"/>
   
   <link href="https://wangak.cc/"/>
-  <updated>2024-10-12T07:51:32.065Z</updated>
+  <updated>2024-10-22T13:02:22.692Z</updated>
   <id>https://wangak.cc/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Ori-Net: Orientation-guided Neural Network for Automated Coronary Arteries Segmentation</title>
+    <link href="https://wangak.cc/posts/6e60e82b.html"/>
+    <id>https://wangak.cc/posts/6e60e82b.html</id>
+    <published>2024-10-21T16:00:00.000Z</published>
+    <updated>2024-10-22T13:02:22.692Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Ori-Net-Orientation-guided-Neural-Network-for-Automated-Coronary-Arteries-Segmentation"><a href="#Ori-Net-Orientation-guided-Neural-Network-for-Automated-Coronary-Arteries-Segmentation" class="headerlink" title="Ori-Net: Orientation-guided Neural Network for Automated Coronary Arteries Segmentation"></a>Ori-Net: Orientation-guided Neural Network for Automated Coronary Arteries Segmentation</h2><p><strong>论文：《Ori-Net: Orientation-guided Neural Network for Automated Coronary Arteries Segmentation》（ESWA 2024)</strong></p><p><strong>主要贡献：</strong></p><p>提出了一种利用预测方向和半径的定向制导跟踪方法。该算法迭代重建冠状动脉，并将重建与粗分割融合，进一步提高分割性能。</p><p><strong>冠状动脉结构可以被表示为由不同半径的、以方向为指导的球体包络所重建的外包络</strong></p><p>用半径和方向作为冠状动脉的两个基本度量。</p><p><em>注1：半径：当前位置到冠状动脉边界的距离；方向：从当前位置确定下一个位置的指向</em></p><p><em>注2：半径信息有助于确定血管的边界，而方向信息则确定血管延伸的方向。</em></p><p><img src="https://typoraimg.wangak.cc/2023/img/202410222059067.png" alt="image-20241017150109306" style="zoom: 50%;"></p><h3 id="Ori-Net"><a href="#Ori-Net" class="headerlink" title="Ori-Net"></a><strong>Ori-Net</strong></h3><p>Ori-Net模型与UNet结构相似，Ori-Net模型利用了这种基于几何信息的分割方法，同时预测了冠状动脉的分割结果、半径和方向，并通过一个导向追踪的方法，利用预测的半径和方向来重建冠状动脉。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202410222059629.png" alt="image-20241017150543948"></p><p><strong>多任务学习：</strong>Ori-Net有三个预测分支（分割分支、半径分支和方向分支），每个分支都有一个核大小为1的卷积层，分别用于预测分割、半径和方向。</p><p><strong>损失函数：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202410222059765.png" alt="image-20241017150822909" style="zoom: 80%;"></p><p><em>注1：<script type="math/tex">L_{SEG}、L_{RAD}、L_{ORI}</script>​分别表示分割损失、半径分类损失和方向分类损失</em></p><p><em>注2：<script type="math/tex">L_{SEG}</script>使用dice损失：</em></p><p><img src="https://typoraimg.wangak.cc/2023/img/202410222059150.png" alt="image-20241017151212125"></p><p><strong>如何基于分割标签𝑌生成半径标签𝑍和方向标签𝑂？</strong></p><h4 id="半径分支"><a href="#半径分支" class="headerlink" title="半径分支"></a>半径分支</h4><p>将回归问题转换为分类问题：</p><p>通过离散化半径标签来创建半径类别。</p><p>半径分支负责预测半径类别图Z，该图对冠状动脉体素进行半径类别预测。</p><p><strong>生成半径标签：</strong></p><ul><li><p>通过分割掩码来生成与输入图像大小相同的距离图，图中的每个值表示了每个像素点到前景边界的距离</p></li><li><p>使用one-hot编码将每个距离值量化到K个类别中，于是连续的距离图就变成了离散的边界距离图。在这个图中，每个体素都有一个对应的半径类别</p><p><em>注：参数K的设定，来自于统计出的先验知识</em></p></li></ul><p><strong>半径分类损失使用交叉熵损失：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202410222059538.png" alt="image-20241017194423854" style="zoom:50%;"></p><h4 id="方向分支"><a href="#方向分支" class="headerlink" title="方向分支"></a>方向分支</h4><p><strong>任务背景：</strong>现有的冠状动脉方法忽略了冠状动脉结构中的体素的几何信息</p><p><strong>方向分类损失使用交叉熵损失：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202410222059930.png" alt="image-20241017200442413" style="zoom:67%;"></p><p><strong>方向类别图的生成：</strong></p><ul><li><p><strong>确定点的属性</strong>：</p><ul><li><p>对于每个连通域，首先通过八叉树数据结构计算中心线</p><p><em>注：利用八叉树数据结构，可以优化中心线计算，由于八叉树将图像划分成了多个子区域，只需对包含冠状动脉的子区域进行进一步处理。这减少了不必要的计算负担。</em></p></li><li><p>计算中心线半径图</p></li><li><p>使用最短路径算法确定起点<script type="math/tex">v_0</script> 和终点<script type="math/tex">v_e</script>​</p></li><li><p>下一个点<script type="math/tex">v_t</script>是以<script type="math/tex">v_0</script>为中心、半径为<script type="math/tex">R_{v_0}</script>​​的球与中心线的交点</p><p><em>注：球的中心是当前的中心点 <script type="math/tex">v_0</script>，而半径 <script type="math/tex">R_{v_0}</script> 是通过距离变换计算得到的。这个半径值表示从当前点<script type="math/tex">v_0</script>到血管边界的距离，反映了该点处血管的局部粗细程度。</em></p></li><li><p>根据点<script type="math/tex">v_t</script>的斜率<script type="math/tex">N(v_t)</script>​的和来判断点的属性(起点、终点、直线路段上的点以及分支点)</p><p><img src="https://typoraimg.wangak.cc/2023/img/202410222059615.png" alt="image-20241021204408286" style="zoom:50%;"></p></li></ul></li></ul><p><em>注1：<script type="math/tex">N(v_t) = 1</script>，则该点是起点或终点，这意味着该点只连接到一个其他点。<script type="math/tex">N(v_t)=2</script>，则该点处于直线段上，这意味着该点与前后两个点相连，并且没有其他分支。<script type="math/tex">N(v_t) > 2</script>​，则该点是一个分支点,这意味着该点连接到多个不同方向的点。</em></p><p><em>注2：为了计算某个点 <script type="math/tex">v_t</script>的斜率<script type="math/tex">N(v_t)</script>，算法会检查该点在局部邻域内的连通性。</em></p><p><strong>一旦确定了下一个点<script type="math/tex">v_t</script>，算法将<script type="math/tex">v_t</script> 作为新的中心点，并重复这一过程,直到到达终点。</strong></p><ul><li><strong>方向类别的生成</strong></li></ul><p>​    每个点<script type="math/tex">v_t</script>需要生成一个方向类别，方向类别用来表示该点的运动方向。</p><p><strong>起点、终点或分支点：</strong>对于起点、终点或分支点，这些点在冠状动脉的几何结构中具有特殊的意义。因此，在这些点的方向生成过程中，系统不需要复杂的计算，而是直接<strong>使用预定义的符号来标记其方向</strong>。</p><p><strong>直线路段的点：</strong>对于位于冠状动脉直线路段上的点，方向生成需要通过计算来确定。</p><ul><li><strong>位移向量 <script type="math/tex">\Delta v_t</script> 的计算</strong>：</li></ul><p>​                <script type="math/tex">Δvt=vt−v0</script></p><ul><li><strong>最小角度法则确定方向类别:</strong>遍历所有可能的球面坐标方向，计算这些方向与位移向量之间的角度，通过计算位移向量 <script type="math/tex">\Delta v_t</script> 和球面坐标系中不同方向的夹角，找到与 <script type="math/tex">\Delta v_t</script> <strong>夹角最小的方向</strong>，并将该方向的索引作为该点的方向类别。</li></ul><p><img src="https://typoraimg.wangak.cc/2023/img/202410222059280.png" alt="image-20241021205742932" style="zoom:67%;"></p><p><strong>测试阶段的方向引导追踪：</strong>根据预测的半径和方向信息，对初步的分割结果进行细化，以更好地重建冠状动脉的柱状结构。</p><p>Ori-Net有三个输出：P、D、G</p><ul><li><p>P:粗分割结果、D:方向预测结果、G：半径预测结果</p></li><li><p>细化分割结果为粗分割结果P和细化重建的结果<script type="math/tex">~\tilde{Y}~</script>的平均：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202410222059028.png" alt="image-20241022194605266" style="zoom: 50%;"></p></li></ul><p><strong>细化重建的结果的生成：</strong></p><ul><li><strong>方向引导的迭代追踪：</strong>从起点开始，沿着预测的方向和半径逐步找到下一个点，直到达到终点</li><li><strong>平滑处理：</strong>由于半径是离散预测的，这可能导致重建的冠状动脉表面不够光滑，因此，Ori-Net使用高斯核函数来对每个球进行平滑处理，确保最终生成的血管结构光滑、无断裂。</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Ori-Net-Orientation-guided-Neural-Network-for-Automated-Coronary-Arteries-Segmentation&quot;&gt;&lt;a href=&quot;#Ori-Net-Orientation-guided-Neural-</summary>
+      
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ASSNet:Adaptive Semantic Segmentation Network for Microtumors and Multi-Organ Segmentation</title>
     <link href="https://wangak.cc/posts/425a95d.html"/>
     <id>https://wangak.cc/posts/425a95d.html</id>
     <published>2024-10-11T16:00:00.000Z</published>
-    <updated>2024-10-12T07:51:32.065Z</updated>
+    <updated>2024-10-12T07:51:38.515Z</updated>
     
     <content type="html"><![CDATA[<h2 id="ASSNet-Adaptive-Semantic-Segmentation-Network-for-Microtumors-and-Multi-Organ-Segmentation"><a href="#ASSNet-Adaptive-Semantic-Segmentation-Network-for-Microtumors-and-Multi-Organ-Segmentation" class="headerlink" title="ASSNet: Adaptive Semantic Segmentation Network for Microtumors and Multi-Organ Segmentation"></a>ASSNet: Adaptive Semantic Segmentation Network for Microtumors and Multi-Organ Segmentation</h2><p><strong>论文：</strong></p><p><strong>《ASSNet: Adaptive Semantic Segmentation Network for Microtumors and Multi-Organ Segmentation》（arXiv 2024）</strong></p><p><strong>主要贡献：</strong></p><ul><li>设计了一种结合ResUnet和Swin-transformer优点的混合模型ASSNet，该模型具有窗口注意力、空间注意力、U型架构和残差连接，以实现高效分割。</li><li>提出了一种自适应特征融合(AFF)解码器，该解码器能够最大化利用多尺度特征，同时捕捉远程依赖并细化目标边界。</li></ul><p>网络整体结构：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202410121507439.png" alt="image-20241008195242686" style="zoom:50%;"></p><p><strong>编码器：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202410121507617.png" alt="image-20241012125942275" style="zoom: 50%;"></p><ul><li>通过在不同分辨率上应用窗口注意力，编码器能够捕捉到图像中的多尺度信息</li><li>引入了一个增强的多层感知器，以在特征提取过程中显式地建模长距离依赖关系</li><li>EFFN结合深度卷积和像素卷积来增强局部特征的提取能力</li></ul><p><strong>Adaptive Feature Fusion (AFF) Decoder:</strong></p><p>该解码器包含三个关键组件:长距离依赖(LRD)块、多尺度特征融合(MFF)块和自适应语义中心(ASC)块。</p><p>Adaptive Feature Fusion (AFF) Decoder是为了解决多尺度特征融合和长距离依赖建模问题而设计的。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202410121507151.png" alt="image-20241012130531795" style="zoom: 50%;"></p><ul><li><p><strong>长距离依赖块(LRD)：</strong>通过一系列的卷积操作建模远距离像素间的关联。</p></li><li><p><strong>多尺度特征融合块(MFF):</strong>接收来自编码器不同分辨率层次的特征图,通过跳跃连接（skip connections）将这些多尺度特征与当前解码层的特征图进行融合。然后通过膨胀卷积扩张卷积处理这些融合的特征，提取出每个尺度下的关键信息。</p></li><li><p><strong>自适应语义中心块(ASC):</strong>类似于传统边缘检测方法,作者使用一种自适应平均池化（Adaptive Average Pooling）操作，结合全连接层对通道特征进行增强。</p></li></ul>]]></content>
     
@@ -261,34 +287,6 @@
   </entry>
   
   <entry>
-    <title>SegFormer3D</title>
-    <link href="https://wangak.cc/posts/ee049a76.html"/>
-    <id>https://wangak.cc/posts/ee049a76.html</id>
-    <published>2024-05-06T16:00:00.000Z</published>
-    <updated>2024-05-28T02:18:35.265Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="SegFormer3D"><a href="#SegFormer3D" class="headerlink" title="SegFormer3D"></a>SegFormer3D</h2><p><strong>论文：《SegFormer3D: an Efficient Transformer for 3D Medical Image Segmentation》（arXiv 2024）</strong></p><p>作者提出了SegFormer3D使用全mlp解码器来聚合局部和全局注意力特征，来产生高度准确的分割掩码</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927153.png" alt="image-20240427155943100" style="zoom:67%;"></p><p><strong>对于编码器部分：</strong></p><ul><li><p>使用patch merging进行下采样：与池化操作相比克服了像素生成过程中的邻域信息丢失的问题，同时也能节省一定的运算量</p></li><li><p>使用efficient self-attention：捕获全局信息的同时，用缩放系数R减少了self-attention计算的时间复杂度</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927313.png" alt="image-20240427161059247" style="zoom:67%;"></p></li><li><p>舍弃了固定的位置编码，使用mix ffn模块来提取位置信息：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927148.png" alt="image-20240427161359128" style="zoom: 50%;"></p></li></ul><p><strong>对于解码器部分：</strong>使用了全MLP的结构，使用了一个统一的模块完成了对不同尺度的特征的解码过程，简化了解码过程，确保在各种数据集中对体积特征进行高效且一致的解码，避免了过度参数化。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927399.png" alt="image-20240427161629423" style="zoom:67%;"></p><p><strong>参数量和性能的比较：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927981.png" alt="image-20240427162144102" style="zoom: 50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927799.png" alt="image-20240427162104575" style="zoom:67%;"></p><p>作者在编码器和解码器的设计中，都使用轻量化的操作（编码器部分的patch merging、efficient self-attention和解码器使用全mlp解码器来聚合局部和全局注意力特征），模型参数量和计算量都有明显的下降，但性能表现不如nnformer</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;SegFormer3D&quot;&gt;&lt;a href=&quot;#SegFormer3D&quot; class=&quot;headerlink&quot; title=&quot;SegFormer3D&quot;&gt;&lt;/a&gt;SegFormer3D&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;论文：《SegFormer3D: an Effici</summary>
-      
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
-    
-    <category term="特征融合" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Medical Image Segmentation via Cascaded Attention Decoding</title>
     <link href="https://wangak.cc/posts/3790531e.html"/>
     <id>https://wangak.cc/posts/3790531e.html</id>
@@ -315,6 +313,34 @@
     <category term="特征融合" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/"/>
     
     <category term="特征增强" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E5%A2%9E%E5%BC%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SegFormer3D</title>
+    <link href="https://wangak.cc/posts/ee049a76.html"/>
+    <id>https://wangak.cc/posts/ee049a76.html</id>
+    <published>2024-05-06T16:00:00.000Z</published>
+    <updated>2024-05-28T02:18:35.265Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="SegFormer3D"><a href="#SegFormer3D" class="headerlink" title="SegFormer3D"></a>SegFormer3D</h2><p><strong>论文：《SegFormer3D: an Efficient Transformer for 3D Medical Image Segmentation》（arXiv 2024）</strong></p><p>作者提出了SegFormer3D使用全mlp解码器来聚合局部和全局注意力特征，来产生高度准确的分割掩码</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927153.png" alt="image-20240427155943100" style="zoom:67%;"></p><p><strong>对于编码器部分：</strong></p><ul><li><p>使用patch merging进行下采样：与池化操作相比克服了像素生成过程中的邻域信息丢失的问题，同时也能节省一定的运算量</p></li><li><p>使用efficient self-attention：捕获全局信息的同时，用缩放系数R减少了self-attention计算的时间复杂度</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927313.png" alt="image-20240427161059247" style="zoom:67%;"></p></li><li><p>舍弃了固定的位置编码，使用mix ffn模块来提取位置信息：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927148.png" alt="image-20240427161359128" style="zoom: 50%;"></p></li></ul><p><strong>对于解码器部分：</strong>使用了全MLP的结构，使用了一个统一的模块完成了对不同尺度的特征的解码过程，简化了解码过程，确保在各种数据集中对体积特征进行高效且一致的解码，避免了过度参数化。</p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927399.png" alt="image-20240427161629423" style="zoom:67%;"></p><p><strong>参数量和性能的比较：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927981.png" alt="image-20240427162144102" style="zoom: 50%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202405071927799.png" alt="image-20240427162104575" style="zoom:67%;"></p><p>作者在编码器和解码器的设计中，都使用轻量化的操作（编码器部分的patch merging、efficient self-attention和解码器使用全mlp解码器来聚合局部和全局注意力特征），模型参数量和计算量都有明显的下降，但性能表现不如nnformer</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;SegFormer3D&quot;&gt;&lt;a href=&quot;#SegFormer3D&quot; class=&quot;headerlink&quot; title=&quot;SegFormer3D&quot;&gt;&lt;/a&gt;SegFormer3D&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;论文：《SegFormer3D: an Effici</summary>
+      
+    
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    
+    <category term="特征融合" scheme="https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/"/>
     
   </entry>
   
@@ -525,32 +551,6 @@
       
       
     <summary type="html">&lt;h2 id=&quot;VSA-Learning-Varied-Size-Window-Attention-in-Vision-Transformers&quot;&gt;&lt;a href=&quot;#VSA-Learning-Varied-Size-Window-Attention-in-Vision-Tran</summary>
-      
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>TransNeXt</title>
-    <link href="https://wangak.cc/posts/965265e1.html"/>
-    <id>https://wangak.cc/posts/965265e1.html</id>
-    <published>2024-03-07T16:00:00.000Z</published>
-    <updated>2024-03-08T06:36:44.519Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="TransNeXt"><a href="#TransNeXt" class="headerlink" title="TransNeXt"></a>TransNeXt</h2><p><strong>论文：《TransNeXt: Robust Foveal Visual Perception for Vision Transformers》（CVPR 2024）</strong></p><h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结<strong>构</strong></h3><p><img src="https://typoraimg.wangak.cc/2023/img/202403081436489.png" alt="image-20240308133954690"></p><p>像素聚焦注意力机制：在每个查询附近具有细粒度感知，同时保持对全局的粗粒度感知（结合了滑动窗口注意力和集中注意力）</p><p><strong>像素聚焦注意力(pixel-focused attention (PFA) )</strong>具体过程如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202403081436294.png" alt="image-20240307093447355" style="zoom: 67%;"></p><p><em>注1：定义输入特征图上以 <script type="math/tex">（i, j）</script>为中心的滑动窗口中的像素集合为<script type="math/tex">ρ(i, j）</script> 。对于固定的窗口大小 <script type="math/tex">k×k</script> ， <script type="math/tex">||ρ(i, j)|| = k^2</script>。同时, 作者定义从特征图池化得到的像素集合为的 σ(<script type="math/tex">X</script>) 。对于池化大小 <script type="math/tex">Hp×Wp</script>，<script type="math/tex">||σ(X) || = Hp×Wp</script>。</em></p><p><em>注2：PFA由滑动窗口注意力和池化窗口注意力两部分组成</em></p><p><strong>池化：</strong>平均池化操作会严重丢失信息，所以在池化之前使用单层神经网络进行投影和激活，提前压缩提取有用的信息，从而提高下采样后的信息压缩率</p><p>下采样算子（Activate and Pool）如下：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202403081436127.png" alt="image-20240307094953654" style="zoom: 67%;"></p><p><strong>LKV通过添加一个可学习的查询嵌入（QE)，来聚合多样的注意力：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202403081436731.png" alt="image-20240308093422092" style="zoom:67%;"></p><p><strong>QLV破坏了键和值之间的一对一对应关系，使当前查询学习更多的隐式相对位置信息</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202403081436695.png" alt="image-20240308094738641" style="zoom:67%;"></p><p><strong>长度缩放余弦注意力:</strong>可以有效增强视觉模型的训练稳定性</p><p><img src="https://typoraimg.wangak.cc/2023/img/202403081436647.png" alt="image-20240308100847389" style="zoom:67%;"></p><p><em>注1：注意力设计应表现出熵不变性，以促进对未知长度的更好泛化，<script type="math/tex">τ log N</script>是为了保持熵的不变性和忽略常数项。</em></p><p><em>注2:<script type="math/tex">τ</script>是可学习参数，N表示每个查询交互的有效键的计数（在本文中N为<script type="math/tex">N(i,j) = ∥ρ(i, j)∥+∥σ(X)∥− ∥µ(i, j)∥</script>),<script type="math/tex">\hat{Q}、\hat{K}</script>是L2正则化后的结果</em></p><p><strong>位置偏置：</strong></p><ul><li><strong>池化特征路径：</strong>log-CPB方法，即使用一个具有 ReLU 激活函数的 2 层 MLP 来计算从查询点到空间相对坐标之间的位置偏差</li></ul><p><em>注：池化使得特征的空间信息变得模糊或丢失，直接使用可学习的位置偏差可能无法有效地捕获到像素级别的位置偏差，所以使用对数间隔连续位置偏差（log-CPB）方法，通过 MLP 网络计算位置偏差，可以更好地捕获到细粒度的位置信息，从而提高模型对多尺度图像输入的泛化能力。</em></p><ul><li><strong>滑动窗口路径</strong>：在这条路径上，作者直接使用了一个可学习的位置偏差 B(i,j)∼ρ(i,j)。</li></ul><p><strong>聚合像素聚焦注意力(AA)：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202403081436129.png" alt="image-20240308103811904" style="zoom: 67%;"></p><p>注：∆(i,j) ~ σ(X)为Q(i,j)和Kσ(X)之间的空间相对坐标</p><p><strong>卷积GLU通道混合器：</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202403081436975.png" alt="image-20240308110209837"></p><p><strong>SE 机制</strong>的全局平均池过于粗粒度</p><p><strong>卷积GLU通道混合器</strong>中的通道注意力是基于每个像素点的最近邻特征计算的（深度卷积），而且其可以提供一定的位置信息</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;TransNeXt&quot;&gt;&lt;a href=&quot;#TransNeXt&quot; class=&quot;headerlink&quot; title=&quot;TransNeXt&quot;&gt;&lt;/a&gt;TransNeXt&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;论文：《TransNeXt: Robust Foveal Visua</summary>
       
     
     
