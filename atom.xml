@@ -45,6 +45,30 @@
   </entry>
   
   <entry>
+    <title>C++八股</title>
+    <link href="https://wangak.cc/posts/c2c0fb72.html"/>
+    <id>https://wangak.cc/posts/c2c0fb72.html</id>
+    <published>2025-03-10T16:00:00.000Z</published>
+    <updated>2025-03-10T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="C-八股"><a href="#C-八股" class="headerlink" title="C++八股"></a>C++八股</h2><h4 id="1-在main执行之前和之后执行的代码可能是什么"><a href="#1-在main执行之前和之后执行的代码可能是什么" class="headerlink" title="1.在main执行之前和之后执行的代码可能是什么"></a><strong>1.在main执行之前和之后执行的代码可能是什么</strong></h4><ul><li><p>main函数执行之前，主要就是<strong>初始化系统相关资源</strong>：</p><ul><li>设置栈指针</li><li>初始化静态static变量和global全局变量</li><li>调用构造函数</li></ul></li><li><p>main函数执行之后：</p><ul><li>全局对象的析构函数</li></ul></li></ul><h4 id="2-指针和引用的区别"><a href="#2-指针和引用的区别" class="headerlink" title="2.指针和引用的区别"></a><strong>2.指针和引用的区别</strong></h4><ul><li><p><strong>指针是一个变量</strong>，存储的是一个地址，<strong>引用是原变量的别名</strong></p></li><li><p>指针可以为空，引用不能为NULL且在定义时必须初始化</p></li></ul><h4 id="3-在传递函数参数时，什么时候该使用指针，什么时候该使用引用呢？"><a href="#3-在传递函数参数时，什么时候该使用指针，什么时候该使用引用呢？" class="headerlink" title="3.在传递函数参数时，什么时候该使用指针，什么时候该使用引用呢？"></a><strong>3.在传递函数参数时，什么时候该使用指针，什么时候该使用引用呢？</strong></h4><ul><li><strong>需要返回函数内局部变量的内存的时候用指针。</strong>指针作为函数参数，需要在堆上动态分配内存，在函数外部仍然可以访问这块内存。完要记得释放指针，不然会内存泄漏。</li><li>对栈空间大小比较敏感（比如递归）的时候使用引用。<strong>使用引用传递不需要创建临时变量，开销要更小</strong></li><li><strong>类对象作为参数传递的时候使用引用</strong>，这是C++类对象传递的标准方式</li></ul><h4 id="4-堆和栈的区别"><a href="#4-堆和栈的区别" class="headerlink" title="4.堆和栈的区别"></a><strong>4.堆和栈的区别</strong></h4><ul><li><p>申请<strong>方式</strong>不同。</p><ul><li>栈由系统自动分配。</li><li>堆是自己申请和释放的。</li></ul></li><li><p>申请<strong>大小限制</strong>不同。</p><ul><li><p>栈顶和栈底是之前预设好的，栈是向栈底扩展（从高地址向低地址扩展），大小固定</p><p>注：栈空间耗尽（例如递归调用过深），会导致 <strong>栈溢出</strong></p></li><li><p>堆向高地址扩展，是不连续的内存区域，大小可以灵活调整。</p></li></ul></li><li><p>申请<strong>效率</strong>不同。</p><ul><li>栈由系统分配，<strong>速度快</strong>，不会有碎片。</li><li>堆由程序员分配，速度慢，且会有碎片。</li></ul></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;C-八股&quot;&gt;&lt;a href=&quot;#C-八股&quot; class=&quot;headerlink&quot; title=&quot;C++八股&quot;&gt;&lt;/a&gt;C++八股&lt;/h2&gt;&lt;h4 id=&quot;1-在main执行之前和之后执行的代码可能是什么&quot;&gt;&lt;a href=&quot;#1-在main执行之前和之后执行的代码</summary>
+      
+    
+    
+    
+    <category term="C++" scheme="https://wangak.cc/categories/C/"/>
+    
+    
+    <category term="C++" scheme="https://wangak.cc/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>docker基础</title>
     <link href="https://wangak.cc/posts/5ae6092.html"/>
     <id>https://wangak.cc/posts/5ae6092.html</id>
@@ -523,32 +547,6 @@
       
       
     <summary type="html">&lt;h2 id=&quot;BiFormer-Vision-Transformer-with-Bi-Level-Routing-Attention&quot;&gt;&lt;a href=&quot;#BiFormer-Vision-Transformer-with-Bi-Level-Routing-Attention&quot; </summary>
-      
-    
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-    <category term="计算机视觉" scheme="https://wangak.cc/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    <category term="图像分割" scheme="https://wangak.cc/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>EPT-Net</title>
-    <link href="https://wangak.cc/posts/2dfc19b2.html"/>
-    <id>https://wangak.cc/posts/2dfc19b2.html</id>
-    <published>2024-04-01T16:00:00.000Z</published>
-    <updated>2024-04-02T00:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="EPT-Net-Edge-Perception-Transformer-for-3D-Medical-Image-Segmentation"><a href="#EPT-Net-Edge-Perception-Transformer-for-3D-Medical-Image-Segmentation" class="headerlink" title="EPT-Net: Edge Perception Transformer for 3D Medical Image Segmentation"></a>EPT-Net: Edge Perception Transformer for 3D Medical Image Segmentation</h2><p><strong>论文：《EPT-Net: Edge Perception Transformer for 3D Medical Image Segmentation》（TMI 2023)</strong></p><p><strong>EPT-NET:</strong>在编码器中通过CNN提取网络的详细的底层特征，作者提出了双位置Transformer模块通过学习位置编码和像素空间位置编码的过程，增强了定位能力，解决了多器官之间定位不准确的问题，增强了网络对复杂器官形状的理解能力。</p><ul><li><p>提出了一种双位置嵌入Transformer，包括可学习位置嵌入和体素空间位置嵌入。利用该方法对位置编码进行优化，可以有效地捕捉医学图像中不同器官位置之间的内在相关性。</p></li><li><p>提出了一个边缘权重指导模块来学习浅特征中的边缘信息，它可以捕获相邻器官之间的微小粘附。这种设计是在不增加网络参数的情况下最小化边缘信息功能。</p></li></ul><p>卷积操作在局部像素周围进行计算，只能捕获局部特征，缺乏全局上下文信息的提取能力，可能会导致边缘信息的处理不足。</p><h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="https://typoraimg.wangak.cc/2023/img/202404050928262.png" alt="image-20240326135759096" style="zoom:50%;"></p><p><strong>EPT-Net:</strong>基于U型网络，由DPT和EWG模块组成。</p><p><strong>双位置嵌入Transformer:</strong></p><p><img src="https://typoraimg.wangak.cc/2023/img/202404050928762.png" alt="image-20240326152549228" style="zoom:50%;"></p><ul><li><p><strong>Learnable Patch Embedding:</strong>使用位置嵌入，并且利用异步卷积，确保相邻的patch有特定的交互部分</p></li><li><p><strong>Voxel Spacial Positional Embedding:</strong>其通过一个3x3x3大小的深度卷积实现</p></li></ul><p><strong>Edge Weight Guidance Module(EWG):</strong></p><p><strong>浅层引导模块：</strong>用于提取低层特征中保留的边缘信息，其操作编码器的前两层，这两层通过一个3x3x3的卷积层调整到同一个分辨率进行级联，级联后的特征通过一个1x1x1的卷积层来得到浅层引导特征。</p><p><strong>加权注意力模块：</strong>通过特征像素之间的数学特性来评估每个特征点的优先级，通过测量目标特征和周围特征的<strong>线性可分性</strong>，<strong>优先级较高的特征点与周围的特征是线性不可分的。</strong></p><p>各特征点的优先级函数定义如下：<br>                                                  <img src="https://typoraimg.wangak.cc/2023/img/202404050929624.png" alt="image-20240326164429692" style="zoom: 67%;"></p><p><em>注1：<script type="math/tex">\hat{x_{i}}、\hat{y_{i}}</script>为特征点的局部信息，其为<script type="math/tex">x_i、y_i</script>通过线性变换得到，<script type="math/tex">ω_t</script>和<script type="math/tex">b_t</script>是变换的权值和偏置,<script type="math/tex">i</script>​为空间维度上的索引</em></p><p><em>注2：根据计算得到的特征点优先级，可以为每个特征点分配一个优先级系数。这个系数可以用来加权整个特征图，从而更好地捕获边缘信息。</em></p><p><script type="math/tex">ω_t</script>和<script type="math/tex">b_t</script>的定义如下：<br>                                                                          <img src="https://typoraimg.wangak.cc/2023/img/202404050929187.png" alt="image-20240330152301027" style="zoom: 67%;"></p><p><img src="https://typoraimg.wangak.cc/2023/img/202404050929943.png" alt="image-20240330152315586" style="zoom:67%;"></p><p>注：ξ是超参数，<script type="math/tex">m_i、v_i</script>是通道上除了<script type="math/tex">x_t</script>的所有特征点的均值和方差</p><p><script type="math/tex">\hat{p_t}</script>越小，表示特征点与周围的特征是线性不可分的，也就越重要，故定义优先级为<script type="math/tex">p=1/\hat{p_t}</script>​</p><p>所以最后的注意力计算为：</p><p><img src="https://typoraimg.wangak.cc/2023/img/202404050929675.png" alt="image-20240330154215190" style="zoom: 67%;"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;EPT-Net-Edge-Perception-Transformer-for-3D-Medical-Image-Segmentation&quot;&gt;&lt;a href=&quot;#EPT-Net-Edge-Perception-Transformer-for-3D-Medical-</summary>
       
     
     

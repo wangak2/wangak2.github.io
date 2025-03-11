@@ -31,6 +31,31 @@
     
     
     <entry>
+      <title>C++八股</title>
+      <link href="/posts/c2c0fb72.html"/>
+      <url>/posts/c2c0fb72.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="C-八股"><a href="#C-八股" class="headerlink" title="C++八股"></a>C++八股</h2><h4 id="1-在main执行之前和之后执行的代码可能是什么"><a href="#1-在main执行之前和之后执行的代码可能是什么" class="headerlink" title="1.在main执行之前和之后执行的代码可能是什么"></a><strong>1.在main执行之前和之后执行的代码可能是什么</strong></h4><ul><li><p>main函数执行之前，主要就是<strong>初始化系统相关资源</strong>：</p><ul><li>设置栈指针</li><li>初始化静态static变量和global全局变量</li><li>调用构造函数</li></ul></li><li><p>main函数执行之后：</p><ul><li>全局对象的析构函数</li></ul></li></ul><h4 id="2-指针和引用的区别"><a href="#2-指针和引用的区别" class="headerlink" title="2.指针和引用的区别"></a><strong>2.指针和引用的区别</strong></h4><ul><li><p><strong>指针是一个变量</strong>，存储的是一个地址，<strong>引用是原变量的别名</strong></p></li><li><p>指针可以为空，引用不能为NULL且在定义时必须初始化</p></li></ul><h4 id="3-在传递函数参数时，什么时候该使用指针，什么时候该使用引用呢？"><a href="#3-在传递函数参数时，什么时候该使用指针，什么时候该使用引用呢？" class="headerlink" title="3.在传递函数参数时，什么时候该使用指针，什么时候该使用引用呢？"></a><strong>3.在传递函数参数时，什么时候该使用指针，什么时候该使用引用呢？</strong></h4><ul><li><strong>需要返回函数内局部变量的内存的时候用指针。</strong>指针作为函数参数，需要在堆上动态分配内存，在函数外部仍然可以访问这块内存。完要记得释放指针，不然会内存泄漏。</li><li>对栈空间大小比较敏感（比如递归）的时候使用引用。<strong>使用引用传递不需要创建临时变量，开销要更小</strong></li><li><strong>类对象作为参数传递的时候使用引用</strong>，这是C++类对象传递的标准方式</li></ul><h4 id="4-堆和栈的区别"><a href="#4-堆和栈的区别" class="headerlink" title="4.堆和栈的区别"></a><strong>4.堆和栈的区别</strong></h4><ul><li><p>申请<strong>方式</strong>不同。</p><ul><li>栈由系统自动分配。</li><li>堆是自己申请和释放的。</li></ul></li><li><p>申请<strong>大小限制</strong>不同。</p><ul><li><p>栈顶和栈底是之前预设好的，栈是向栈底扩展（从高地址向低地址扩展），大小固定</p><p>注：栈空间耗尽（例如递归调用过深），会导致 <strong>栈溢出</strong></p></li><li><p>堆向高地址扩展，是不连续的内存区域，大小可以灵活调整。</p></li></ul></li><li><p>申请<strong>效率</strong>不同。</p><ul><li>栈由系统分配，<strong>速度快</strong>，不会有碎片。</li><li>堆由程序员分配，速度慢，且会有碎片。</li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>docker基础</title>
       <link href="/posts/5ae6092.html"/>
       <url>/posts/5ae6092.html</url>
@@ -2148,17 +2173,6 @@
     
     
     <entry>
-      <title>comments</title>
-      <link href="/comments/index.html"/>
-      <url>/comments/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>categories</title>
       <link href="/categories/index.html"/>
       <url>/categories/index.html</url>
@@ -2173,6 +2187,17 @@
       <title>tags</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>comments</title>
+      <link href="/comments/index.html"/>
+      <url>/comments/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
