@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wangak.cc/posts/42cbd3c8.html</loc>
+    
+    <lastmod>2025-03-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://wangak.cc/posts/608ca7e8.html</loc>
     
     <lastmod>2025-03-12</lastmod>
@@ -650,7 +659,7 @@
   </url>
   
   <url>
-    <loc>https://wangak.cc/posts/d5fb1dd8.html</loc>
+    <loc>https://wangak.cc/posts/c74eb236.html</loc>
     
     <lastmod>2023-08-01</lastmod>
     
@@ -659,7 +668,7 @@
   </url>
   
   <url>
-    <loc>https://wangak.cc/posts/c74eb236.html</loc>
+    <loc>https://wangak.cc/posts/d5fb1dd8.html</loc>
     
     <lastmod>2023-08-01</lastmod>
     
@@ -774,6 +783,13 @@
   </url>
   
   <url>
+    <loc>https://wangak.cc/tags/CMake/</loc>
+    <lastmod>2025-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://wangak.cc/tags/Protobuf/</loc>
     <lastmod>2025-03-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -781,14 +797,14 @@
   </url>
   
   <url>
-    <loc>https://wangak.cc/tags/docker/</loc>
+    <loc>https://wangak.cc/tags/shell/</loc>
     <lastmod>2025-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://wangak.cc/tags/shell/</loc>
+    <loc>https://wangak.cc/tags/docker/</loc>
     <lastmod>2025-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -803,13 +819,6 @@
   
   <url>
     <loc>https://wangak.cc/tags/opengl/</loc>
-    <lastmod>2025-03-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://wangak.cc/tags/java/</loc>
     <lastmod>2025-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -844,7 +853,7 @@
   </url>
   
   <url>
-    <loc>https://wangak.cc/tags/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/</loc>
+    <loc>https://wangak.cc/tags/java/</loc>
     <lastmod>2025-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -859,6 +868,34 @@
   
   <url>
     <loc>https://wangak.cc/tags/%E7%94%9F%E6%88%90%E5%99%A8/</loc>
+    <lastmod>2025-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wangak.cc/tags/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/</loc>
+    <lastmod>2025-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wangak.cc/tags/RNN/</loc>
+    <lastmod>2025-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wangak.cc/tags/LSTM/</loc>
+    <lastmod>2025-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wangak.cc/tags/%E6%84%9F%E7%9F%A5%E6%9C%BA/</loc>
     <lastmod>2025-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -887,20 +924,6 @@
   
   <url>
     <loc>https://wangak.cc/tags/Pytorch/</loc>
-    <lastmod>2025-03-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://wangak.cc/tags/RNN/</loc>
-    <lastmod>2025-03-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://wangak.cc/tags/LSTM/</loc>
     <lastmod>2025-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -964,13 +987,6 @@
   
   <url>
     <loc>https://wangak.cc/tags/%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96/</loc>
-    <lastmod>2025-03-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://wangak.cc/tags/%E6%84%9F%E7%9F%A5%E6%9C%BA/</loc>
     <lastmod>2025-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1077,14 +1093,14 @@
   </url>
   
   <url>
-    <loc>https://wangak.cc/categories/java/</loc>
+    <loc>https://wangak.cc/categories/python/</loc>
     <lastmod>2025-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://wangak.cc/categories/python/</loc>
+    <loc>https://wangak.cc/categories/java/</loc>
     <lastmod>2025-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
